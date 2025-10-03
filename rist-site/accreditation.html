@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accreditation — RIST</title>
+  <meta name="description" content="Accreditation documents of RIST — AICTE and WBSCVT approvals and compliance PDFs." />
+  <meta name="theme-color" content="#0d47d9" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://opensheet.elk.sh" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Hide selected nav items on desktop, keep them in mobile menu */
+    @media (min-width: 1025px) {
+      #primaryNav .mobile-only { display: none !important; }
+    }
+
+    :root {
+      --brand:#0d47d9; --brand-2:#1e6bff; --brand-3:#5ea1ff;
+      --bg:#ffffff; --surface:#f7fbff; --surface-2:#eef5ff;
+      --text:#0f172a; --muted:#667085; --radius:14px;
+      --shadow:0 10px 30px rgba(2,8,23,.08); --ring:0 0 0 4px rgba(13,71,217,.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]){--bg:#0b1220;--surface:#0f172a;--surface-2:#0b1629;--text:#e5e7eb;--muted:#9ca3af;--shadow:0 10px 30px rgba(0,0,0,.4)}
+    }
+    :root[data-theme="dark"]{--bg:#0b1220;--surface:#0f172a;--surface-2:#0b1629;--text:#e5e7eb;--muted:#9ca3af;--shadow:0 10px 30px rgba(0,0,0,.4)}
+    :root[data-theme="light"]{--bg:#ffffff;--surface:#f7fbff;--surface-2:#eef5ff;--text:#0f172a;--muted:#667085;--shadow:0 10px 30px rgba(2,8,23,.08)}
+
+    *{box-sizing:border-box} html,body{height:100%}
+    html{scroll-behavior:smooth}
+    *[id]{scroll-margin-top:84px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+
+    body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+      background:
+      radial-gradient(60% 60% at 80% 0%, color-mix(in hsl, var(--brand-3), white 85%), transparent 60%),
+      radial-gradient(50% 50% at 10% 10%, color-mix(in hsl, var(--brand), white 88%), transparent 55%),
+      conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 90%), transparent 25% 60%, color-mix(in hsl, var(--brand-3), white 90%) 0 85%, transparent 0 100%);
+      opacity:.6; filter:saturate(110%)}
+
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:10000}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(150%) blur(10px);background:color-mix(in hsl, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%)}
+    .nav{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;justify-content:space-between;position:relative}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .brand-logo{width:96px;height:96px;border-radius:12px;object-fit:contain;display:block}
+    .brand-logo.dark{display:none}
+    :root[data-theme="dark"] .brand-logo.dark{display:block}
+    :root[data-theme="dark"] .brand-logo.light{display:none}
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) .brand-logo.dark{display:block}
+      :root:not([data-theme]) .brand-logo.light{display:none}
+    }
+    @media (max-width: 700px) {
+      .brand-logo { width: 72px; height: 72px; }
+    }
+
+    .brand-text { 
+      display: block;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: var(--text);
+      font-size: clamp(18px, 2.2vw, 26px);
+      line-height: 1.15;
+    }
+    @media (min-width: 900px) { .brand-text { white-space: nowrap; } }
+    .brand-sub { display:block; font-size:13px; color:var(--muted); margin-top:4px; font-weight:700; }
+
+    nav ul{margin:0;padding:0;list-style:none;display:flex;gap:18px;align-items:center}
+    /* Collapse nav on mobile and use the toggle */
+    @media (max-width:1024px){
+      nav ul{
+        display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+        background:var(--surface);padding:12px 20px;gap:10px;
+        border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%);
+      }
+      #primaryNav[data-open="true"] ul{display:flex}
+    }
+    /* Tighter brand→menu gap on desktop (same as index) */
+    @media (min-width: 1025px) {
+      .nav { flex-wrap: wrap; align-items: flex-start; row-gap: 8px; }
+      .brand { order: 1; }
+      .cta-row { order: 2; margin-left: auto; }
+      #primaryNav { order: 3; flex: 1 0 100%; margin-top: 0 !important; }
+      #primaryNav ul { justify-content: center; }
+    }
+
+    .has-submenu{position:relative}
+    .has-submenu > a{display:inline-flex;align-items:center;gap:6px}
+    .has-submenu > a::after{content:"▾";font-size:12px;line-height:1;transition:transform .2s ease;opacity:.8}
+    .has-submenu:hover > a::after, .has-submenu:focus-within > a::after{transform:rotate(180deg)}
+    .submenu{position:absolute;top:100%;left:0;min-width:200px;background:var(--surface);border:1px solid color-mix(in hsl, var(--text), transparent 88%);border-radius:10px;padding:8px;display:none;z-index:1001;box-shadow:var(--shadow)}
+    .submenu li{list-style:none}
+    .submenu a{display:block;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--text)}
+    .submenu a:hover{background:var(--surface-2);color:var(--brand)}
+    @media (hover:hover){.has-submenu:hover > .submenu, .has-submenu:focus-within > .submenu{display:block}}
+    @media (max-width:1024px){#primaryNav[data-open="true"] .submenu{position:static;display:block;padding:6px 0;border:0;box-shadow:none} .submenu a{padding-left:14px}}
+
+    nav a{text-decoration:none;color:var(--text);font-weight:500;opacity:.9}
+    nav a:hover, nav a[aria-current="page"], nav a[aria-current="true"]{opacity:1;color:var(--brand)}
+
+    .cta-row{display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;border:1px solid transparent;font-weight:600;text-decoration:none;cursor:pointer;box-shadow:var(--shadow);transition:transform .06s ease}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff}
+    .btn-outline{background:transparent;color:var(--brand);border-color:color-mix(in hsl, var(--brand), #fff 70%)}
+    .theme-toggle, .menu-toggle{width:38px;height:38px;border-radius:10px;border:1px solid color-mix(in hsl, var(--text), transparent 85%);background:var(--surface);display:grid;place-items:center;cursor:pointer}
+    @media (min-width:1025px){ .menu-toggle{display:none} }
+
+    /* Page container */
+    .container{max-width:1100px;margin:0 auto;padding:60px 20px}
+    .section-head{text-align:center;margin-bottom:18px}
+    .section-head h1{font-family:"Playfair Display",serif;margin:0 0 6px}
+    .section-head p.meta{color:var(--muted);margin:0}
+
+    /* Tabs + panels */
+    .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 18px}
+    .tab-btn{padding:10px 16px;border-radius:999px;border:1px solid color-mix(in hsl, var(--text), transparent 85%);background:var(--surface);font-weight:700;cursor:pointer}
+    .tab-btn[aria-selected="true"]{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff;border-color:transparent}
+    .tabpanel{background:linear-gradient(180deg, var(--surface), var(--surface-2));border:1px solid color-mix(in hsl, var(--text), transparent 90%);border-radius:18px;box-shadow:var(--shadow);padding:18px}
+
+    /* Docs list */
+    .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:10px 0 0}
+    @media (max-width:800px){ .docs{grid-template-columns:1fr} }
+    .doc{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border-radius:12px;background:var(--bg);border:1px solid color-mix(in hsl, var(--text), transparent 90%)}
+    .doc .left{display:flex;align-items:center;gap:12px}
+    .doc .icon{font-size:22px}
+    .doc .title{font-weight:700}
+    .doc .meta{color:var(--muted);font-size:12px}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+
+    .reveal{opacity:0;transform:translateY(12px);transition:.6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media (prefers-reduced-motion: reduce){ .reveal{transition:none} }
+
+    /* Footer */
+    footer{padding:60px 20px;border-top:1px solid color-mix(in hsl, var(--text), transparent 90%);background:linear-gradient(180deg, transparent, color-mix(in hsl, var(--brand-2), transparent 92%))}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:20px}
+    .footer-col h4{margin:0 0 10px}
+    .footer-col a{color:var(--text);opacity:.85;text-decoration:none;display:block;padding:6px 0}
+    .footer-col a:hover{opacity:1;color:var(--brand)}
+    .legal{max-width:1100px;margin:18px auto 0;color:var(--muted);font-size:13px}
+
+    /* Footer Helpline CTA */
+    .helpline-cta {
+      margin: 18px 0 0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .helpline-info { display:flex; align-items:baseline; gap:10px; }
+    .helpline-badge {
+      display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px;
+      background: color-mix(in hsl, var(--brand-3), white 75%); color:#0a2a7a; border:1px solid color-mix(in hsl, var(--brand-3), white 55%);
+      font-weight:700; font-size:12px;
+    }
+    .helpline-number { font-weight:800; font-size:16px; color:var(--text); }
+
+    /* Mobile overflow fix: keep header on one row and prevent horizontal scroll */
+    @media (max-width: 1024px) {
+      .nav { flex-wrap: nowrap; }
+      .brand { flex: 1 1 auto; min-width: 0; }
+      .brand > div { min-width: 0; }
+      .brand-text { overflow-wrap: anywhere; }
+      .cta-row { flex-shrink: 0; }
+
+      html, body { overflow-x: hidden; }
+
+      .container,
+      .docs,
+      .tabs,
+      .footer-grid {
+        max-width: 100%;
+        overflow-x: clip;
+      }
+
+      img, svg, canvas, video { max-width: 100%; height: auto; }
+    }
+
+    /* Stack footer columns on small screens */
+    @media (max-width:700px){
+      .footer-grid{grid-template-columns:1fr}
+      .helpline-cta { gap: 10px; }
+      .helpline-number { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Regent Institute of Science & Technology Home">
+        <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="96" height="96">
+        <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="96" height="96">
+        <div>
+          <span class="brand-text">Regent Institute of Science & Technology</span>
+          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCVT</span>
+        </div>
+      </a>
+      <nav id="primaryNav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#notices">Notices</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li class="mobile-only"><a href="index.html#research">Research</a></li>
+          <li><a href="accreditation.html" aria-current="page">Accreditation</a></li>
+          <li class="has-submenu">
+            <a href="faculty.html">Faculty</a>
+            <ul class="submenu" aria-label="Faculty submenu">
+              <li><a href="index.html#faculty">Overview</a></li>
+              <li><a href="faculty.html">Directory</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a >Grievance</a>
+            <ul class="submenu" aria-label="Grievance submenu">
+              <li><a href="grievance.html?type=student">For Students</a></li>
+              <li><a href="grievance.html?type=employee">For Employees</a></li>
+            </ul>
+          </li>
+          <li><a href="committees.html">Committees</a></li>
+          <li class="mobile-only"><a href="index.html#campus">Campus</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li class="mobile-only"><a href="index.html#placements">Placements</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cta-row">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">☰</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌗</button>
+        <!-- Apply button intentionally removed on this page -->
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <div class="section-head">
+      <h1>Accreditation</h1>
+      <p class="meta">Download official AICTE and WBSCVT approvals, EOA reports, and compliance documents.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" role="tablist" aria-label="Accreditation bodies">
+      <button class="tab-btn" role="tab" id="tab-aicte" aria-controls="panel-aicte" aria-selected="true" tabindex="0">AICTE</button>
+      <button class="tab-btn" role="tab" id="tab-wbscvt" aria-controls="panel-wbscvt" aria-selected="false" tabindex="-1">WBSCVT</button>
+    </div>
+
+    <!-- Panels -->
+    <section id="panel-aicte" class="tabpanel reveal" role="tabpanel" aria-labelledby="tab-aicte">
+      <h2 style="margin:0 0 8px">AICTE Documents</h2>
+      <p class="meta" id="status-aicte" role="status" aria-live="polite">Loading…</p>
+      <div id="docs-aicte" class="docs" role="list"></div>
+    </section>
+
+    <section id="panel-wbscvt" class="tabpanel reveal" role="tabpanel" aria-labelledby="tab-wbscvt" hidden>
+      <h2 style="margin:0 0 8px">WBSCVT Documents</h2>
+      <p class="meta" id="status-wbscvt" role="status" aria-live="polite">Loading…</p>
+      <div id="docs-wbscvt" class="docs" role="list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="display:flex;gap:12px;align-items:center;margin:0 0 12px">
+          <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="80" height="80">
+          <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="80" height="80">
+          <div>
+            <span class="brand-text">Regent Institute of Science & Technology</span>
+            <span class="brand-sub">Bara Kanthalia, Telini Para, Barrackpore, Kolkata - 700121</span>
+          </div>
+        </div>
+        <p style="max-width:520px;color:var(--muted)">Contact us for admissions, partnerships, campus visits, and more.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html#about">About</a>
+        <a href="index.html#notices">Notices</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#research">Research</a>
+        <a href="faculty.html">Faculty</a>
+        <a href="committees.html">Committees</a>
+        <a href="accreditation.html" aria-current="page">Accreditation</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#placements">Placements</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reach Us</h4>
+        <a href="mailto:ristkolkata@gmail.com">ristkolkata@gmail.com</a>
+        <a href="tel:+918584854950">+91 85848 54950</a>
+        <a href="https://maps.google.com/?q=Bara+Kanthalia,+Telini+Para,+Barrackpore,+Kolkata+700121" target="_blank" rel="noopener">View on Google Maps</a>
+      </div>
+    </div>
+
+    <!-- 24×7 Women Helpline CTA -->
+    <div class="helpline-cta" role="region" aria-label="24×7 Women Helpline">
+      <div class="helpline-info">
+        <span class="helpline-badge">24×7 Women Helpline</span>
+        <span class="helpline-number">9330531353</span>
+      </div>
+      <a
+        href="tel:+919330531353"
+        class="btn btn-primary btn-sm"
+        aria-label="Call 24 by 7 Women Helpline 9330531353"
+      >Call Now</a>
+    </div>
+
+    <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts (match index behaviors, no Apply button here) -->
+  <script>
+    // Smooth scroll (left click, no modifiers)
+    document.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest('a[href^="#"]'); if (!a) return;
+      const hash = a.getAttribute('href'); if (!hash || hash.length <= 1) return;
+      const el = document.getElementById(hash.slice(1)); if (!el) return;
+      e.preventDefault(); el.scrollIntoView({ behavior:'smooth', block:'start' }); history.pushState(null,'',hash);
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    window.io = io;
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Mobile menu toggle
+    (function(){
+      const menuBtn = document.getElementById('menuToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      function collapseDesktop() {
+        if (window.innerWidth > 1024) {
+          primaryNav.removeAttribute('data-open');
+          menuBtn?.setAttribute('aria-expanded', 'false');
+        }
+      }
+      window.addEventListener('resize', collapseDesktop);
+      menuBtn?.addEventListener('click', () => {
+        const open = primaryNav.getAttribute('data-open') === 'true';
+        primaryNav.setAttribute('data-open', String(!open));
+        menuBtn?.setAttribute('aria-expanded', String(!open));
+        menuBtn?.setAttribute('aria-label', !open ? 'Close menu' : 'Open menu');
+      });
+      primaryNav?.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+          primaryNav.removeAttribute('data-open');
+          menuBtn?.setAttribute('aria-expanded','false');
+          menuBtn?.setAttribute('aria-label','Open menu');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          primaryNav.removeAttribute('data-open');
+          menuBtn?.setAttribute('aria-expanded','false');
+          menuBtn?.setAttribute('aria-label','Open menu');
+        }
+      });
+    })();
+
+    // Theme toggle (+ dynamic theme-color)
+    (function themeManager(){
+      const rootEl = document.documentElement; const THEME_KEY='rist-theme';
+      function setThemeColorMeta(mode){
+        const light='#0d47d9', dark='#0b1220';
+        let meta=document.querySelector('meta[name="theme-color"]');
+        if(!meta){ meta=document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+        meta.setAttribute('content', mode==='dark'?dark:light);
+      }
+      function applyTheme(mode){
+        if (mode==='light'||mode==='dark'){
+          rootEl.setAttribute('data-theme',mode);
+          rootEl.style.colorScheme=mode;
+          localStorage.setItem(THEME_KEY,mode);
+          setThemeColorMeta(mode);
+        } else {
+          rootEl.removeAttribute('data-theme');
+        }
+      }
+      const saved=localStorage.getItem(THEME_KEY);
+      if (saved){ applyTheme(saved); }
+      else { const sys=window.matchMedia('(prefers-color-scheme: dark)').matches; rootEl.style.colorScheme=sys?'dark':'light'; setThemeColorMeta(sys?'dark':'light'); }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e=>{
+        if(!localStorage.getItem(THEME_KEY)){
+          const m=e.matches?'dark':'light';
+          rootEl.style.colorScheme=m; setThemeColorMeta(m);
+        }
+      });
+      document.getElementById('themeToggle')?.addEventListener('click', ()=>{
+        const next = rootEl.getAttribute('data-theme')==='dark'?'light':'dark';
+        applyTheme(next);
+      });
+    })();
+
+    // Dynamic year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Accreditation data via OpenSheet -->
+  <script>
+    const SHEET_ID = '1gOv67Z8hAYJB8dlDmdpzxVeYWlhcjbEc_X_R3VbBxb0'; // TODO: replace with your Sheet ID
+    const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
+    function osUrl(tab){ return `https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(tab)}`; }
+    function cacheKey(tab){ return `accred-${SHEET_ID}-${tab}`; }
+    function cacheGet(k){
+      try{ const raw = localStorage.getItem(k); if(!raw) return null; const o=JSON.parse(raw);
+        return (Date.now()-o.time>CACHE_TTL)?null:o.data;
+      }catch{return null}
+    }
+    function cacheSet(k,data){ try{ localStorage.setItem(k, JSON.stringify({time:Date.now(), data})) }catch{} }
+
+    function normalizeDriveUrl(u){
+      try {
+        const url = new URL(u);
+        if (url.hostname.includes('drive.google.com')) {
+          const m = url.pathname.match(/\/file\/d\/([^/]+)/);
+          const id = m ? m[1] : (url.searchParams.get('id') || '');
+          if (id) return `https://drive.google.com/uc?export=download&id=${id}`;
+        }
+        return u;
+      } catch { return u; }
+    }
+    function safeUrl(u){
+      try{ const x=new URL(u, location.origin); return (x.protocol==='http:'||x.protocol==='https:')?x.href:'' }catch{return''}
+    }
+    async function fetchDocs(tab){
+  const ck = cacheKey(tab);
+  const cached = cacheGet(ck);
+  if (cached) return cached;
+
+  const res = await fetch(osUrl(tab));
+  if (!res.ok) throw new Error('Failed to load ' + tab);
+  const rows = await res.json();
+
+  const data = rows.map(r => {
+    const urlRaw = (r.URL || '').trim();
+    // Build a Drive download URL if it’s a Drive link
+    let dlUrl = urlRaw;
+    try {
+      const url = new URL(urlRaw, location.origin);
+      if (url.hostname.includes('drive.google.com')) {
+        const m = url.pathname.match(/\/file\/d\/([^/]+)/);
+        const id = m ? m[1] : (url.searchParams.get('id') || '');
+        if (id) dlUrl = `https://drive.google.com/uc?export=download&id=${id}`;
+      }
+    } catch {}
+
+    return {
+      title: (r.Title || 'Document').trim(),
+      viewUrl: safeUrl(urlRaw),
+      dlUrl: safeUrl(dlUrl),
+      year: (r.Year || '').trim(),
+      order: Number(r.Order || 9999)
+    };
+  }).filter(d => d.viewUrl);
+
+  data.sort((a,b)=>a.order - b.order || (a.title||'').localeCompare(b.title||''));
+  cacheSet(ck, data);
+  return data;
+}
+
+    function sameOrigin(u){ try{ return new URL(u, location.href).origin === location.origin; }catch{return false} }
+
+    function renderDocs(list, containerId, statusId){
+      const root = document.getElementById(containerId);
+      const status = document.getElementById(statusId);
+      root.innerHTML = '';
+      if (!list || !list.length){ status.textContent = 'No documents available right now.'; return; }
+      status.textContent = `Showing ${list.length} document${list.length>1?'s':''}`;
+      list.forEach(item => {
+        const href = item.url;
+        const card = document.createElement('div'); card.className='doc'; card.setAttribute('role','listitem');
+
+        const left = document.createElement('div'); left.className='left';
+        const icon = document.createElement('span'); icon.className='icon'; icon.textContent='📄';
+        const text = document.createElement('div');
+        const t = document.createElement('div'); t.className='title'; t.textContent = item.title || 'Document';
+        const m = document.createElement('div'); m.className='meta'; m.textContent = item.year ? `Year: ${item.year}` : '';
+        text.append(t, m); left.append(icon, text);
+
+        const actions = document.createElement('div'); actions.className='actions';
+        if (href){
+          const view = document.createElement('a'); view.className='btn btn-outline'; view.href=href; view.target='_blank'; view.rel='noopener'; view.textContent='View PDF';
+          const dl = document.createElement('a'); dl.className='btn btn-primary'; dl.href=href; dl.target='_blank'; dl.rel='noopener'; dl.textContent='Download';
+          if (sameOrigin(href)) dl.setAttribute('download', '');
+          actions.append(view, dl);
+        } else {
+          const disabled = document.createElement('span'); disabled.className='meta'; disabled.textContent='Link unavailable';
+          actions.appendChild(disabled);
+        }
+
+        card.append(left, actions);
+        root.appendChild(card);
+      });
+    }
+
+    function activateTab(which){
+      const tabs = [
+        { id:'aicte', btn:document.getElementById('tab-aicte'), panel:document.getElementById('panel-aicte'), listEl:'docs-aicte', statusEl:'status-aicte' },
+        { id:'wbscvt', btn:document.getElementById('tab-wbscvt'), panel:document.getElementById('panel-wbscvt'), listEl:'docs-wbscvt', statusEl:'status-wbscvt' }
+      ];
+      tabs.forEach(t => {
+        const active = (t.id === which);
+        t.btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        t.btn.tabIndex = active ? 0 : -1;
+        t.panel.hidden = !active;
+      });
+      const tabName = which.toUpperCase(); // Sheet tabs: AICTE, WBSCVT
+      fetchDocs(tabName)
+        .then(list => renderDocs(list, tabs.find(x => x.id===which).listEl, tabs.find(x => x.id===which).statusEl))
+        .catch(() => {
+          document.getElementById(tabs.find(x=>x.id===which).statusEl).textContent = 'Unable to load documents.';
+        });
+
+      const newHash = '#' + which;
+      if (location.hash !== newHash) history.replaceState(null, '', newHash);
+    }
+
+    // Tabs init + keyboard navigation
+    (function tabsInit(){
+      const a = document.getElementById('tab-aicte');
+      const w = document.getElementById('tab-wbscvt');
+      function onClick(e){
+        const id = (e.currentTarget.id === 'tab-aicte') ? 'aicte' : 'wbscvt';
+        activateTab(id);
+        e.currentTarget.focus();
+      }
+      a.addEventListener('click', onClick);
+      w.addEventListener('click', onClick);
+      document.querySelectorAll('.tab-btn').forEach(btn=>{
+        btn.addEventListener('keydown', e=>{
+          const order = ['tab-aicte','tab-wbscvt'];
+          const idx = order.indexOf(e.currentTarget.id);
+          if (e.key === 'ArrowRight') { e.preventDefault(); const next = document.getElementById(order[(idx+1)%order.length]); next.click(); next.focus(); }
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); const prev = document.getElementById(order[(idx-1+order.length)%order.length]); prev.click(); prev.focus(); }
+          if (e.key === 'Home') { e.preventDefault(); const first=document.getElementById(order[0]); first.click(); first.focus(); }
+          if (e.key === 'End')  { e.preventDefault(); const last=document.getElementById(order[order.length-1]); last.click(); last.focus(); }
+        });
+      });
+      const wanted = (location.hash || '#aicte').replace('#','').toLowerCase();
+      activateTab(wanted === 'wbscvt' ? 'wbscvt' : 'aicte');
+      window.addEventListener('hashchange', ()=>{
+        const h=(location.hash||'').replace('#','').toLowerCase();
+        if (h==='aicte' || h==='wbscvt') activateTab(h);
+      });
+    })();
+    function renderDocs(list, containerId, statusId){
+  const root = document.getElementById(containerId);
+  const status = document.getElementById(statusId);
+  root.innerHTML = '';
+  if (!list || !list.length){ status.textContent = 'No documents available right now.'; return; }
+  status.textContent = `Showing ${list.length} document${list.length>1?'s':''}`;
+
+  list.forEach(item => {
+    const hrefView = item.viewUrl;
+    const hrefDl   = item.dlUrl || item.viewUrl;
+
+    const card = document.createElement('div'); card.className='doc'; card.setAttribute('role','listitem');
+
+    const left = document.createElement('div'); left.className='left';
+    const icon = document.createElement('span'); icon.className='icon'; icon.textContent='📄';
+    const text = document.createElement('div');
+    const t = document.createElement('div'); t.className='title'; t.textContent = item.title || 'Document';
+    const m = document.createElement('div'); m.className='meta'; m.textContent = item.year ? `Year: ${item.year}` : '';
+    text.append(t, m); left.append(icon, text);
+
+    const actions = document.createElement('div'); actions.className='actions';
+    const view = document.createElement('a'); view.className='btn btn-outline'; view.href=hrefView; view.target='_blank'; view.rel='noopener'; view.textContent='View PDF';
+    const dl = document.createElement('a'); dl.className='btn btn-primary'; dl.href=hrefDl; dl.target='_blank'; dl.rel='noopener'; dl.textContent='Download';
+    if (sameOrigin(hrefDl)) dl.setAttribute('download', '');
+    actions.append(view, dl);
+
+    card.append(left, actions);
+    root.appendChild(card);
+  });
+}
+  </script>
+</body>
+</html>

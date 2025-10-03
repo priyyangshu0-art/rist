@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Programs — RIST</title>
+  <meta name="description" content="Programs at Regent Institute of Science & Technology (RIST). Explore Diploma programs across four departments." />
+  <meta name="theme-color" content="#0d47d9" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    @media (min-width: 1025px) { #primaryNav .mobile-only { display: none !important; } }
+
+    :root{
+      --brand:#0d47d9; --brand-2:#1e6bff; --brand-3:#5ea1ff;
+      --bg:#ffffff; --surface:#f7fbff; --surface-2:#eef5ff;
+      --text:#0f172a; --muted:#667085;
+      --radius:14px; --shadow:0 10px 30px rgba(2,8,23,.08); --ring:0 0 0 4px rgba(13,71,217,.12)
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    *[id]{scroll-margin-top:84px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+
+    body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+      background:
+      radial-gradient(60% 60% at 80% 0%, color-mix(in hsl, var(--brand-3), white 85%), transparent 60%),
+      radial-gradient(50% 50% at 10% 10%, color-mix(in hsl, var(--brand), white 88%), transparent 55%),
+      conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 90%), transparent 25% 60%, color-mix(in hsl, var(--brand-3), white 90%) 0 85%, transparent 0 100%);
+      opacity:.6; filter:saturate(110%)}
+
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:10000}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(150%) blur(10px);background:color-mix(in hsl, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%)}
+    .nav{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;justify-content:space-between;position:relative}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .brand-logo{width:96px;height:96px;border-radius:12px;object-fit:contain;display:block}
+    .brand-logo.dark{display:none}
+    :root[data-theme="dark"] .brand-logo.dark{display:block}
+    :root[data-theme="dark"] .brand-logo.light{display:none}
+    @media (prefers-color-scheme: dark){ :root:not([data-theme]) .brand-logo.dark{display:block} :root:not([data-theme]) .brand-logo.light{display:none} }
+    @media (max-width:700px){ .brand-logo{width:72px;height:72px} }
+
+    .brand-text{display:block;font-weight:800;letter-spacing:.2px;color:var(--text);font-size:clamp(18px,2.2vw,26px);line-height:1.15}
+    @media (min-width:900px){ .brand-text{white-space:nowrap} }
+    .brand-sub{display:block;font-size:13px;color:var(--muted);margin-top:4px;font-weight:700}
+
+    nav ul{margin:0;padding:0;list-style:none;display:flex;gap:18px;align-items:center}
+    @media (max-width:1024px){
+      nav ul{
+        display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+        background:var(--surface);padding:12px 20px;gap:10px;
+        border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%);
+      }
+      #primaryNav[data-open="true"] ul{display:flex}
+    }
+    @media (min-width:1025px){
+      .nav{flex-wrap:wrap;align-items:flex-start;row-gap:8px}
+      .brand{order:1}
+      .cta-row{order:2;margin-left:auto}
+      #primaryNav{order:3;flex:1 0 100%;margin-top:0 !important}
+      #primaryNav ul{justify-content:center}
+    }
+
+    .has-submenu{position:relative}
+    .has-submenu > a{display:inline-flex;align-items:center;gap:6px}
+    .has-submenu > a::after{content:"▾";font-size:12px;line-height:1;transition:transform .2s ease;opacity:.8}
+    .has-submenu:hover > a::after, .has-submenu:focus-within > a::after{transform:rotate(180deg)}
+    .submenu{position:absolute;top:100%;left:0;min-width:200px;background:var(--surface);border:1px solid color-mix(in hsl, var(--text), transparent 88%);border-radius:10px;padding:8px;display:none;z-index:1001;box-shadow:var(--shadow)}
+    .submenu a{display:block;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--text)}
+    .submenu a:hover{background:var(--surface-2);color:var(--brand)}
+    @media (hover:hover){.has-submenu:hover > .submenu, .has-submenu:focus-within > .submenu{display:block}}
+    @media (max-width:1024px){#primaryNav[data-open="true"] .submenu{position:static;display:block;padding:6px 0;border:0;box-shadow:none} .submenu a{padding-left:14px}}
+
+    nav a{text-decoration:none;color:var(--text);font-weight:500;opacity:.9}
+    nav a:hover, nav a[aria-current="page"], nav a[aria-current="true"]{opacity:1;color:var(--brand)}
+
+    .cta-row{display:flex;gap:10px;align-items:center}
+    .menu-toggle,.theme-toggle{width:38px;height:38px;border-radius:10px;border:1px solid color-mix(in hsl, var(--text), transparent 85%);background:var(--surface);display:grid;place-items:center;cursor:pointer}
+    .menu-toggle:focus-visible,.theme-toggle:focus-visible, nav a:focus-visible{outline:none;box-shadow:var(--ring)}
+    @media (min-width:1025px){ .menu-toggle{display:none} }
+
+    .container{max-width:1100px;margin:0 auto;padding:60px 20px}
+    .section-head{text-align:center;margin-bottom:18px}
+    .section-head h1, .section-head h2{font-family:"Playfair Display",serif;margin:0}
+    .section-head p.meta{color:var(--muted);margin:8px auto 0;max-width:760px}
+
+    /* Tabs */
+    .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0 20px}
+    .pill{
+      appearance:none;border:1px solid color-mix(in hsl, var(--text), transparent 85%);
+      background:var(--surface);color:var(--text);
+      padding:8px 12px;border-radius:999px;font-weight:700;cursor:pointer
+    }
+    .pill:hover{color:var(--brand);border-color:color-mix(in hsl, var(--brand), white 65%)}
+    .pill.active, .pill[aria-selected="true"]{
+      background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border-color:transparent
+    }
+
+    /* Panels */
+    [hidden]{display:none !important}
+    .prog{margin:24px 0}
+    .prog .header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;background:color-mix(in hsl, var(--brand-3), white 75%);color:#0a2a7a;border:1px solid color-mix(in hsl, var(--brand-3), white 55%)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;border:1px solid color-mix(in hsl, var(--brand), #fff 70%);background:transparent;color:var(--brand);font-weight:700;cursor:pointer;box-shadow:var(--shadow);text-decoration:none}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff;border:none}
+
+    .card{border-radius:18px;background:linear-gradient(180deg, var(--surface), color-mix(in hsl, var(--surface), white 70%));border:1px solid color-mix(in hsl, var(--text), transparent 90%);box-shadow:var(--shadow);overflow:hidden}
+    .card .body{padding:18px}
+
+    .meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+    .meta-item{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:baseline}
+    .meta-item dt{font-size:12px;letter-spacing:.35px;color:var(--muted);text-transform:uppercase}
+    .meta-item dd{margin:0;font-weight:800}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:1024px){.meta-grid{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:700px){.meta-grid{grid-template-columns:1fr} .grid-3{grid-template-columns:1fr}}
+
+    .list{margin:0;padding-left:18px}
+    .muted{color:var(--muted)}
+
+    /* Footer */
+    footer{padding:60px 20px;border-top:1px solid color-mix(in hsl, var(--text), transparent 90%);background:linear-gradient(180deg, transparent, color-mix(in hsl, var(--brand-2), transparent 92%))}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:20px}
+    .footer-col h4{margin:0 0 10px}
+    .footer-col a{color:var(--text);opacity:.85;text-decoration:none;display:block;padding:6px 0}
+    .footer-col a:hover{opacity:1;color:var(--brand)}
+    .legal{max-width:1100px;margin:18px auto 0;color:var(--muted);font-size:13px}
+
+    .helpline-cta{margin:18px 0 0;border-radius:14px;padding:14px 16px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid color-mix(in hsl,var(--text),transparent 90%);box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .helpline-info{display:flex;align-items:baseline;gap:10px}
+    .helpline-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:color-mix(in hsl,var(--brand-3),white 75%);color:#0a2a7a;border:1px solid color-mix(in hsl,var(--brand-3),white 55%);font-weight:700;font-size:12px}
+    .helpline-number{font-weight:800;font-size:16px;color:var(--text)}
+
+    @media (max-width:1024px){
+      .nav{flex-wrap:nowrap}
+      .brand{flex:1 1 auto;min-width:0}
+      .brand > div{min-width:0}
+      .brand-text{overflow-wrap:anywhere}
+      .cta-row{flex-shrink:0}
+      html,body{overflow-x:hidden}
+      .container,.footer-grid{max-width:100%;overflow-x:clip}
+      img,svg,canvas,video{max-width:100%;height:auto}
+    }
+    @media (max-width:700px){ .footer-grid{grid-template-columns:1fr} .helpline-cta{gap:10px} .helpline-number{font-size:15px} }
+
+    .reveal{opacity:0;transform:translateY(12px);transition:.6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media (prefers-reduced-motion: reduce){ .reveal{transition:none} }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Regent Institute of Science & Technology Home">
+        <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="96" height="96">
+        <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="96" height="96">
+        <div>
+          <span class="brand-text">Regent Institute of Science & Technology</span>
+          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCVT</span>
+        </div>
+      </a>
+      <nav id="primaryNav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#notices">Notices</a></li>
+          <li><a href="programs.html" aria-current="page">Programs</a></li>
+          <li class="mobile-only"><a href="index.html#research">Research</a></li>
+          <li><a href="accreditation.html">Accreditation</a></li>
+          <li class="has-submenu">
+            <a href="faculty.html">Faculty</a>
+            <ul class="submenu" aria-label="Faculty submenu">
+              <li><a href="index.html#faculty">Overview</a></li>
+              <li><a href="faculty.html">Directory</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a ''>Grievance</a>
+            <ul class="submenu" aria-label="Grievance submenu">
+              <li><a href="grievance.html?type=student">For Students</a></li>
+              <li><a href="grievance.html?type=employee">For Employees</a></li>
+            </ul>
+          </li>
+          <li><a href="committees.html">Committees</a></li>
+          <li class="mobile-only"><a href="index.html#campus">Campus</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li class="mobile-only"><a href="index.html#placements">Placements</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cta-row">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">☰</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌗</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="container">
+      <div class="section-head">
+        <h1>Programs</h1>
+        <p class="meta">Explore Diploma programs. Use the tabs to switch departments.</p>
+      </div>
+
+      <!-- Switchable Tabs -->
+      <div class="tabs" role="tablist" aria-label="Departments">
+        <button class="pill active" role="tab" id="tab-cst" aria-controls="panel-cst" aria-selected="true">Computer Science & Technology</button>
+        <button class="pill" role="tab" id="tab-ee" aria-controls="panel-ee" aria-selected="false">Electrical Engineering</button>
+        <button class="pill" role="tab" id="tab-me" aria-controls="panel-me" aria-selected="false">Mechanical Engineering</button>
+        <button class="pill" role="tab" id="tab-ce" aria-controls="panel-ce" aria-selected="false">Civil Engineering</button>
+      </div>
+
+      <!-- CST -->
+      <section id="panel-cst" class="prog card reveal" role="tabpanel" aria-labelledby="tab-cst" data-prog="cst">
+        <div class="body">
+          <div class="header">
+            <div>
+              <span class="badge">Diploma</span>
+              <h2 style="margin:8px 0 6px">Diploma in Computer Science & Technology</h2>
+              <p style="margin:0">
+                The Department of Computer Science & Engineering is at the forefront of turning out software engineers with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on hands-on training and overall development of the individual personality. Equal importance is given to the classroom learning which is meant primarily for conceptual inputs. The teaching program has been devised keeping in view the need of a close interaction with the industry. The department has excellent computing facilities which include latest technology based computer systems, scanners, servers, multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of computers and peripherals of latest configurations for teaching and research work.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="admissions.html">Apply</a>
+            </div>
+          </div>
+
+          <dl class="meta-grid">
+            <div class="meta-item"><dt>Duration</dt><dd>3 Years</dd></div>
+            <div class="meta-item"><dt>Intake</dt><dd>60</dd></div>
+            <div class="meta-item"><dt>Affiliation</dt><dd>WBSCVT</dd></div>
+          </dl>
+
+          <div class="grid-3">
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Highlights</h3>
+              <ul class="list">
+                <li>Modern labs and project-based learning</li>
+                <li>Industry certifications and workshops</li>
+                <li>Add more points here…</li>
+              </ul>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Eligibility</h3>
+              <p class="muted">Add eligibility criteria for CST here.</p>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
+              <ul class="list">
+                <li>
+                  <a href="assets/docs/programs/cst-syllabus.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Syllabus (PDF)
+                  </a>
+                </li>
+                <li>
+                  <a href="assets/docs/programs/cst-brochure.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Brochure (PDF)
+                  </a>
+                </li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EE -->
+      <section id="panel-ee" class="prog card reveal" role="tabpanel" aria-labelledby="tab-ee" data-prog="ee" hidden>
+        <div class="body">
+          <div class="header">
+            <div>
+              <span class="badge">Diploma</span>
+              <h2 style="margin:8px 0 6px">Diploma in Electrical Engineering (EE)</h2>
+              <p style="margin:0">
+                The Department of Computer Science & Engineering is at the forefront of turning out software engineers with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on hands-on training and overall development of the individual personality. Equal importance is given to the classroom learning which is meant primarily for conceptual inputs. The teaching program has been devised keeping in view the need of a close interaction with the industry. The department has excellent computing facilities which include latest technology based computer systems, scanners, servers, multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of computers and peripherals of latest configurations for teaching and research work.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="admissions.html">Apply</a>
+            </div>
+          </div>
+
+          <dl class="meta-grid">
+            <div class="meta-item"><dt>Duration</dt><dd>3 Years</dd></div>
+            <div class="meta-item"><dt>Intake</dt><dd>120</dd></div>
+            <div class="meta-item"><dt>Affiliation</dt><dd>WBSCVT</dd></div>
+          </dl>
+
+          <div class="grid-3">
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Highlights</h3>
+              <ul class="list">
+                <li>Power systems, machines, control</li>
+                <li>Industry visits & mini-projects</li>
+                <li>Add more points here…</li>
+              </ul>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Eligibility</h3>
+              <p class="muted">Add eligibility criteria for EE here.</p>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
+              <ul class="list">
+                <li>
+                  <a href="assets/docs/programs/ee-syllabus.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Syllabus (PDF)
+                  </a>
+                </li>
+                <li>
+                  <a href="assets/docs/programs/ee-brochure.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Brochure (PDF)
+                  </a>
+                </li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ME -->
+      <section id="panel-me" class="prog card reveal" role="tabpanel" aria-labelledby="tab-me" data-prog="me" hidden>
+        <div class="body">
+          <div class="header">
+            <div>
+              <span class="badge">Diploma</span>
+              <h2 style="margin:8px 0 6px">Diploma in Mechanical Engineering (ME)</h2>
+              <p style="margin:0">
+                The Department of Computer Science & Engineering is at the forefront of turning out software engineers with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on hands-on training and overall development of the individual personality. Equal importance is given to the classroom learning which is meant primarily for conceptual inputs. The teaching program has been devised keeping in view the need of a close interaction with the industry. The department has excellent computing facilities which include latest technology based computer systems, scanners, servers, multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of computers and peripherals of latest configurations for teaching and research work.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="admissions.html">Apply</a>
+            </div>
+          </div>
+
+          <dl class="meta-grid">
+            <div class="meta-item"><dt>Duration</dt><dd>3 Years</dd></div>
+            <div class="meta-item"><dt>Intake</dt><dd>120</dd></div>
+            <div class="meta-item"><dt>Affiliation</dt><dd>WBSCVT</dd></div>
+          </dl>
+
+          <div class="grid-3">
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Highlights</h3>
+              <ul class="list">
+                <li>Thermal, manufacturing, design</li>
+                <li>Hands-on workshop & labs</li>
+                <li>Add more points here…</li>
+              </ul>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Eligibility</h3>
+              <p class="muted">Add eligibility criteria for ME here.</p>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
+              <ul class="list">
+                <li>
+                  <a href="assets/docs/programs/me-syllabus.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Syllabus (PDF)
+                  </a>
+                </li>
+                <li>
+                  <a href="assets/docs/programs/me-brochure.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Brochure (PDF)
+                  </a>
+                </li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CE -->
+      <section id="panel-ce" class="prog card reveal" role="tabpanel" aria-labelledby="tab-ce" data-prog="ce" hidden>
+        <div class="body">
+          <div class="header">
+            <div>
+              <span class="badge">Diploma</span>
+              <h2 style="margin:8px 0 6px">Diploma in Civil Engineering (CE)</h2>
+              <p style="margin:0">
+                The Department of Computer Science & Engineering is at the forefront of turning out software engineers with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on hands-on training and overall development of the individual personality. Equal importance is given to the classroom learning which is meant primarily for conceptual inputs. The teaching program has been devised keeping in view the need of a close interaction with the industry. The department has excellent computing facilities which include latest technology based computer systems, scanners, servers, multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of computers and peripherals of latest configurations for teaching and research work.
+              </p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="admissions.html">Apply</a>
+            </div>
+          </div>
+
+          <dl class="meta-grid">
+            <div class="meta-item"><dt>Duration</dt><dd>3 Years</dd></div>
+            <div class="meta-item"><dt>Intake</dt><dd>120</dd></div>
+            <div class="meta-item"><dt>Affiliation</dt><dd>WBSCVT</dd></div>
+          </dl>
+
+          <div class="grid-3">
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Highlights</h3>
+              <ul class="list">
+                <li>Structures, surveying, geotech</li>
+                <li>Site visits & CAD labs</li>
+                <li>Add more points here…</li>
+              </ul>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Eligibility</h3>
+              <p class="muted">Add eligibility criteria for CE here.</p>
+            </div></div>
+            <div class="card"><div class="body">
+              <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
+              <ul class="list">
+                <li>
+                  <a href="assets/docs/programs/ce-syllabus.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Syllabus (PDF)
+                  </a>
+                </li>
+                <li>
+                  <a href="assets/docs/programs/ce-brochure.pdf" target="_blank" rel="noopener" type="application/pdf">
+                    Brochure (PDF)
+                  </a>
+                </li>
+              </ul>
+            </div></div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="display:flex;gap:12px;align-items:center;margin:0 0 12px">
+          <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="80" height="80">
+          <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="80" height="80">
+          <div>
+            <span class="brand-text">Regent Institute of Science & Technology</span>
+            <span class="brand-sub">Bara Kanthalia, Telini Para, Barrackpore, Kolkata - 700121</span>
+          </div>
+        </div>
+        <p style="max-width:520px;color:var(--muted)">For program enquiries, write to ristkolkata@gmail.com or call +91 85848 54950.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="admissions.html">Admissions</a>
+        <a href="index.html#programs">Programs (Home)</a>
+        <a href="accreditation.html">Accreditation</a>
+        <a href="faculty.html">Faculty</a>
+        <a href="committees.html">Committees</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reach Us</h4>
+        <a href="mailto:ristkolkata@gmail.com">ristkolkata@gmail.com</a>
+        <a href="tel:+918584854950">+91 85848 54950</a>
+        <a href="https://maps.google.com/?q=Bara+Kanthalia,+Telini+Para,+Barrackpore,+Kolkata+700121" target="_blank" rel="noopener">View on Google Maps</a>
+      </div>
+    </div>
+
+    <div class="helpline-cta" role="region" aria-label="24×7 Women Helpline">
+      <div class="helpline-info">
+        <span class="helpline-badge">24×7 Women Helpline</span>
+        <span class="helpline-number">9330531353</span>
+      </div>
+      <a href="tel:+919330531353" class="btn btn-primary btn-sm" aria-label="Call 24 by 7 Women Helpline 9330531353">Call Now</a>
+    </div>
+
+    <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Smooth scroll for hash links (not used by tabs)
+    document.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest('a[href^="#"]'); if (!a) return;
+      const hash = a.getAttribute('href'); if (!hash || hash.length <= 1) return;
+      const el = document.getElementById(hash.slice(1)); if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior:'smooth', block:'start' });
+      history.pushState(null, '', hash);
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); }); }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Mobile menu (accessible)
+    (function(){
+      const menuBtn = document.getElementById('menuToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      function setState(open){
+        primaryNav.setAttribute('data-open', String(open));
+        menuBtn?.setAttribute('aria-expanded', String(open));
+        menuBtn?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      function collapseDesktop(){ if (window.innerWidth > 1024) setState(false); }
+      window.addEventListener('resize', collapseDesktop);
+      menuBtn?.addEventListener('click', ()=>{ const open=primaryNav.getAttribute('data-open')==='true'; setState(!open); });
+      primaryNav?.addEventListener('click', (e)=>{ if (e.target.closest('a')) setState(false); });
+      document.addEventListener('keydown', (e)=>{ if (e.key==='Escape') setState(false); });
+    })();
+
+    // Theme toggle
+    (function themeManager(){
+      const rootEl = document.documentElement; const THEME_KEY='rist-theme';
+      function setThemeColorMeta(mode){
+        const light='#0d47d9', dark='#0b1220';
+        let meta=document.querySelector('meta[name="theme-color"]');
+        if(!meta){ meta=document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+        meta.setAttribute('content', mode==='dark'?dark:light);
+      }
+      function applyTheme(mode){
+        if (mode==='light'||mode==='dark'){
+          rootEl.setAttribute('data-theme',mode);
+          rootEl.style.colorScheme=mode;
+          localStorage.setItem(THEME_KEY,mode);
+          setThemeColorMeta(mode);
+        } else { rootEl.removeAttribute('data-theme'); }
+      }
+      const saved=localStorage.getItem(THEME_KEY);
+      if (saved){ applyTheme(saved); }
+      else { const sys=window.matchMedia('(prefers-color-scheme: dark)').matches; rootEl.style.colorScheme=sys?'dark':'light'; setThemeColorMeta(sys?'dark':'light'); }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e=>{
+        if(!localStorage.getItem(THEME_KEY)){
+          const m=e.matches?'dark':'light';
+          rootEl.style.colorScheme=m; setThemeColorMeta(m);
+        }
+      });
+      document.getElementById('themeToggle')?.addEventListener('click', ()=>{
+        const next = rootEl.getAttribute('data-theme')==='dark'?'light':'dark';
+        applyTheme(next);
+      });
+    })();
+
+    // Tabs: switch panels (show one at a time)
+    (function(){
+      const tabs = [
+        { id:'cst', btn:document.getElementById('tab-cst'), panel:document.getElementById('panel-cst') },
+        { id:'ee',  btn:document.getElementById('tab-ee'),  panel:document.getElementById('panel-ee')  },
+        { id:'me',  btn:document.getElementById('tab-me'),  panel:document.getElementById('panel-me')  },
+        { id:'ce',  btn:document.getElementById('tab-ce'),  panel:document.getElementById('panel-ce')  },
+      ];
+      const order = tabs.map(t=>t.id);
+
+      function activate(which){
+        tabs.forEach(t=>{
+          const on = t.id === which;
+          t.btn.classList.toggle('active', on);
+          t.btn.setAttribute('aria-selected', on ? 'true' : 'false');
+          if (on) t.panel.removeAttribute('hidden'); else t.panel.setAttribute('hidden', '');
+        });
+        if (location.hash !== '#' + which) history.replaceState(null, '', '#' + which);
+      }
+
+      tabs.forEach(t=>{
+        t.btn.addEventListener('click', ()=>{
+          activate(t.id);
+          t.btn.focus({ preventScroll:true });
+          document.getElementById('main').scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+      });
+
+      document.querySelector('.tabs').addEventListener('keydown', (e)=>{
+        const current = tabs.findIndex(t=>t.btn.getAttribute('aria-selected')==='true');
+        if (e.key === 'ArrowRight') { e.preventDefault(); const next = tabs[(current+1)%tabs.length]; next.btn.click(); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); const prev = tabs[(current-1+tabs.length)%tabs.length]; prev.btn.click(); }
+        if (e.key === 'Home') { e.preventDefault(); tabs[0].btn.click(); }
+        if (e.key === 'End')  { e.preventDefault(); tabs[tabs.length-1].btn.click(); }
+      });
+
+      const h = (location.hash || '').replace('#','').toLowerCase();
+      activate(order.includes(h) ? h : 'cst');
+
+      window.addEventListener('hashchange', ()=>{
+        const h2 = (location.hash || '').replace('#','').toLowerCase();
+        if (order.includes(h2)) activate(h2);
+      });
+    })();
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

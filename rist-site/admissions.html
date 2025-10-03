@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admissions — RIST</title>
+  <meta name="description" content="Admissions — Regent Institute of Science & Technology (RIST). Fill and submit the online application form."/>
+  <meta name="theme-color" content="#0d47d9"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* Hide selected nav items on desktop, keep them in mobile menu */
+    @media (min-width: 1025px) { #primaryNav .mobile-only { display: none !important; } }
+
+    :root{--brand:#0d47d9;--brand-2:#1e6bff;--brand-3:#5ea1ff;--bg:#fff;--surface:#f7fbff;--surface-2:#eef5ff;--text:#0f172a;--muted:#667085;--radius:14px;--shadow:0 10px 30px rgba(2,8,23,.08);--ring:0 0 0 4px rgba(13,71,217,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    *[id]{scroll-margin-top:84px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+
+    /* Background accent */
+    body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+      background:
+      radial-gradient(60% 60% at 80% 0%, color-mix(in hsl, var(--brand-3), white 85%), transparent 60%),
+      radial-gradient(50% 50% at 10% 10%, color-mix(in hsl, var(--brand), white 88%), transparent 55%),
+      conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 90%), transparent 25% 60%, color-mix(in hsl, var(--brand-3), white 90%) 0 85%, transparent 0 100%);
+      opacity:.6; filter:saturate(110%)}
+
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:10000}
+
+    /* Header (aligned with index) */
+    header{position:sticky;top:0;z-index:1000;background:color-mix(in hsl, var(--bg), transparent 20%);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%)}
+    .nav{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;justify-content:space-between;position:relative}
+    .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+    .brand-logo{width:96px;height:96px;border-radius:12px;object-fit:contain;display:block}
+    @media (max-width:700px){ .brand-logo{width:72px;height:72px} }
+    .brand-logo.dark{display:none}
+    :root[data-theme="dark"] .brand-logo.dark{display:block}
+    :root[data-theme="dark"] .brand-logo.light{display:none}
+    @media (prefers-color-scheme: dark){
+      :root:not([data-theme]) .brand-logo.dark{display:block}
+      :root:not([data-theme]) .brand-logo.light{display:none}
+    }
+    .brand-text{display:block;font-weight:800;color:var(--text);font-size:clamp(18px,2.2vw,26px);line-height:1.15}
+    @media (min-width:900px){ .brand-text{white-space:nowrap} }
+    .brand-sub{display:block;font-size:13px;color:var(--muted);font-weight:700;margin-top:4px}
+
+    nav ul{margin:0;padding:0;list-style:none;display:flex;gap:18px;align-items:center}
+    @media (max-width:1024px){
+      nav ul{
+        display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+        background:var(--surface);padding:12px 20px;gap:10px;border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%)
+      }
+      #primaryNav[data-open="true"] ul{display:flex}
+    }
+    @media (min-width:1025px){
+      .nav{flex-wrap:wrap;align-items:flex-start;row-gap:8px}
+      .brand{order:1}
+      .cta-row{order:2;margin-left:auto}
+      #primaryNav{order:3;flex:1 0 100%;margin-top:0 !important}
+      #primaryNav ul{justify-content:center}
+    }
+
+    .has-submenu{position:relative}
+    .has-submenu > a{display:inline-flex;align-items:center;gap:6px}
+    .has-submenu > a::after{content:"▾";font-size:12px;line-height:1;opacity:.8;transition:transform .2s ease}
+    .has-submenu:hover > a::after, .has-submenu:focus-within > a::after{transform:rotate(180deg)}
+    .submenu{position:absolute;top:100%;left:0;min-width:200px;background:var(--surface);border:1px solid color-mix(in hsl, var(--text), transparent 88%);border-radius:10px;padding:8px;display:none;z-index:1001;box-shadow:var(--shadow)}
+    .submenu a{display:block;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--text)}
+    .submenu a:hover{background:var(--surface-2);color:var(--brand)}
+    @media (hover:hover){.has-submenu:hover > .submenu, .has-submenu:focus-within > .submenu{display:block}}
+    @media (max-width:1024px){#primaryNav[data-open="true"] .submenu{position:static;display:block;padding:6px 0;border:0;box-shadow:none} .submenu a{padding-left:14px}}
+
+    nav a{text-decoration:none;color:var(--text);font-weight:500;opacity:.9}
+    nav a:hover, nav a[aria-current="page"], nav a[aria-current="true"]{opacity:1;color:var(--brand)}
+
+    .cta-row{display:flex;gap:10px;align-items:center}
+    .menu-toggle,.theme-toggle{width:38px;height:38px;border-radius:10px;border:1px solid color-mix(in hsl,var(--text),transparent 85%);background:var(--surface);display:grid;place-items:center;cursor:pointer}
+    .menu-toggle:focus-visible,.theme-toggle:focus-visible{outline:none;box-shadow:var(--ring)}
+    @media (min-width:1025px){ .menu-toggle{display:none} }
+
+    main{padding:60px 20px}
+    .container{max-width:1100px;margin:0 auto}
+    .section{padding:40px 0}
+    .section-head{text-align:center;margin:24px 0 18px}
+    h1{font-family:"Playfair Display",serif;margin:0 0 8px;font-size:clamp(30px,4.5vw,42px)}
+    .meta{color:var(--muted)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;border:1px solid color-mix(in hsl,var(--brand),#fff 70%);background:transparent;color:var(--brand);font-weight:700;cursor:pointer;box-shadow:var(--shadow);text-decoration:none}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none}
+
+    .card{border-radius:18px;background:linear-gradient(180deg,var(--surface),color-mix(in hsl,var(--surface),white 70%));border:1px solid color-mix(in hsl,var(--text),transparent 90%);box-shadow:var(--shadow);overflow:hidden}
+    .card .body{padding:18px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:1024px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:700px){.grid-3{grid-template-columns:1fr}}
+
+    .timeline{list-style:none;margin:0;padding:0;max-width:900px;margin-inline:auto}
+    .timeline li{position:relative;padding:14px 16px 14px 48px;margin-bottom:12px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid color-mix(in hsl,var(--text),transparent 90%);border-radius:12px;box-shadow:var(--shadow)}
+    .timeline li::before{content:attr(data-step);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-weight:800;font-size:12px}
+
+    details{border-radius:12px;border:1px solid color-mix(in hsl,var(--text),transparent 90%);background:linear-gradient(180deg,var(--surface),var(--surface-2));box-shadow:var(--shadow);padding:10px 12px}
+
+    /* Embedded form */
+    .iframe-wrap{border-radius:16px;overflow:hidden;background:#fff}
+    .gform-embed{display:block;width:100%;border:0;min-height:1600px}
+    @media (max-width:1024px){.gform-embed{min-height:1900px}}
+    @media (max-width:700px){.gform-embed{min-height:2200px}}
+
+    /* Footer */
+    footer{padding:60px 20px;border-top:1px solid color-mix(in hsl, var(--text), transparent 90%);background:linear-gradient(180deg, transparent, color-mix(in hsl, var(--brand-2), transparent 92%))}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:20px}
+    .footer-col h4{margin:0 0 10px}
+    .footer-col a{color:var(--text);opacity:.85;text-decoration:none;display:block;padding:6px 0}
+    .footer-col a:hover{opacity:1;color:var(--brand)}
+    .legal{max-width:1100px;margin:18px auto 0;color:var(--muted);font-size:13px}
+
+    /* Helpline CTA */
+    .helpline-cta{margin:18px 0 0;border-radius:14px;padding:14px 16px;background:linear-gradient(180deg,var(--surface),var(--surface-2));border:1px solid color-mix(in hsl,var(--text),transparent 90%);box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .helpline-info{display:flex;align-items:baseline;gap:10px}
+    .helpline-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:color-mix(in hsl,var(--brand-3),white 75%);color:#0a2a7a;border:1px solid color-mix(in hsl,var(--brand-3),white 55%);font-weight:700;font-size:12px}
+    .helpline-number{font-weight:800;font-size:16px;color:var(--text)}
+
+    /* Mobile overflow fix */
+    @media (max-width:1024px){
+      .nav{flex-wrap:nowrap}
+      .brand{flex:1 1 auto;min-width:0}
+      .brand > div{min-width:0}
+      .brand-text{overflow-wrap:anywhere}
+      .cta-row{flex-shrink:0}
+      html,body{overflow-x:hidden}
+      .container,.grid-3,.footer-grid{max-width:100%;overflow-x:clip}
+      img,svg,canvas,video{max-width:100%;height:auto}
+    }
+    @media (max-width:700px){ .footer-grid{grid-template-columns:1fr} .helpline-cta{gap:10px} .helpline-number{font-size:15px} }
+
+    .reveal{opacity:0;transform:translateY(12px);transition:.6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media (prefers-reduced-motion: reduce){ .reveal{transition:none} }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Regent Institute of Science & Technology Home">
+        <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="96" height="96">
+        <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="96" height="96">
+        <div>
+          <span class="brand-text">Regent Institute of Science & Technology</span>
+          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCVT</span>
+        </div>
+      </a>
+      <nav id="primaryNav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#notices">Notices</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li class="mobile-only"><a href="index.html#research">Research</a></li>
+          <li><a href="accreditation.html">Accreditation</a></li>
+
+          <li class="has-submenu">
+            <a href="faculty.html">Faculty</a>
+            <ul class="submenu" aria-label="Faculty submenu">
+              <li><a href="index.html#faculty">Overview</a></li>
+              <li><a href="faculty.html">Directory</a></li>
+            </ul>
+          </li>
+
+          <li class="has-submenu">
+            <a href="grievance.html">Grievance</a>
+            <ul class="submenu" aria-label="Grievance submenu">
+              <li><a href="grievance.html?type=student">For Students</a></li>
+              <li><a href="grievance.html?type=employee">For Employees</a></li>
+            </ul>
+          </li>
+
+          <li><a href="committees.html">Committees</a></li>
+          <li class="mobile-only"><a href="index.html#campus">Campus</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li class="mobile-only"><a href="index.html#placements">Placements</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cta-row">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">☰</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌗</button>
+        <!-- No header Apply button on this page -->
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Application Form -->
+    <section class="container">
+      <div class="section-head">
+        <h1>Admissions — Online Application</h1>
+        <p class="meta">Fill and submit the form below to apply to RIST.</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+          <a class="btn" href="index.html">← Back to Home</a>
+        </div>
+      </div>
+
+      <div class="card reveal iframe-wrap">
+  <div class="body" style="text-align:center">
+    <h3 style="margin:0 0 8px">Open Application Form</h3>
+    <p class="meta" style="margin:0 0 14px">
+      The form opens in a new tab because it includes secure file uploads.
+    </p>
+    <a
+      id="openFormBtn"
+      class="btn btn-primary"
+      href="https://docs.google.com/forms/d/e/1FAIpQLSeHbC_a8mVwShBX9latxAG2YFaiKpcrfn1rsIGNSKQkoN3ebg/viewform"
+      target="_blank"
+      rel="noopener"
+    >Open Application Form</a>
+  </div>
+</div>
+    </section>
+
+    <!-- Important Dates -->
+    <section class="container section" id="dates">
+      <div class="section-head"><h2>Important Dates</h2></div>
+      <div class="grid-3">
+        <div class="card reveal"><div class="body"><strong>Applications Open</strong><br><span class="meta">From: 15 Feb 2025</span></div></div>
+        <div class="card reveal"><div class="body"><strong>Last Date (Round 1)</strong><br><span class="meta">10 Mar 2025</span></div></div>
+        <div class="card reveal"><div class="body"><strong>Merit List / Calls</strong><br><span class="meta">Rolling after each round</span></div></div>
+      </div>
+    </section>
+
+    <!-- How to Apply -->
+    <section class="container section" id="steps">
+      <div class="section-head"><h2>How to Apply</h2></div>
+      <ul class="timeline">
+        <li class="reveal" data-step="1">Fill the online application form with personal, academic, and contact details.</li>
+        <li class="reveal" data-step="2">Upload required documents (PDF/JPG as per instructions).</li>
+        <li class="reveal" data-step="3">Submit the form. You will receive an acknowledgment via email.</li>
+        <li class="reveal" data-step="4">Shortlisted candidates will be contacted for counseling/verification.</li>
+        <li class="reveal" data-step="5">Pay the admission fee to confirm your seat.</li>
+      </ul>
+    </section>
+
+    <!-- Eligibility -->
+    <section class="container section" id="eligibility">
+      <div class="section-head"><h2>Eligibility</h2></div>
+      <div class="grid-3">
+        <div class="card reveal"><div class="body"><h3 class="title">Diploma (Polytechnic)</h3><p class="meta">Passed Class 10 (Madhyamik or equivalent) with Mathematics & Science. State-level entrance (if applicable) will be considered.</p></div></div>
+        <div class="card reveal"><div class="body"><h3 class="title">Lateral Entry</h3><p class="meta">Passed Class 12 (Vocational/Science) or ITI (2 years) in relevant trade as per applicable Board norms.</p></div></div>
+        <div class="card reveal"><div class="body"><h3 class="title">Reservation</h3><p class="meta">As per Government/Board norms. Candidates must produce valid certificates during verification.</p></div></div>
+      </div>
+    </section>
+
+    <!-- Documents Required -->
+    <section class="container section" id="documents">
+      <div class="section-head"><h2>Documents Required</h2></div>
+      <div class="grid-3">
+        <div class="card reveal"><div class="body"><ul style="margin:0; padding-left:18px">
+          <li>Class 10 Marksheet & Certificate</li>
+          <li>Class 12 / ITI Marksheet (for Lateral)</li>
+          <li>Transfer/Migration Certificate</li></ul></div></div>
+        <div class="card reveal"><div class="body"><ul style="margin:0; padding-left:18px">
+          <li>Category/Reservation Certificate (if applicable)</li>
+          <li>Photo ID (Aadhaar/Passport)</li>
+          <li>Recent Passport Photos</li></ul></div></div>
+        <div class="card reveal"><div class="body"><ul style="margin:0; padding-left:18px">
+          <li>Entrance Rank/Allotment (if applicable)</li>
+          <li>Address Proof</li>
+          <li>Any other as notified</li></ul></div></div>
+      </div>
+    </section>
+
+    <!-- Fees & Scholarships -->
+    <section class="container section" id="fees">
+      <div class="section-head"><h2>Fees & Scholarships</h2></div>
+      <div class="grid-3">
+        <div class="card reveal"><div class="body"><h3 class="title">Tuition & Other Fees</h3><p class="meta">As per institute policy. Detailed fee structure will be provided during counseling. Contact admissions for latest updates.</p></div></div>
+        <div class="card reveal"><div class="body"><h3 class="title">Scholarships</h3><p class="meta">Merit-based scholarships and Government schemes are available for eligible students. Early applicants may get priority.</p></div></div>
+        <div class="card reveal"><div class="body"><h3 class="title">Education Loans</h3><p class="meta">Support for documentation is provided. Contact the Admissions Office for bank tie-ups and letters.</p></div></div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="container section" id="faqs">
+      <div class="section-head"><h2>FAQs</h2></div>
+      <div class="grid-3">
+        <details class="card reveal"><summary class="body"><strong>How will I know my application is received?</strong></summary><div class="body"><p class="meta">You will get an acknowledgment email after submission. Shortlisted candidates will be contacted for next steps.</p></div></details>
+        <details class="card reveal"><summary class="body"><strong>Can I edit my form after submission?</strong></summary><div class="body"><p class="meta">If you need to change critical information, contact the Admissions Office with your application ID.</p></div></details>
+        <details class="card reveal"><summary class="body"><strong>Is there a hostel?</strong></summary><div class="body"><p class="meta">Hostel support is available subject to availability. Contact the office for application details.</p></div></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="display:flex;gap:12px;align-items:center;margin:0 0 12px">
+          <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="80" height="80">
+          <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="80" height="80">
+          <div>
+            <span class="brand-text">Regent Institute of Science & Technology</span>
+            <span class="brand-sub">Bara Kanthalia, Telini Para, Barrackpore, Kolkata - 700121</span>
+          </div>
+        </div>
+        <p style="max-width:520px;color:var(--muted)">For admission queries, write to ristkolkata@gmail.com or call +91 85848 54950.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="admissions.html" aria-current="page">Admissions</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="accreditation.html">Accreditation</a>
+        <a href="faculty.html">Faculty</a>
+        <a href="committees.html">Committees</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reach Us</h4>
+        <a href="mailto:ristkolkata@gmail.com">ristkolkata@gmail.com</a>
+        <a href="tel:+918584854950">+91 85848 54950</a>
+        <a href="https://maps.google.com/?q=Bara+Kanthalia,+Telini+Para,+Barrackpore,+Kolkata+700121" target="_blank" rel="noopener">View on Google Maps</a>
+      </div>
+    </div>
+
+    <!-- 24×7 Women Helpline CTA -->
+    <div class="helpline-cta" role="region" aria-label="24×7 Women Helpline">
+      <div class="helpline-info">
+        <span class="helpline-badge">24×7 Women Helpline</span>
+        <span class="helpline-number">9330531353</span>
+      </div>
+      <a href="tel:+919330531353" class="btn btn-primary btn-sm" aria-label="Call 24 by 7 Women Helpline 9330531353">Call Now</a>
+    </div>
+
+    <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest('a[href^="#"]'); if (!a) return;
+      const hash = a.getAttribute('href'); if (!hash || hash.length <= 1) return;
+      const el = document.getElementById(hash.slice(1)); if (!el) return;
+      e.preventDefault(); el.scrollIntoView({ behavior:'smooth', block:'start' }); history.pushState(null, '', hash);
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); }), { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Mobile menu (accessible)
+    (function(){
+      const menuBtn = document.getElementById('menuToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      function setState(open){
+        primaryNav.setAttribute('data-open', String(open));
+        menuBtn?.setAttribute('aria-expanded', String(open));
+        menuBtn?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      function collapseDesktop(){ if (window.innerWidth > 1024) setState(false); }
+      window.addEventListener('resize', collapseDesktop);
+      menuBtn?.addEventListener('click', ()=>{ const open=primaryNav.getAttribute('data-open')==='true'; setState(!open); });
+      primaryNav?.addEventListener('click', (e)=>{ if (e.target.closest('a')) setState(false); });
+      document.addEventListener('keydown', (e)=>{ if (e.key==='Escape') setState(false); });
+    })();
+
+    // Theme toggle (+ meta)
+    (function themeManager(){
+      const root = document.documentElement; const KEY='rist-theme';
+      function setMeta(mode){
+        const light='#0d47d9', dark='#0b1220';
+        let meta=document.querySelector('meta[name="theme-color"]');
+        if(!meta){ meta=document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+        meta.setAttribute('content', mode==='dark'?dark:light);
+      }
+      function apply(mode){
+        if(mode==='light'||mode==='dark'){
+          root.setAttribute('data-theme',mode);
+          root.style.colorScheme=mode;
+          localStorage.setItem(KEY,mode);
+          setMeta(mode);
+        } else root.removeAttribute('data-theme');
+      }
+      const saved=localStorage.getItem(KEY);
+      if(saved){ apply(saved);} else { const sys=window.matchMedia('(prefers-color-scheme: dark)').matches; root.style.colorScheme=sys?'dark':'light'; setMeta(sys?'dark':'light'); }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e=>{
+        if(!localStorage.getItem(KEY)){
+          const m=e.matches?'dark':'light';
+          root.style.colorScheme=m; setMeta(m);
+        }
+      });
+      document.getElementById('themeToggle')?.addEventListener('click', ()=>{
+        const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+        apply(next);
+      });
+    })();
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Regent Institute of Science & Technology (RIST)</title>
+
+  <meta name="description" content="Regent Institute of Science & Technology — empowering innovators through world-class education, research, and industry collaboration." />
+  <meta property="og:title" content="Regent Institute of Science & Technology (RIST)" />
+  <meta property="og:description" content="Empowering innovators through world-class education, research, and industry collaboration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rist.example.com/" />
+  <meta property="og:image" content="https://rist.example.com/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0d47d9" />
+  <link rel="canonical" href="https://rist.example.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Hide selected nav items on desktop, keep them in mobile menu */
+    @media (min-width: 1025px) {
+      #primaryNav .mobile-only { display: none !important; }
+    }
+    :root {
+      --brand:#0d47d9; --brand-2:#1e6bff; --brand-3:#5ea1ff;
+      --bg:#ffffff; --surface:#f7fbff; --surface-2:#eef5ff;
+      --text:#0f172a; --muted:#667085; --radius:14px;
+      --shadow:0 10px 30px rgba(2,8,23,.08); --ring:0 0 0 4px rgba(13,71,217,.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]){--bg:#0b1220;--surface:#0f172a;--surface-2:#0b1629;--text:#e5e7eb;--muted:#9ca3af;--shadow:0 10px 30px rgba(0,0,0,.4)}
+    }
+    :root[data-theme="dark"]{--bg:#0b1220;--surface:#0f172a;--surface-2:#0b1629;--text:#e5e7eb;--muted:#9ca3af;--shadow:0 10px 30px rgba(0,0,0,.4)}
+    :root[data-theme="light"]{--bg:#ffffff;--surface:#f7fbff;--surface-2:#eef5ff;--text:#0f172a;--muted:#667085;--shadow:0 10px 30px rgba(2,8,23,.08)}
+
+    *{box-sizing:border-box} html,body{height:100%}
+    html{scroll-behavior:smooth}
+    *[id]{scroll-margin-top:84px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+
+    body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+      background:
+      radial-gradient(60% 60% at 80% 0%, color-mix(in hsl, var(--brand-3), white 85%), transparent 60%),
+      radial-gradient(50% 50% at 10% 10%, color-mix(in hsl, var(--brand), white 88%), transparent 55%),
+      conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 90%), transparent 25% 60%, color-mix(in hsl, var(--brand-3), white 90%) 0 85%, transparent 0 100%);
+      opacity:.6; filter:saturate(110%)}
+
+    .noise-overlay{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay}
+
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:10000}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(150%) blur(10px);background:color-mix(in hsl, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%)}
+    .nav{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;justify-content:space-between;position:relative}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .brand-mark{width:40px;height:40px;border-radius:12px;background:radial-gradient(120% 120% at 10% 10%, var(--brand-3), var(--brand-2) 45%, var(--brand) 70%);box-shadow:0 6px 16px rgba(13,71,217,.25), inset 0 1px 0 rgba(255,255,255,.2)}
+    .brand-logo{width:80px;height:80px;border-radius:12px;object-fit:contain;display:block}
+    .brand-logo.dark{display:none}
+    :root[data-theme="dark"] .brand-logo.dark{display:block}
+    :root[data-theme="dark"] .brand-logo.light{display:none}
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) .brand-logo.dark{display:block}
+      :root:not([data-theme]) .brand-logo.light{display:none}
+    }
+    .brand-text{font-weight:800;letter-spacing:.2px}
+    .brand-sub{display:block;font-size:12px;color:var(--muted);margin-top:-4px}
+    /* Bigger logo (desktop) + reasonable size on mobile */
+    .brand-logo { width: 96px; height: 96px; }
+    @media (max-width: 700px) {
+      .brand-logo { width: 72px; height: 72px; }
+    }
+
+    /* Brand text sizing + keep first line on one line (desktop) */
+    .brand-text { 
+      display: block;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: var(--text);
+      font-size: clamp(18px, 2.2vw, 26px);
+      line-height: 1.15;
+    }
+    @media (min-width: 900px) {
+      .brand-text { white-space: nowrap; } /* keep single line on desktop */
+    }
+
+    /* Second line (approval/affiliation) */
+    .brand-sub {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    nav ul{margin:0;padding:0;list-style:none;display:flex;gap:18px;align-items:center}
+    /* Collapse nav on mobile and use the toggle */
+    @media (max-width:1024px){
+      nav ul{
+        display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+        background:var(--surface);padding:12px 20px;gap:10px;
+        border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%);
+      }
+      #primaryNav[data-open="true"] ul{display:flex}
+    }
+    /* Move the menu three lines below the brand on desktop */
+    @media (min-width: 1025px) {
+      .nav { flex-wrap: wrap; align-items: flex-start; } /* allow wrapping inside header */
+      .brand { order: 1; }         /* brand left on top row */
+      .cta-row { order: 2; margin-left: auto; } /* buttons on top-right */
+      #primaryNav {
+        order: 3;
+        flex: 1 0 100%;     /* nav takes full width on the next row */
+        margin-top: 3em;    /* ≈ three lines gap under brand */
+      }
+      #primaryNav ul { justify-content: center; } /* center nav links */
+    }
+    /* Faculty dropdown */
+    .has-submenu{position:relative}
+    .has-submenu > a{display:inline-flex;align-items:center;gap:6px}
+    .has-submenu > a::after{content:"▾";font-size:12px;line-height:1;transition:transform .2s ease;opacity:.8}
+    .has-submenu:hover > a::after, .has-submenu:focus-within > a::after{transform:rotate(180deg)}
+    .submenu{position:absolute;top:100%;left:0;min-width:200px;background:var(--surface);border:1px solid color-mix(in hsl, var(--text), transparent 88%);border-radius:10px;padding:8px;display:none;z-index:1001;box-shadow:var(--shadow)}
+    .submenu li{list-style:none}
+    .submenu a{display:block;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--text)}
+    .submenu a:hover{background:var(--surface-2);color:var(--brand)}
+    @media (hover:hover){.has-submenu:hover > .submenu, .has-submenu:focus-within > .submenu{display:block}}
+    @media (max-width:1024px){#primaryNav[data-open="true"] .submenu{position:static;display:block;padding:6px 0;border:0;box-shadow:none} .submenu a{padding-left:14px}}
+
+    nav a{text-decoration:none;color:var(--text);font-weight:500;opacity:.9}
+    nav a:hover, nav a[aria-current="true"]{opacity:1;color:var(--brand)}
+    .cta-row{display:flex;gap:10px;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:999px;border:1px solid transparent;font-weight:600;text-decoration:none;cursor:pointer;box-shadow:var(--shadow);transition:transform .06s ease}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff}
+    .btn-outline{background:transparent;color:var(--brand);border-color:color-mix(in hsl, var(--brand), #fff 70%)}
+    .btn:focus-visible, .theme-toggle:focus-visible, .logo-tile:focus-visible, nav a:focus-visible{outline:none;box-shadow:var(--ring)}
+    .theme-toggle, .menu-toggle{width:38px;height:38px;border-radius:10px;border:1px solid color-mix(in hsl, var(--text), transparent 85%);background:var(--surface);display:grid;place-items:center;cursor:pointer}
+    /* Show hamburger only on mobile */
+    @media (min-width:1025px){ .menu-toggle{display:none} }
+    /* Smaller logo on mobile to keep header centered */
+    @media (max-width:700px){ .brand-logo{width:40px;height:40px} }
+
+    /* Hero */
+    .hero{position:relative;min-height:78vh;display:grid;place-items:center;overflow:clip;background:
+      radial-gradient(70% 60% at 80% 10%, color-mix(in hsl, var(--brand-3), transparent 90%), transparent 70%),
+      radial-gradient(60% 50% at 20% 20%, color-mix(in hsl, var(--brand), transparent 85%), transparent 70%),
+      var(--bg)}
+    .hero-canvas{position:absolute;inset:0;z-index:0}
+    .hero .content{position:relative;z-index:1;text-align:center;padding:80px 20px 60px;max-width:1100px}
+    .eyebrow{display:inline-block;background:color-mix(in hsl, var(--brand), white 85%);color:var(--brand);font-weight:700;letter-spacing:.3px;padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:16px;border:1px solid color-mix(in hsl, var(--brand), white 65%)}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(36px,6vw,58px);line-height:1.05;margin:0;color:var(--text);text-wrap:balance}
+    .lead{margin:16px auto 28px;color:var(--muted);max-width:780px;font-size:clamp(16px,2.5vw,18px)}
+    .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+    /* Stats */
+    .stats{max-width:1100px;margin:-28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 20px}
+    .stat{background:linear-gradient(180deg, var(--surface), var(--surface-2));border:1px solid color-mix(in hsl, var(--text), transparent 90%);border-radius:var(--radius);padding:18px;text-align:center;box-shadow:var(--shadow)}
+    .stat .num{font-weight:800;font-size:26px;color:var(--brand)}
+    .stat .label{color:var(--muted);font-size:13px}
+
+    /* Sections */
+    section{padding:80px 20px}
+    .container{max-width:1100px;margin:0 auto}
+    .section-head{display:grid;gap:10px;margin-bottom:28px;text-align:center}
+    .section-head h2{font-family:"Playfair Display",serif;font-size:clamp(26px,4vw,36px);margin:0}
+    .section-head p{color:var(--muted);margin:0 auto;max-width:760px}
+
+    /* Cards and grids */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(180deg, var(--surface), color-mix(in hsl, var(--surface), white 70%));border:1px solid color-mix(in hsl, var(--text), transparent 90%);box-shadow:var(--shadow);transform-style:preserve-3d;transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{box-shadow:0 14px 40px rgba(2,8,23,.16)}
+    .card .body{padding:18px}
+    .card .title{font-weight:700;font-size:18px;margin:0 0 6px}
+    .card .meta{font-size:13px;color:var(--muted)}
+    .badge{position:absolute;top:14px;left:14px;padding:6px 10px;font-size:12px;background:color-mix(in hsl, var(--brand-3), white 75%);color:#0a2a7a;border-radius:999px;border:1px solid color-mix(in hsl, var(--brand-3), white 55%);font-weight:700}
+
+    .band{background:
+      radial-gradient(40% 60% at 80% 10%, color-mix(in hsl, var(--brand-3), transparent 90%), transparent 70%),
+      linear-gradient(180deg, color-mix(in hsl, var(--brand), black 5%), color-mix(in hsl, var(--brand-2), black 6%));
+      color:#f1f5f9}
+    .band .card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12)}
+    .band .title, .band p, .band .meta{color:#e5e7eb}
+
+    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+    .g-item{grid-column:span 4;height:180px;border-radius:16px;overflow:hidden;background-size:cover;background-position:center;box-shadow:var(--shadow)}
+
+    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+    .kpi{background:linear-gradient(180deg, var(--surface), var(--surface-2));border:1px solid color-mix(in hsl, var(--text), transparent 90%);border-radius:var(--radius);padding:18px;text-align:center;box-shadow:var(--shadow)}
+    .kpi .num{font-weight:800;font-size:26px;color:var(--brand)}
+    .kpi .label{color:var(--muted);font-size:13px}
+
+    .logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:6px 0 30px}
+    .logo-tile{height:68px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:
+      radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 30%), transparent 38%),
+      linear-gradient(180deg, var(--surface), var(--surface-2));
+      border:1px solid color-mix(in hsl, var(--text), transparent 90%);color:#4b5563;font-weight:700;letter-spacing:.3px;filter:grayscale(1) contrast(1.05);opacity:.9;transition:filter .2s ease, opacity .2s ease, transform .06s ease;user-select:none}
+    .logo-tile:hover{filter:grayscale(.1);opacity:1}
+    .logo-tile:active{transform:translateY(1px)}
+
+    .timeline{list-style:none;margin:0;padding:0;max-width:900px;margin-inline:auto;position:relative}
+    .timeline li{position:relative;padding-left:42px;margin-bottom:16px;background:linear-gradient(180deg, var(--surface), var(--surface-2));border:1px solid color-mix(in hsl, var(--text), transparent 90%);border-radius:12px;padding:14px 16px 14px 48px;box-shadow:var(--shadow)}
+    .timeline li::before{content:attr(data-step);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff;font-weight:800;font-size:12px;box-shadow:0 6px 18px rgba(13,71,217,.25)}
+
+    .cta-strip{border-radius:20px;overflow:hidden;padding:26px;background:
+      linear-gradient(120deg, color-mix(in hsl, var(--brand), white 10%), color-mix(in hsl, var(--brand-2), white 10%));
+      color:#fff;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:var(--shadow)}
+    .cta-strip small{opacity:.9}
+
+    footer{padding:60px 20px;border-top:1px solid color-mix(in hsl, var(--text), transparent 90%);background:linear-gradient(180deg, transparent, color-mix(in hsl, var(--brand-2), transparent 92%))}
+    .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:20px}
+    .footer-col h4{margin:0 0 10px}
+    .footer-col a{color:var(--text);opacity:.85;text-decoration:none;display:block;padding:6px 0}
+    .footer-col a:hover{opacity:1;color:var(--brand)}
+    .legal{max-width:1100px;margin:18px auto 0;color:var(--muted);font-size:13px}
+
+    .reveal{opacity:0;transform:translateY(12px);transition:.6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    [hidden]{display:none!important}
+
+    /* Responsive fixes */
+    @media (max-width:1200px){.logo-grid{grid-template-columns:repeat(5,1fr)}}
+    @media (max-width:700px){
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .grid-4{grid-template-columns:1fr}
+      .gallery .g-item{grid-column:span 12;height:160px}
+      .footer-grid{grid-template-columns:1fr}
+      .kpis{grid-template-columns:repeat(2,1fr)}
+      .logo-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:480px){.logo-grid{grid-template-columns:repeat(2,1fr)} .kpis{grid-template-columns:1fr}}
+
+    @media (prefers-reduced-motion: reduce){
+      .hero-canvas{display:none} .card,.reveal{transition:none} .noise-overlay{display:none}
+    }
+
+    /* Programs 3D covers */
+    #programs.programs-section{position:relative;overflow:hidden}
+    .programs-grid{align-items:stretch}
+    .program-card .title{font-size:18px;font-weight:800;margin:0 0 10px}
+    .program-card .body{padding:18px}
+    .cover-3d{position:relative;height:180px;overflow:hidden;border-bottom:1px solid color-mix(in hsl, var(--text), transparent 90%);background:
+      radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 18%), transparent 36%),
+      linear-gradient(135deg, color-mix(in hsl, var(--brand-2), white 6%), var(--brand));filter:saturate(115%)}
+    .cover-3d::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+      radial-gradient(60% 60% at 80% 0%, rgba(255,255,255,.08), transparent 60%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 10px, transparent 10px 20px);mix-blend-mode:overlay;opacity:.7}
+    .cover-3d canvas.prog-3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    .meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 14px;margin:12px 0 10px}
+    .meta-grid div{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:8px}
+    .meta-grid dt{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+    .meta-grid dd{margin:0;font-weight:700;color:var(--text)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    @media (max-width:700px){.cover-3d{height:160px} .meta-grid{grid-template-columns:1fr 1fr}}
+    @media (prefers-reduced-motion: reduce){.cover-3d canvas.prog-3d{display:none}}
+    .programs-section.compact .card{border-radius:14px}
+    .programs-section.compact .programs-grid{gap:12px}
+    @media (min-width:1200px){.programs-section.compact .programs-grid{grid-template-columns:repeat(5,1fr)!important}}
+    @media (max-width:1199px) and (min-width:1025px){.programs-section.compact .programs-grid{grid-template-columns:repeat(4,1fr)!important}}
+    .programs-section.compact .cover-3d{height:130px}
+    @media (max-width:700px){.programs-section.compact .cover-3d{height:120px}}
+    .programs-section.compact .program-card .body{padding:14px}
+    .programs-section.compact .program-card .title{font-size:16px;margin:0 0 8px}
+    .programs-section.compact .meta-grid{gap:6px 10px;margin:10px 0 6px}
+    .programs-section.compact .meta-grid dt{font-size:11px;letter-spacing:.35px}
+    .programs-section.compact .meta-grid dd{font-size:14px}
+
+    /* Notices (chips etc.) */
+    .notice-list{max-width:900px;margin-inline:auto;display:grid;gap:12px}
+    details.notice{background:linear-gradient(180deg, var(--surface), var(--surface-2));border:1px solid color-mix(in hsl, var(--text), transparent 90%);border-radius:12px;box-shadow:var(--shadow)}
+    details.notice > summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:auto auto 1fr auto;gap:12px;align-items:center}
+    details.notice > summary::-webkit-details-marker{display:none}
+    details.notice > summary .caret{width:24px;height:24px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff;font-weight:800;font-size:12px;box-shadow:0 6px 18px rgba(13,71,217,.25)}
+    details.notice[open] > summary .caret{transform:rotate(90deg);transition:transform .2s ease}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid transparent}
+    .chip[data-type="admission"]{background:color-mix(in hsl, var(--brand-3), white 75%);color:#0a2a7a;border-color:color-mix(in hsl, var(--brand-3), white 55%)}
+    .chip[data-type="exam"]{background:#fff3cd;color:#7a5c00;border-color:#ffecb5}
+    .chip[data-type="general"]{background:#e7f5ff;color:#0c4a6e;border-color:#d0ebff}
+    .chip[data-type="event"]{background:#e8f7ee;color:#14532d;border-color:#c9f0d7}
+    .date-tag{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.3px}
+    .notice-title{font-weight:700}
+    .badge-new{font-size:11px;padding:4px 8px;border-radius:999px;background:#ecfeff;color:#075985;border:1px solid #cffafe;font-weight:800}
+    .notice-body{padding:0 16px 16px 16px;color:var(--muted)}
+    .notice-actions{display:flex;gap:10px;flex-wrap:wrap;padding:0 16px 16px 52px}
+
+    /* Faculty bits on homepage */
+    .faculty-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    @media (max-width:1024px){.faculty-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:700px){.faculty-grid{grid-template-columns:1fr}}
+    .faculty-card .body{text-align:center}
+    .avatar{width:84px;height:84px;border-radius:50%;overflow:hidden;margin:16px auto 10px;box-shadow:0 6px 18px rgba(2,8,23,.12);border:3px solid color-mix(in hsl, var(--brand-3), white 70%)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .avatar-fallback{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;margin:16px auto 10px;box-shadow:0 6px 18px rgba(2,8,23,.12);border:3px solid color-mix(in hsl, var(--brand-3), white 70%);background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#fff;font-weight:800;font-size:24px}
+    .tag{display:inline-block;padding:6px 10px;font-size:12px;border-radius:999px;background:var(--surface-2);color:var(--text);border:1px solid color-mix(in hsl, var(--text), transparent 90%);margin:4px 6px 0 0}
+    .faculty-links{display:flex;gap:10px;justify-content:center;margin-top:10px}
+    .icon-btn{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;border:1px solid color-mix(in hsl, var(--text), transparent 85%);background:var(--surface);text-decoration:none;color:var(--text)}
+    .icon-btn:hover{color:var(--brand);border-color:color-mix(in hsl, var(--brand), white 60%)}
+
+    a.btn[aria-disabled="true"]{opacity:.6;pointer-events:none;cursor:not-allowed}
+    /* Tighter brand→menu gap on desktop */
+    @media (min-width: 1025px) {
+      .nav {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        row-gap: 8px;        /* controls the space between brand row and menu row */
+      }
+      .brand { order: 1; }
+      .cta-row { order: 2; margin-left: auto; }
+      #primaryNav {
+        order: 3;
+        flex: 1 0 100%;
+        margin-top: 0 !important;  /* remove any old top margin */
+      }
+      #primaryNav ul { justify-content: center; }
+    }
+    /* Small Apply button in hero (hidden by default; shown only on mobile) */
+    .mini-apply { display: none; }
+    .btn-sm {
+      padding: 6px 10px;
+      font-size: 13px;
+      line-height: 1.2;
+      border-radius: 999px;
+    }
+
+    /* Mobile (≤1024px): show mini Apply in hero, hide header Apply */
+    @media (max-width: 1024px) {
+      .apply-header { display: none !important; }
+      .mini-apply {
+        display: flex;
+        justify-content: center;
+        margin-top: 6px;      /* small gap under eyebrow */
+        margin-bottom: 10px;  /* small gap before H1 */
+      }
+    }
+    /* Mobile overflow fix: let brand text shrink/wrap and clamp horizontal scroll */
+    @media (max-width: 1024px) {
+      /* Keep header on one row; allow brand to shrink */
+      .nav { flex-wrap: nowrap; }
+      .brand { flex: 1 1 auto; min-width: 0; }
+      .brand > div { min-width: 0; }           /* text wrapper can wrap */
+      .brand-text { overflow-wrap: anywhere; } /* break long words if needed */
+      .cta-row { flex-shrink: 0; }             /* keep icons from shrinking/cropping */
+
+      /* Ensure main content never overflows width */
+      html, body { overflow-x: hidden; }
+
+      /* Safety for common grids/lists */
+      .container,
+      .stats,
+      .notice-list,
+      .gallery,
+      .events-grid,
+      .kpis,
+      .logo-grid,
+      .timeline,
+      .faculty-grid,
+      .programs-grid {
+        max-width: 100%;
+        overflow-x: clip;
+      }
+      /* Make media elements never exceed viewport */
+      img, svg, canvas, video { max-width: 100%; height: auto; }
+    }
+    /* Footer Helpline CTA */
+    .helpline-cta {
+      margin: 18px 0 0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .helpline-info {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .helpline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: color-mix(in hsl, var(--brand-3), white 75%);
+      color: #0a2a7a;
+      border: 1px solid color-mix(in hsl, var(--brand-3), white 55%);
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .helpline-number {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    /* Make it stack nicely on small screens */
+    @media (max-width: 700px) {
+      .helpline-cta { gap: 10px; }
+      .helpline-number { font-size: 15px; }
+    }
+
+    /* Events filter pills */
+    .filters { display: flex; gap: 8px; margin: 10px 0 16px; flex-wrap: wrap; }
+    .pill {
+      appearance: none;
+      border: 1px solid color-mix(in hsl, var(--text), transparent 85%);
+      background: var(--surface);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .pill:hover {
+      color: var(--brand);
+      border-color: color-mix(in hsl, var(--brand), white 65%);
+    }
+    .pill.active, .pill[aria-pressed="true"] {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #fff;
+      border-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="nav">
+      <a href="/" class="brand" aria-label="Regent Institute of Science & Technology Home">
+        <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="96" height="96">
+        <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="96" height="96">
+        <div>
+          <span class="brand-text">Regent Institute of Science & Technology</span>
+          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCVT</span>
+        </div>
+      </a>
+      <nav id="primaryNav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#notices">Notices</a></li>
+          <li><a href="program.html">Programs</a></li>
+          <li class="mobile-only"><a href="#research">Research</a></li>
+          <li><a href="accreditation.html">Accreditation</a></li>
+          <li class="has-submenu">
+            <a href="faculty.html">Faculty</a>
+            <ul class="submenu" aria-label="Faculty submenu">
+              <li><a href="#faculty">Overview</a></li>
+              <li><a href="faculty.html">Directory</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a ''>Grievance</a>
+            <ul class="submenu" aria-label="Grievance submenu">
+              <li><a href="grievance.html?type=student">For Students</a></li>
+              <li><a href="grievance.html?type=employee">For Employees</a></li>
+            </ul>
+          </li>
+          <li><a href="committees.html">Committees</a></li>
+          <li class="mobile-only"><a href="#campus">Campus</a></li>
+          <li><a href="#events">Events</a></li>
+          <li class="mobile-only"><a href="#placements">Placements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cta-row">
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">☰</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌗</button>
+        <a href="admissions.html" class="btn btn-primary apply-header">Apply Now</a>
+      </div>
+    </div>
+  </header>
+    <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-label="Hero">
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="content">
+        <span class="eyebrow">Admissions 2025 • Applications Open</span>
+        <div class="mini-apply">
+          <a href="admissions.html" class="btn btn-primary btn-sm" aria-label="Apply Now for Admissions 2025">Apply Now</a>
+        </div>
+        <h1>Innovate. Build. Lead the Future.</h1>
+        <p class="lead">At RIST, we blend rigorous academics with cutting-edge research and industry partnerships to prepare you for real-world impact.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#programs">Explore Programs</a>
+          <a class="btn btn-outline" href="#about">Why RIST?</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats" role="region" aria-label="Highlights">
+      <div class="stat reveal"><div class="num">10+ Labs</div><div class="label">Advanced research & teaching</div></div>
+      <div class="stat reveal"><div class="num">90%+</div><div class="label">Placement success (recent batch)</div></div>
+      <div class="stat reveal"><div class="num">100+ Recruiters</div><div class="label">Active industry network</div></div>
+      <div class="stat reveal"><div class="num">10,000+</div><div class="label">Alumni worldwide</div></div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>About Regent Institute of Science & Technology</h2>
+          <p>Founded to deliver excellence in engineering and sciences, RIST fosters a culture of curiosity, creativity, and collaboration across disciplines.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card tilt reveal">
+            <div class="badge">NAAC-ready</div>
+            <div class="cover" role="img" aria-label="Academic excellence" style="height:160px;background:
+              radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 20%), transparent 35%),
+              conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 15%), var(--brand) 40%, var(--brand-2) 70%, color-mix(in hsl, var(--brand-3), white 10%));
+              filter:saturate(120%)"></div>
+            <div class="body">
+              <h3 class="title">Academic Excellence</h3>
+              <p class="meta">Outcome-based curriculum, capstone projects, and modern pedagogy.</p>
+            </div>
+          </div>
+          <div class="card tilt reveal">
+            <div class="badge">Industry-led</div>
+            <div class="cover" role="img" aria-label="Industry collaboration" style="height:160px;background:
+              radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 20%), transparent 35%),
+              conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 15%), var(--brand) 40%, var(--brand-2) 70%, color-mix(in hsl, var(--brand-3), white 10%));
+              filter:saturate(120%)"></div>
+            <div class="body">
+              <h3 class="title">Industry Collaboration</h3>
+              <p class="meta">Mentorships, internships, and certifications with top partners.</p>
+            </div>
+          </div>
+          <div class="card tilt reveal">
+            <div class="badge">Global</div>
+            <div class="cover" role="img" aria-label="Global exposure" style="height:160px;background:
+              radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 20%), transparent 35%),
+              conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 15%), var(--brand) 40%, var(--brand-2) 70%, color-mix(in hsl, var(--brand-3), white 10%));
+              filter:saturate(120%)"></div>
+            <div class="body">
+              <h3 class="title">Global Exposure</h3>
+              <p class="meta">Guest lectures and research tie-ups with leading institutions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notices (dynamic) -->
+    <section id="notices" aria-label="Notices">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Notices</h2>
+          <p>Latest updates on admissions, exams, and campus announcements.</p>
+        </div>
+        <div class="notice-list" role="region" aria-label="Latest notices" id="noticeList">
+          <div class="card" style="padding:14px 16px; text-align:center; color:var(--muted)">Loading notices…</div>
+        </div>
+      </div>
+    </section>
+        <!-- Programs (Diploma only) -->
+    <section id="programs" class="programs-section compact">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Programs</h2>
+          <p>Industry-aligned programs with hands-on labs and placement support.</p>
+        </div>
+
+        <div class="grid-4 programs-grid">
+          <article class="card program-card tilt reveal" data-shape="knot" data-accent="#1e6bff" aria-label="Diploma in Electrical Engineering">
+            <div class="badge">Diploma</div>
+            <div class="cover-3d"><canvas class="prog-3d" aria-hidden="true"></canvas></div>
+            <div class="body">
+              <h3 class="title">Diploma in Electrical Engineering</h3>
+              <dl class="meta-grid">
+                <div><dt>Level</dt><dd>Diploma</dd></div><div><dt>Intake</dt><dd>60</dd></div>
+              </dl>
+              <div class="actions">
+                <a class="btn btn-primary" href="admissions.html">Apply</a>
+                <a class="btn btn-outline" href="program.html#electrical">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card program-card tilt reveal" data-shape="torus" data-accent="#0f4fd9" aria-label="Diploma in Mechanical Engineering">
+            <div class="badge">Diploma</div>
+            <div class="cover-3d"><canvas class="prog-3d" aria-hidden="true"></canvas></div>
+            <div class="body">
+              <h3 class="title">Diploma in Mechanical Engineering</h3>
+              <dl class="meta-grid">
+                <div><dt>Level</dt><dd>Diploma</dd></div><div><dt>Intake</dt><dd>120</dd></div>
+              </dl>
+              <div class="actions">
+                <a class="btn btn-primary" href="admissions.html">Apply</a>
+                <a class="btn btn-outline" href="program.html#mechanical">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card program-card tilt reveal" data-shape="ico" data-accent="#1e6bff" aria-label="Diploma in Computer Science Engineering">
+            <div class="badge">Diploma</div>
+            <div class="cover-3d"><canvas class="prog-3d" aria-hidden="true"></canvas></div>
+            <div class="body">
+              <h3 class="title">Diploma in Computer Science Engineering</h3>
+              <dl class="meta-grid">
+                <div><dt>Level</dt><dd>Diploma</dd></div><div><dt>Intake</dt><dd>60</dd></div>
+              </dl>
+              <div class="actions">
+                <a class="btn btn-primary" href="admissions.html">Apply</a>
+                <a class="btn btn-outline" href="program.html#cse">View details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card program-card tilt reveal" data-shape="box" data-accent="#0d47d9" aria-label="Diploma in Civil Engineering">
+            <div class="badge">Diploma</div>
+            <div class="cover-3d"><canvas class="prog-3d" aria-hidden="true"></canvas></div>
+            <div class="body">
+              <h3 class="title">Diploma in Civil Engineering</h3>
+              <dl class="meta-grid">
+                <div><dt>Level</dt><dd>Diploma</dd></div><div><dt>Intake</dt><dd>120</dd></div>
+              </dl>
+              <div class="actions">
+                <a class="btn btn-primary" href="admissions.html">Apply</a>
+                <a class="btn btn-outline" href="program.html#civil">View details</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div style="margin-top:18px; text-align:center">
+          <a href="admissions.html" class="btn btn-outline">Apply for Diploma Programs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="band" aria-label="Research & Labs">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Research & Labs</h2>
+          <p>From intelligent systems to sustainable technologies, our labs enable students and faculty to push boundaries.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card tilt reveal"><div class="body"><h3 class="title">AI & Robotics Lab</h3><p class="meta">Autonomous systems, computer vision, and human-robot interaction.</p></div></div>
+          <div class="card tilt reveal"><div class="body"><h3 class="title">IoT & Embedded Systems</h3><p class="meta">Smart devices, sensor networks, and edge computing.</p></div></div>
+          <div class="card tilt reveal"><div class="body"><h3 class="title">Materials & Manufacturing</h3><p class="meta">Additive manufacturing, composites, and sustainability.</p></div></div>
+        </div>
+      </div>
+    </section>
+        <!-- Faculty (dynamic: featured) -->
+    <section id="faculty" aria-label="Faculty">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Our Faculty</h2>
+          <p>Experienced educators and researchers guiding students to excel.</p>
+        </div>
+        <div id="facultyGridHome" class="faculty-grid" role="list" aria-label="Featured faculty">
+          <div class="card" style="padding:14px 16px; text-align:center; color:var(--muted)">Loading faculty…</div>
+        </div>
+        <div style="text-align:center; margin-top:14px">
+          <a class="btn btn-outline" href="faculty.html">View Full Directory</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Campus Life -->
+    <section id="campus">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Campus Life</h2>
+          <p>Clubs, fests, hackathons, sports, and a campus that inspires learning and collaboration.</p>
+        </div>
+        <div class="gallery">
+  <div class="g-item reveal" style="background-image:url('assets/img/campus/campus-1.webp');" role="img" aria-label="Main academic building"></div>
+  <div class="g-item reveal" style="background-image:url('assets/img/campus/campus-2.webp');" role="img" aria-label="Library interior with students"></div>
+  <div class="g-item reveal" style="background-image:url('assets/img/campus/campus-3.webp');" role="img" aria-label="Electronics and electrical lab"></div>
+  <div class="g-item reveal" style="background-image:url('assets/img/campus/campus-4.webp');" role="img" aria-label="Student hackathon event"></div>
+  <div class="g-item reveal" style="background-image:url('assets/img/campus/campus-5.webp');" role="img" aria-label="Auditorium stage and seating"></div>
+  <div class="g-item reveal" style="background-image:url('assets/img/campus/campus-6.webp');" role="img" aria-label="Classroom teaching session"></div>
+</div>
+      </div>
+    </section>
+
+    <!-- Events (dynamic) -->
+    <section id="events" aria-label="Events">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Events</h2>
+          <p>Workshops, hackathons, seminars, and cultural fests.</p>
+        </div>
+
+        <div class="filters" data-events-filter>
+          <button class="pill active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="pill" type="button" data-filter="upcoming" aria-pressed="false">Upcoming</button>
+          <button class="pill" type="button" data-filter="past" aria-pressed="false">Past</button>
+        </div>
+
+        <div class="events-grid" id="eventsGrid" role="list" aria-label="Events list">
+          <div class="card" style="padding:14px 16px; text-align:center; color:var(--muted)">Loading events…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Placements -->
+    <section id="placements" aria-label="Placements and Career Services">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Placements</h2>
+          <p>Strong recruiter network, pre-placement training, and on-campus drives to launch your career.</p>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi reveal"><div class="num">— LPA</div><div class="label">Highest CTC (update)</div></div>
+          <div class="kpi reveal"><div class="num">— LPA</div><div class="label">Average CTC (update)</div></div>
+          <div class="kpi reveal"><div class="num">100+</div><div class="label">Recruiters</div></div>
+          <div class="kpi reveal"><div class="num">90%+</div><div class="label">Placement Rate</div></div>
+        </div>
+
+        <div class="reveal" style="text-align:center; margin: 6px 0 6px;">
+          <h3 style="margin: 0 0 10px; font-size: 20px;">Top Recruiters</h3>
+          <small style="color: var(--muted)">Replace the tiles below with your actual recruiter logos</small>
+        </div>
+        <div class="logo-grid">
+          <div class="logo-tile reveal" aria-label="Recruiter 1" tabindex="0">Company A</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 2" tabindex="0">Company B</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 3" tabindex="0">Company C</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 4" tabindex="0">Company D</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 5" tabindex="0">Company E</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 6" tabindex="0">Company F</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 7" tabindex="0">Company G</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 8" tabindex="0">Company H</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 9" tabindex="0">Company I</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 10" tabindex="0">Company J</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 11" tabindex="0">Company K</div>
+          <div class="logo-tile reveal" aria-label="Recruiter 12" tabindex="0">Company L</div>
+        </div>
+
+        <div class="reveal" style="text-align:center; margin: 10px 0 14px;">
+          <h3 style="margin:0 0 10px; font-size: 20px;">Placement Process</h3>
+        </div>
+        <ul class="timeline">
+          <li class="reveal" data-step="1">Pre-placement training: aptitude, coding, communication, resume & LinkedIn clinics.</li>
+          <li class="reveal" data-step="2">Company onboarding: JD circulation, eligibility mapping, and slot allocation.</li>
+          <li class="reveal" data-step="3">Assessments: online tests, group discussions, and technical rounds.</li>
+          <li class="reveal" data-step="4">Interviews: HR + technical interviews with mentoring support.</li>
+          <li class="reveal" data-step="5">Offers & onboarding: offer rollouts, documentation, pre-joining guidance.</li>
+        </ul>
+
+        <div class="cta-strip reveal" role="region" aria-label="Contact Placement Cell" style="margin-top: 24px;">
+          <!-- Online Grievance Redressal (Teaser) -->
+          <section id="grievance" aria-label="Online Grievance Redressal">
+            <div class="container">
+              <div class="cta-strip reveal" role="region" aria-label="Online Grievance Redressal">
+                <div>
+                  <h3 style="margin:0 0 6px">Online Grievance Redressal</h3>
+                  <small>Submit your grievance securely. The Grievance Cell typically responds within 7–10 working days.</small>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap">
+                  <a class="btn btn-primary" href="grievance.html?type=student">Student Grievance</a>
+                  <a class="btn btn-outline" href="grievance.html?type=employee">Employee Grievance</a>
+                  <a class="btn btn-outline" href="mailto:ristkolkata@gmail.com?subject=Grievance%20Submission">Email Grievance Cell</a>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div>
+            <h3 style="margin:0 0 6px">Invite RIST for Campus Hiring</h3>
+            <small>We welcome recruiters for internships and full-time roles across diploma disciplines.</small>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn btn-primary" href="mailto:ristkolkata@gmail.com?subject=Campus%20Recruitment%20Drive%20Enquiry">Email Placement Cell</a>
+            <a class="btn btn-outline" href="tel:+918584854950">Call: +91 85848 54950</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admissions CTA -->
+    <section id="apply">
+      <div class="container">
+        <div class="cta-strip reveal" role="region" aria-label="Apply now">
+          <div>
+            <h3 style="margin:0 0 6px">Admissions 2025 are open</h3>
+            <small>Early applicants get priority for scholarships and on-campus housing.</small>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn btn-primary" href="admissions.html">Start Application</a>
+            <a class="btn btn-outline" href="#contact">Request a callback</a>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand" style="margin:0 0 12px">
+            <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="80" height="80">
+            <img class="brand-logo dark"  src="assets/img/logo-dark.svg"  alt="" aria-hidden="true" width="80" height="80">
+            <div>
+              <span class="brand-text">Regent Institute of Science & Technology</span>
+              <span class="brand-sub">Bara Kanthalia, Telini Para, Barrackpore, Kolkata - 700121</span>
+            </div>
+          </div>
+          <p style="max-width:520px; color:var(--muted)">Contact us for admissions, partnerships, campus visits, and more.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#about">About</a>
+          <a href="#notices">Notices</a>
+          <a href="program.html">Programs</a>
+          <a href="#research">Research</a>
+          <a href="#faculty">Faculty</a>
+          <a href="committees.html">Committees</a>
+          <a href="#events">Events</a>
+          <a href="#placements">Placements</a>
+        </div>
+        <div class="footer-col">
+          <h4>Reach Us</h4>
+          <a href="mailto:ristkolkata@gmail.com">ristkolkata@gmail.com</a>
+          <a href="tel:+918584854950">+91 85848 54950</a>
+          <a href="https://maps.google.com/?q=Bara+Kanthalia,+Telini+Para,+Barrackpore,+Kolkata+700121" target="_blank" rel="noopener">View on Google Maps</a>
+        </div>
+      </div>
+
+      <!-- 24×7 Women Helpline CTA -->
+      <div class="helpline-cta" role="region" aria-label="24×7 Women Helpline">
+        <div class="helpline-info">
+          <span class="helpline-badge">24×7 Women Helpline</span>
+          <span class="helpline-number">9330531353</span>
+        </div>
+        <a
+          href="tel:+919330531353"
+          class="btn btn-primary btn-sm"
+          aria-label="Call 24 by 7 Women Helpline 9330531353"
+        >Call Now</a>
+      </div>
+
+      <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.</div>
+    </footer>
+  </main>
+
+  <svg class="noise-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <filter id="fNoise"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0.3" /></filter>
+    <rect width="100%" height="100%" filter="url(#fNoise)" fill="rgba(30,107,255,0.3)"></rect>
+  </svg>
+
+  <!-- Scripts -->
+  <script>
+    // Smooth scroll (left click, no modifiers)
+    document.addEventListener('click', (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest('a[href^="#"]'); if (!a) return;
+      const hash = a.getAttribute('href'); if (!hash || hash.length <= 1) return;
+      const el = document.getElementById(hash.slice(1)); if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior:'smooth', block:'start' });
+      history.pushState(null, '', hash);
+    });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    window.io = io;
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Mobile menu toggle
+    (function(){
+      const menuBtn = document.getElementById('menuToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      function collapseDesktop() {
+        if (window.innerWidth > 1024) {
+          primaryNav.removeAttribute('data-open');
+          menuBtn?.setAttribute('aria-expanded', 'false');
+        }
+      }
+      window.addEventListener('resize', collapseDesktop);
+      menuBtn?.addEventListener('click', () => {
+        const open = primaryNav.getAttribute('data-open') === 'true';
+        primaryNav.setAttribute('data-open', String(!open));
+        menuBtn?.setAttribute('aria-expanded', String(!open));
+      });
+      primaryNav?.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+          primaryNav.removeAttribute('data-open');
+          menuBtn?.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+
+    // Card tilt (respect reduced motion)
+    (function initTilt(){
+      const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (rm) return;
+      document.querySelectorAll('.tilt').forEach(card => {
+        let rect; const damp = 20;
+        const reset=()=>{card.style.transform=''; card.style.transition='transform .25s ease';};
+        card.addEventListener('pointermove', e => {
+          rect = rect || card.getBoundingClientRect();
+          const x = e.clientX - rect.left, y = e.clientY - rect.top;
+          const rx = ((y/rect.height)-0.5)*-damp, ry = ((x/rect.width)-0.5)*damp;
+          card.style.transition='transform 40ms linear';
+          card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        });
+        card.addEventListener('pointerleave', ()=>{rect=null; reset();});
+      });
+    })();
+
+    // Theme toggle (+ dynamic theme-color)
+    (function themeManager(){
+      const rootEl = document.documentElement; const THEME_KEY='rist-theme';
+      function setThemeColorMeta(mode){
+        const light='#0d47d9', dark='#0b1220';
+        let meta=document.querySelector('meta[name="theme-color"]');
+        if(!meta){ meta=document.createElement('meta'); meta.name='theme-color'; document.head.appendChild(meta); }
+        meta.setAttribute('content', mode==='dark'?dark:light);
+      }
+      function applyTheme(mode){
+        if (mode==='light'||mode==='dark'){
+          rootEl.setAttribute('data-theme',mode);
+          rootEl.style.colorScheme=mode;
+          localStorage.setItem(THEME_KEY,mode);
+          setThemeColorMeta(mode);
+        } else {
+          rootEl.removeAttribute('data-theme');
+        }
+      }
+      const saved=localStorage.getItem(THEME_KEY);
+      if (saved){ applyTheme(saved); }
+      else {
+        const sys=window.matchMedia('(prefers-color-scheme: dark)').matches;
+        rootEl.style.colorScheme=sys?'dark':'light';
+        setThemeColorMeta(sys?'dark':'light');
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e=>{
+        if(!localStorage.getItem(THEME_KEY)){
+          const m=e.matches?'dark':'light';
+          rootEl.style.colorScheme=m; setThemeColorMeta(m);
+        }
+      });
+      document.getElementById('themeToggle')?.addEventListener('click', ()=>{
+        const next = rootEl.getAttribute('data-theme')==='dark'?'light':'dark';
+        applyTheme(next);
+      });
+    })();
+
+    // Dynamic year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+
+  <!-- 3D: Lazy-load Three.js and init hero + program cards -->
+  <script>
+    const THREE_CDN='https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js';
+    const THREE_SRI='sha512-gCFvzTu9r6k5bpndVQK7YkdLz6mWHVb4h/lWirj7jX3nMEa9A2Npcm0zlf8jzH7gqSQ7TWVAIb7B9MPHnsBzYQ==';
+    let threePromise=null;
+    function loadThree(){ if (window.THREE) return Promise.resolve(window.THREE); if (threePromise) return threePromise;
+      threePromise=new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=THREE_CDN; s.integrity=THREE_SRI; s.crossOrigin='anonymous'; s.referrerPolicy='no-referrer'; s.onload=()=>res(window.THREE); s.onerror=rej; document.head.appendChild(s); });
+      return threePromise;
+    }
+
+    function initHero3D(THREE){
+      const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches; const canvas=document.getElementById('heroCanvas'); if (!canvas||rm) return null;
+      const scene=new THREE.Scene(); scene.fog=new THREE.Fog(0x0a1633,6,16);
+      const camera=new THREE.PerspectiveCamera(55,2,0.1,100); camera.position.set(0,0.5,4.2);
+      const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+      const l1=new THREE.DirectionalLight(0xffffff,1.1); l1.position.set(2,3,4);
+      const l2=new THREE.DirectionalLight(0xaecbff,0.8); l2.position.set(-3,-2,-2);
+      const amb=new THREE.AmbientLight(0x91a4ff,0.6); scene.add(l1,l2,amb);
+      const group=new THREE.Group(); scene.add(group);
+      const steel=new THREE.MeshStandardMaterial({color:new THREE.Color('#1e6bff'), metalness:0.7, roughness:0.25});
+      const deep=new THREE.MeshStandardMaterial({color:new THREE.Color('#0d47d9'), metalness:0.55, roughness:0.35});
+      const normal=new THREE.MeshNormalMaterial({flatShading:true});
+      const ico=new THREE.Mesh(new THREE.IcosahedronGeometry(0.9,1), steel); ico.position.set(-1.0,0.2,0);
+      const tor=new THREE.Mesh(new THREE.TorusKnotGeometry(0.6,0.2,160,24), deep); tor.position.set(1.1,-0.1,0);
+      const ring=new THREE.Mesh(new THREE.TorusGeometry(1.5,0.03,20,220), normal); ring.rotation.x=Math.PI/2.2; ring.position.z=-0.6; group.add(ico,tor,ring);
+      const pCount=1200, pGeo=new THREE.BufferGeometry(), pos=new Float32Array(pCount*3);
+      for (let i=0;i<pCount;i++){ const r=6+Math.random()*6, th=Math.random()*Math.PI*2, ph=(Math.random()*Math.PI)-Math.PI/2;
+        pos[i*3]=Math.cos(th)*Math.cos(ph)*r; pos[i*3+1]=Math.sin(ph)*r*0.6; pos[i*3+2]=Math.sin(th)*Math.cos(ph)*r; }
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      const points=new THREE.Points(pGeo,new THREE.PointsMaterial({color:0xb5ccff,size:0.02,sizeAttenuation:true,transparent:true,opacity:0.7})); scene.add(points);
+      function resize(){ const rect=canvas.getBoundingClientRect(); const w=Math.max(1,Math.floor(rect.width)), h=Math.max(1,Math.floor(rect.height));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+      window.addEventListener('resize',resize,{passive:true}); resize();
+      const target={x:0,y:0}, par={x:0,y:0};
+      function onMove(e){ const rect=canvas.getBoundingClientRect(); const mx=(e.clientX-rect.left)/rect.width, my=(e.clientY-rect.top)/rect.height;
+        target.y=(mx-0.5)*0.6; target.x=(my-0.5)*0.4; par.x=(mx-0.5)*0.3; par.y=(my-0.5)*-0.2; }
+      window.addEventListener('pointermove', onMove);
+      let rafId=null; const clock=new THREE.Clock();
+      function frame(){ const t=clock.getElapsedTime();
+        group.rotation.y+=(target.y-group.rotation.y)*0.05; group.rotation.x+=(target.x-group.rotation.x)*0.05;
+        camera.position.x+=(par.x-camera.position.x)*0.05; camera.position.y+=(par.y-camera.position.y)*0.05; camera.lookAt(0,0,0);
+        ico.rotation.x+=0.004; ico.rotation.y+=0.006; tor.rotation.x-=0.005; tor.rotation.y+=0.003; ring.rotation.z+=0.0015; points.rotation.y=t*0.02;
+        renderer.render(scene,camera); rafId=requestAnimationFrame(frame);
+      }
+      function start(){ if(rafId==null) rafId=requestAnimationFrame(frame); }
+      function stop(){ if(rafId!=null){ cancelAnimationFrame(rafId); rafId=null; } }
+      return { start, stop, canvas, dispose:()=>{ stop(); window.removeEventListener('pointermove', onMove); window.removeEventListener('resize', resize); renderer.dispose(); } };
+    }
+
+    function initProgramCards3D(THREE){
+      const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (rm) return;
+      const section=document.getElementById('programs'); const isCompact=section?.classList.contains('compact');
+      document.querySelectorAll('.program-card .prog-3d').forEach(canvas=>{
+        const card=canvas.closest('.program-card'); const scene=new THREE.Scene();
+        const camera=new THREE.PerspectiveCamera(45,1,0.1,100); camera.position.set(0,0.2,isCompact?3.6:3.3);
+        const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); renderer.setClearAlpha(0);
+        const amb=new THREE.AmbientLight(0xffffff,0.7), d1=new THREE.DirectionalLight(0xffffff,0.9), d2=new THREE.DirectionalLight(0xbdd1ff,0.5);
+        d1.position.set(2,2,3); d2.position.set(-2,-1.5,-2.5); scene.add(amb,d1,d2);
+        const shape=(card.dataset.shape||'ico').toLowerCase(), accent=card.dataset.accent||'#1e6bff';
+        const mat=new THREE.MeshStandardMaterial({color:new THREE.Color(accent), metalness:0.65, roughness:0.3});
+        let mesh; switch(shape){ case 'knot': mesh=new THREE.Mesh(new THREE.TorusKnotGeometry(0.7,0.22,140,18),mat); break;
+          case 'torus': mesh=new THREE.Mesh(new THREE.TorusGeometry(0.9,0.16,22,220),mat); break;
+          case 'box': mesh=new THREE.Mesh(new THREE.BoxGeometry(1.2,1.2,1.2,2,2,2),mat); break;
+          default: mesh=new THREE.Mesh(new THREE.IcosahedronGeometry(1.0,1),mat); }
+        if (isCompact) mesh.scale.setScalar(0.85); scene.add(mesh);
+        function resize(){ const rect=canvas.getBoundingClientRect(); const w=Math.max(1,Math.floor(rect.width)), h=Math.max(1,Math.floor(rect.height));
+          renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+        resize(); window.addEventListener('resize', resize, {passive:true});
+        let speed=0.005, tx=0, ty=0;
+        card.addEventListener('pointerenter', ()=>{speed=0.012});
+        card.addEventListener('pointerleave', ()=>{speed=0.005; tx=0; ty=0;});
+        card.addEventListener('pointermove', e=>{ const r=card.getBoundingClientRect(); const mx=(e.clientX-r.left)/r.width-0.5, my=(e.clientY-r.top)/r.height-0.5; ty=mx*0.7; tx=-my*0.5; });
+        let rafId=null;
+        function frame(){ mesh.rotation.x+=(tx-mesh.rotation.x)*0.08+speed; mesh.rotation.y+=(ty-mesh.rotation.y)*0.08+speed*1.2; renderer.render(scene,camera); rafId=requestAnimationFrame(frame); }
+        const obs=new IntersectionObserver(ents=>{ const on = ents.some(en=>en.isIntersecting); if (on && rafId==null) rafId=requestAnimationFrame(frame); if(!on && rafId!=null){ cancelAnimationFrame(rafId); rafId=null; } }, {threshold:0.15});
+        obs.observe(card);
+      });
+    }
+
+    (function lazy3D(){
+      const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (rm) return;
+      const obs=new IntersectionObserver((entries)=>{ entries.forEach(async en=>{
+        if(!en.isIntersecting) return; const id=en.target.id;
+        if (id==='heroCanvas'){ obs.unobserve(en.target); await loadThree().catch(()=>{}); const ctrl=initHero3D(window.THREE); if (ctrl){ const vis=new IntersectionObserver(es=>{ es.forEach(e=>e.isIntersecting?ctrl.start():ctrl.stop()); }, {threshold:0.1}); vis.observe(ctrl.canvas); } }
+        if (id==='programs'){ obs.unobserve(en.target); await loadThree().catch(()=>{}); initProgramCards3D(window.THREE); }
+      }); }, {rootMargin:'200px 0px'});
+      const heroCanvas=document.getElementById('heroCanvas'); if (heroCanvas) obs.observe(heroCanvas);
+      const programsSection=document.getElementById('programs'); if (programsSection) obs.observe(programsSection);
+    })();
+  </script>
+
+  <!-- Data layer: pull from Google Sheets -->
+  <script src="assets/js/rist-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!window.RIST) {
+        console.warn('RIST data module missing: assets/js/rist-data.js');
+        return; // Leave the "Loading..." placeholders
+      }
+      try {
+        // Notices
+        const notices = await RIST.fetchNotices();
+        RIST.renderNotices('noticeList', notices);
+
+        // Events (+ filters + Event JSON-LD)
+        const events = await RIST.fetchEvents();
+        RIST.renderEvents('eventsGrid', events);
+        RIST.setupEventsFilters();
+        RIST.injectEventJsonLd(events, 5);
+
+        // Featured Faculty (show top 4 or fallback)
+        const facultyAll = await RIST.fetchFaculty();
+        const featured = facultyAll.filter(f => f.featured).slice(0, 4);
+        const fallback = featured.length ? featured : facultyAll.slice(0,4);
+        RIST.renderFaculty('facultyGridHome', fallback, { linkToProfile: true });
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
+
+  <!-- Organization JSON-LD (update URLs/logo when available) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollegeOrUniversity",
+    "name":"Regent Institute of Science & Technology (RIST)",
+    "url":"https://rist.example.com/",
+    "logo":"https://your-domain.tld/assets/img/logo-light.svg",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Bara Kanthalia, Telini Para, Barrackpore",
+      "addressLocality":"Kolkata",
+      "postalCode":"700121",
+      "addressCountry":"IN"
+    },
+    "contactPoint":[{
+      "@type":"ContactPoint",
+      "contactType":"admissions",
+      "email":"ristkolkata@gmail.com",
+      "telephone":"+918584854950"
+    }]
+  }
+  </script>
+</body>
+</html>
