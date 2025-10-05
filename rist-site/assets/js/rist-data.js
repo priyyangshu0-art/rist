@@ -23,7 +23,7 @@ window.RIST = (function () {
     } catch { return null; }
   }
   function cacheSet(key, data) {
-    try { localStorage.setItem(key, JSON.stringify({ time: Date.now(), data })); } catch {}
+    try { localStorage.setItem(key, JSON.stringify({ time: Date.now(), data })); } catch { }
   }
   async function getRows(tab, key) {
     const ck = cacheKey(key);
@@ -42,14 +42,14 @@ window.RIST = (function () {
     if (!isNaN(d)) return d;
     const parts = String(s).trim().split(/[\s/.-]+/);
     if (parts.length >= 3) {
-      const [a,b,c] = parts;
+      const [a, b, c] = parts;
       const maybe = new Date(`${a} ${b} ${c}`); if (!isNaN(maybe)) return maybe;
       const maybe2 = new Date(`${c}-${b}-${a}`); if (!isNaN(maybe2)) return maybe2;
     }
     return null;
   }
   function toISODate(d) {
-    const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+    const y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), day = String(d.getDate()).padStart(2, '0');
     return `${y}-${m}-${day}`;
   }
 
@@ -58,11 +58,11 @@ window.RIST = (function () {
     const d = parseDateFlexible(r.Date);
     const pinned = String(r.Pinned || '').toUpperCase() === 'TRUE';
     const type = String(r.Type || 'general').toLowerCase();
-    const isNew = d ? ((Date.now() - d.getTime()) / (1000*60*60*24) <= 14) : false;
+    const isNew = d ? ((Date.now() - d.getTime()) / (1000 * 60 * 60 * 24) <= 14) : false;
     return {
-      date: d, dateText: d ? d.toLocaleDateString(undefined,{day:'2-digit',month:'short',year:'numeric'}) : '',
+      date: d, dateText: d ? d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' }) : '',
       isNew, pinned,
-      type: ['admission','exam','event','general'].includes(type) ? type : 'general',
+      type: ['admission', 'exam', 'event', 'general'].includes(type) ? type : 'general',
       title: r.Title || 'Notice',
       summary: r.Summary || '',
       linkLabel: r.LinkLabel || '',
@@ -71,7 +71,7 @@ window.RIST = (function () {
   }
   async function fetchNotices() {
     const rows = await getRows(CONFIG.TABS.notices, 'notices');
-    return rows.map(normalizeNotice).sort((a,b)=>{
+    return rows.map(normalizeNotice).sort((a, b) => {
       if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
       const da = a.date ? a.date.getTime() : 0;
       const db = b.date ? b.date.getTime() : 0;
@@ -97,7 +97,7 @@ window.RIST = (function () {
       const summary = document.createElement('summary');
       summary.innerHTML = `
         <span class="caret">▸</span>
-        <span class="chip" data-type="${n.type}">${n.type.charAt(0).toUpperCase()+n.type.slice(1)}</span>
+        <span class="chip" data-type="${n.type}">${n.type.charAt(0).toUpperCase() + n.type.slice(1)}</span>
         <span class="notice-title">${n.title}</span>
         <span class="date-tag">${n.dateText}${n.isNew ? ' <span class="badge-new">NEW</span>' : ''}</span>
       `;
@@ -106,7 +106,7 @@ window.RIST = (function () {
       if (n.linkURL) {
         const a = document.createElement('a');
         a.className = /download|pdf/i.test(n.linkLabel) ? 'btn btn-outline' : 'btn btn-primary';
-        a.href = n.linkURL; a.target='_blank'; a.rel='noopener';
+        a.href = n.linkURL; a.target = '_blank'; a.rel = 'noopener';
         a.textContent = n.linkLabel || 'Read more';
         actions.appendChild(a);
       }
@@ -123,7 +123,7 @@ window.RIST = (function () {
       if (t.includes('past')) return 'past';
       if (t.includes('upcoming')) return 'upcoming';
     }
-    const today = new Date(); today.setHours(0,0,0,0);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
     const s = start ? new Date(start.getFullYear(), start.getMonth(), start.getDate()) : null;
     const e = end ? new Date(end.getFullYear(), end.getMonth(), end.getDate()) : null;
     if (e && e < today) return 'past';
@@ -146,14 +146,14 @@ window.RIST = (function () {
       regURL: r.RegisterURL || '',
       detailsURL: r.DetailsURL || '',
       pinned: String(r.Pinned || '').toUpperCase() === 'TRUE',
-      status: statusFromDates(s,e,r.Status)
+      status: statusFromDates(s, e, r.Status)
     };
   }
   async function fetchEvents() {
     const rows = await getRows(CONFIG.TABS.events, 'events');
     const data = rows.map(normalizeEvent);
-    const upcoming = data.filter(d => d.status !== 'past').sort((a,b) => a.start - b.start);
-    const past = data.filter(d => d.status === 'past').sort((a,b) => b.start - a.start);
+    const upcoming = data.filter(d => d.status !== 'past').sort((a, b) => a.start - b.start);
+    const past = data.filter(d => d.status === 'past').sort((a, b) => b.start - a.start);
     const pinnedUp = upcoming.filter(e => e.pinned);
     const restUp = upcoming.filter(e => !e.pinned);
     return [...pinnedUp, ...restUp, ...past];
@@ -173,16 +173,16 @@ window.RIST = (function () {
       const card = document.createElement('article'); card.className = 'card event-card reveal'; card.dataset.status = ev.status;
       const head = document.createElement('div'); head.className = 'event-head';
       const df = document.createElement('div'); df.className = 'date-flag';
-      df.innerHTML = `<span class="day">${String(ev.start.getDate()).padStart(2,'0')}</span><span class="mon">${ev.start.toLocaleString(undefined,{month:'short'})}</span>`;
+      df.innerHTML = `<span class="day">${String(ev.start.getDate()).padStart(2, '0')}</span><span class="mon">${ev.start.toLocaleString(undefined, { month: 'short' })}</span>`;
       const titleWrap = document.createElement('div');
-      const h3 = document.createElement('h3'); h3.className = 'title'; h3.style.margin='0'; h3.textContent = ev.title;
-      const meta = document.createElement('p'); meta.className='meta'; meta.textContent = [ev.venue, ev.subtitle].filter(Boolean).join(' • ');
+      const h3 = document.createElement('h3'); h3.className = 'title'; h3.style.margin = '0'; h3.textContent = ev.title;
+      const meta = document.createElement('p'); meta.className = 'meta'; meta.textContent = [ev.venue, ev.subtitle].filter(Boolean).join(' • ');
       titleWrap.append(h3, meta); head.append(df, titleWrap);
       const body = document.createElement('div'); body.className = 'body';
-      if (ev.description) { const p = document.createElement('p'); p.className='meta'; p.textContent = ev.description; body.appendChild(p); }
-      const actions = document.createElement('div'); actions.className='actions';
-      if (ev.regURL) { const a=document.createElement('a'); a.className='btn btn-primary'; a.href=ev.regURL; a.target='_blank'; a.rel='noopener'; a.textContent=ev.regLabel || 'Register'; actions.appendChild(a); }
-      if (ev.detailsURL) { const a=document.createElement('a'); a.className='btn btn-outline'; a.href=ev.detailsURL; a.target='_blank'; a.rel='noopener'; a.textContent='Details'; actions.appendChild(a); }
+      if (ev.description) { const p = document.createElement('p'); p.className = 'meta'; p.textContent = ev.description; body.appendChild(p); }
+      const actions = document.createElement('div'); actions.className = 'actions';
+      if (ev.regURL) { const a = document.createElement('a'); a.className = 'btn btn-primary'; a.href = ev.regURL; a.target = '_blank'; a.rel = 'noopener'; a.textContent = ev.regLabel || 'Register'; actions.appendChild(a); }
+      if (ev.detailsURL) { const a = document.createElement('a'); a.className = 'btn btn-outline'; a.href = ev.detailsURL; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Details'; actions.appendChild(a); }
       body.appendChild(actions);
       card.append(head, body); grid.appendChild(card);
       if (window.io) window.io.observe(card); else card.classList.add('visible');
@@ -198,15 +198,15 @@ window.RIST = (function () {
       const cards = Array.from(document.querySelectorAll('.event-card'));
       cards.forEach(c => {
         const st = c.dataset.status || 'upcoming';
-        const show = (filter === 'all') || (filter === 'upcoming' && (st==='upcoming' || st==='ongoing')) || (filter==='past' && st==='past');
+        const show = (filter === 'all') || (filter === 'upcoming' && (st === 'upcoming' || st === 'ongoing')) || (filter === 'past' && st === 'past');
         c.hidden = !show;
       });
     }
     if (!wrap._bound) {
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-          buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
-          btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
+          buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+          btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true');
           apply(btn.dataset.filter);
         });
       });
@@ -216,52 +216,52 @@ window.RIST = (function () {
     apply(active?.dataset.filter || 'all');
   }
 
-  function injectEventJsonLd(events, limit=5) {
+  function injectEventJsonLd(events, limit = 5) {
     const upcoming = events.filter(e => e.status !== 'past').slice(0, limit);
     if (!upcoming.length) return;
     const base = (location.origin || 'https://example.com');
     const graph = upcoming.map(ev => ({
-      '@type':'Event',
+      '@type': 'Event',
       name: ev.title,
       startDate: ev.startISO,
       endDate: ev.endISO,
       eventStatus: 'https://schema.org/EventScheduled',
       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
       description: ev.description || undefined,
-      location: { '@type':'Place', name: ev.venue || 'RIST Campus' },
-      organizer: { '@type':'CollegeOrUniversity', name:'Regent Institute of Science & Technology', url: base },
+      location: { '@type': 'Place', name: ev.venue || 'RIST Campus' },
+      organizer: { '@type': 'CollegeOrUniversity', name: 'Regent Institute of Science & Technology', url: base },
       url: ev.detailsURL || (base + '/#events')
     }));
-    const data = { '@context':'https://schema.org', '@graph': graph };
-    const s = document.createElement('script'); s.type='application/ld+json'; s.textContent = JSON.stringify(data);
+    const data = { '@context': 'https://schema.org', '@graph': graph };
+    const s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(data);
     document.head.appendChild(s);
   }
 
   /* ---------- Faculty ---------- */
   function normalizeFaculty(r) {
     const val = (...keys) => { for (const k of keys) { if (r[k] !== undefined && String(r[k]).trim() !== '') return r[k]; } return ''; };
-    const name = val('Name','Full Name','Faculty Name','Faculty');
-    const title = val('Title','Designation','Position');
-    const department = val('Department','Dept','Dept.');
-    const email = val('Email','Mail','E-mail');
-    const linkedin = val('LinkedIn','Linkedin','Linked In','Linked_in','Profile');
-    const photo = val('PhotoURL','Photo','Image','Picture','Avatar');
-    const tagsStr = val('Tags','Skills','Expertise','Areas');
-    const order = Number(val('Order','Sort','Rank') || 9999);
-    const featured = String(val('Featured','Star','Highlight','IsFeatured') || '').toUpperCase() === 'TRUE';
+    const name = val('Name', 'Full Name', 'Faculty Name', 'Faculty');
+    const title = val('Title', 'Designation', 'Position');
+    const department = val('Department', 'Dept', 'Dept.');
+    const email = val('Email', 'Mail', 'E-mail');
+    const linkedin = val('LinkedIn', 'Linkedin', 'Linked In', 'Linked_in', 'Profile');
+    const photo = val('PhotoURL', 'Photo', 'Image', 'Picture', 'Avatar');
+    const tagsStr = val('Tags', 'Skills', 'Expertise', 'Areas');
+    const order = Number(val('Order', 'Sort', 'Rank') || 9999);
+    const featured = String(val('Featured', 'Star', 'Highlight', 'IsFeatured') || '').toUpperCase() === 'TRUE';
     const slugExp = val('Slug');
-    const bio = val('Bio','About','Summary');
-    const slug = slugExp || (name ? name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') : '');
-    const tags = String(tagsStr || '').split(',').map(s=>s.trim()).filter(Boolean);
+    const bio = val('Bio', 'About', 'Summary');
+    const slug = slugExp || (name ? name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '');
+    const tags = String(tagsStr || '').split(',').map(s => s.trim()).filter(Boolean);
     return { name, title, department, email, linkedin, photo, tags, order, featured, slug, bio };
   }
   async function fetchFaculty() {
     try {
       const rows = await getRows(CONFIG.TABS.faculty, 'faculty');
-      const data = rows.map(normalizeFaculty).sort((a,b) => {
+      const data = rows.map(normalizeFaculty).sort((a, b) => {
         if (a.featured !== b.featured) return a.featured ? -1 : 1;
         if (a.order !== b.order) return a.order - b.order;
-        return (a.name||'').localeCompare(b.name||'');
+        return (a.name || '').localeCompare(b.name || '');
       });
       return data;
     } catch (e) {
@@ -289,25 +289,25 @@ window.RIST = (function () {
       card.className = 'card faculty-card reveal';
       const avatar = document.createElement('div'); avatar.className = 'avatar';
       if (f.photo) {
-        const img = document.createElement('img'); img.loading='lazy'; img.alt = f.name || 'Faculty'; img.src = f.photo;
-        img.onerror = () => { avatar.innerHTML=''; const fb=document.createElement('div'); fb.className='avatar-fallback'; fb.textContent = (f.name||'?').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase(); avatar.appendChild(fb); };
+        const img = document.createElement('img'); img.loading = 'lazy'; img.alt = f.name || 'Faculty'; img.src = f.photo;
+        img.onerror = () => { avatar.innerHTML = ''; const fb = document.createElement('div'); fb.className = 'avatar-fallback'; fb.textContent = (f.name || '?').split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase(); avatar.appendChild(fb); };
         avatar.appendChild(img);
       } else {
-        const fb=document.createElement('div'); fb.className='avatar-fallback'; fb.textContent = (f.name||'?').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase(); avatar.appendChild(fb);
+        const fb = document.createElement('div'); fb.className = 'avatar-fallback'; fb.textContent = (f.name || '?').split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase(); avatar.appendChild(fb);
       }
-      const body = document.createElement('div'); body.className='body';
-      const h3 = document.createElement('h3'); h3.className='title'; h3.textContent = f.name || 'Faculty';
-      const meta = document.createElement('p'); meta.className='meta'; meta.textContent = [f.title, f.department].filter(Boolean).join(', ');
-      const tagsWrap = document.createElement('div'); (f.tags||[]).slice(0,6).forEach(t=>{ const tag=document.createElement('span'); tag.className='tag'; tag.textContent=t; tagsWrap.appendChild(tag); });
-      const links = document.createElement('div'); links.className='faculty-links';
-      if (f.email) { const a=document.createElement('a'); a.className='icon-btn'; a.href=`mailto:${f.email}`; a.textContent='✉️'; links.appendChild(a); }
-      if (f.linkedin) { const a=document.createElement('a'); a.className='icon-btn'; a.href=f.linkedin; a.target='_blank'; a.rel='noopener'; a.textContent='in'; links.appendChild(a); }
+      const body = document.createElement('div'); body.className = 'body';
+      const h3 = document.createElement('h3'); h3.className = 'title'; h3.textContent = f.name || 'Faculty';
+      const meta = document.createElement('p'); meta.className = 'meta'; meta.textContent = [f.title, f.department].filter(Boolean).join(', ');
+      const tagsWrap = document.createElement('div'); (f.tags || []).slice(0, 6).forEach(t => { const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = t; tagsWrap.appendChild(tag); });
+      const links = document.createElement('div'); links.className = 'faculty-links';
+      if (f.email) { const a = document.createElement('a'); a.className = 'icon-btn'; a.href = `mailto:${f.email}`; a.textContent = '✉️'; links.appendChild(a); }
+      if (f.linkedin) { const a = document.createElement('a'); a.className = 'icon-btn'; a.href = f.linkedin; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'in'; links.appendChild(a); }
       body.append(h3, meta, tagsWrap, links);
 
       if (linkToProfile && f.slug) {
         const profileUrl = `faculty-profile.html?slug=${encodeURIComponent(f.slug)}`;
         const linkName = document.createElement('a'); linkName.href = profileUrl; linkName.setAttribute('aria-label', `View profile of ${f.name}`); linkName.append(...h3.childNodes); h3.appendChild(linkName);
-        const linkAvatar = document.createElement('a'); linkAvatar.href = profileUrl; linkAvatar.setAttribute('aria-label', `View profile of ${f.name}`); linkAvatar.append(...avatar.childNodes); avatar.innerHTML=''; avatar.appendChild(linkAvatar);
+        const linkAvatar = document.createElement('a'); linkAvatar.href = profileUrl; linkAvatar.setAttribute('aria-label', `View profile of ${f.name}`); linkAvatar.append(...avatar.childNodes); avatar.innerHTML = ''; avatar.appendChild(linkAvatar);
       }
 
       card.append(avatar, body);
@@ -329,7 +329,7 @@ window.RIST = (function () {
       affiliation: person.department || undefined,
       sameAs: person.linkedin ? [person.linkedin] : undefined
     };
-    const s = document.createElement('script'); s.type='application/ld+json'; s.textContent = JSON.stringify(data);
+    const s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(data);
     document.head.appendChild(s);
   }
 
