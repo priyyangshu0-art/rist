@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -34,6 +34,36 @@
       --radius: 14px;
       --shadow: 0 10px 30px rgba(2, 8, 23, .08);
       --ring: 0 0 0 4px rgba(13, 71, 217, .12)
+    }
+
+    /* Dark/light support (same model as index.html) */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --bg: #0b1220;
+        --surface: #0f172a;
+        --surface-2: #0b1629;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --shadow: 0 10px 30px rgba(0, 0, 0, .4)
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0b1220;
+      --surface: #0f172a;
+      --surface-2: #0b1629;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .4)
+    }
+
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --surface: #f7fbff;
+      --surface-2: #eef5ff;
+      --text: #0f172a;
+      --muted: #667085;
+      --shadow: 0 10px 30px rgba(2, 8, 23, .08)
     }
 
     * {
@@ -200,7 +230,7 @@
         background: var(--surface);
         padding: 12px 20px;
         gap: 10px;
-        border-bottom: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+        border-bottom: 1px solid color-mix(in hsl, var(--text), transparent 90%)
       }
 
       #primaryNav[data-open="true"] ul {
@@ -707,7 +737,7 @@
         <ul>
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#notices">Notices</a></li>
-          <li><a href="programs.html" aria-current="page">Programs</a></li>
+          <li><a href="program.html" aria-current="page">Programs</a></li>
           <li class="mobile-only"><a href="index.html#research">Research</a></li>
           <li><a href="accreditation.html">Accreditation</a></li>
           <li class="has-submenu">
@@ -757,7 +787,6 @@
         <button class="pill" role="tab" id="tab-ce" aria-controls="panel-ce" aria-selected="false">Civil
           Engineering</button>
       </div>
-
       <!-- CST -->
       <section id="panel-cst" class="prog card reveal" role="tabpanel" aria-labelledby="tab-cst" data-prog="cst">
         <div class="body">
@@ -766,16 +795,26 @@
               <span class="badge">Diploma</span>
               <h2 style="margin:8px 0 6px">Diploma in Computer Science & Technology</h2>
               <p style="margin:0">
-                The Department of Computer Science & Engineering is at the forefront of turning out software engineers
-                with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to
-                excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a
-                rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with
-                the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on
-                hands-on training and overall development of the individual personality. Equal importance is given to
-                the classroom learning which is meant primarily for conceptual inputs. The teaching program has been
-                devised keeping in view the need of a close interaction with the industry. The department has excellent
-                computing facilities which include latest technology based computer systems, scanners, servers,
-                multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of
+                The Department of Computer Science & Engineering is at the forefront of turning out
+                software engineers
+                with a high degree of technical expertise. It fosters the innovation and breadth of
+                vision necessary to
+                excel in the blooming software industry. The experienced faculty exposes budding
+                computer engineers to a
+                rigorous and exhaustive curriculum designed to bring out the best in them and to keep
+                them in touch with
+                the latest state of the art technology. Besides imparting theoretical knowledge, the
+                emphasis is on
+                hands-on training and overall development of the individual personality. Equal
+                importance is given to
+                the classroom learning which is meant primarily for conceptual inputs. The teaching
+                program has been
+                devised keeping in view the need of a close interaction with the industry. The
+                department has excellent
+                computing facilities which include latest technology based computer systems, scanners,
+                servers,
+                multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains
+                adequate number of
                 computers and peripherals of latest configurations for teaching and research work.
               </p>
             </div>
@@ -820,18 +859,10 @@
               <div class="body">
                 <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
                 <ul class="list">
-                  <li>
-                    <a href="assets/docs/programs/cst-syllabus.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Syllabus (PDF)
-                    </a>
-                  </li>
-                  <li>
-                    <a href="assets/docs/programs/cst-brochure.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Brochure (PDF)
-                    </a>
-                  </li>
+                  <li><a href="assets/docs/programs/cst-syllabus.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Syllabus (PDF)</a></li>
+                  <li><a href="assets/docs/programs/cst-brochure.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Brochure (PDF)</a></li>
                 </ul>
               </div>
             </div>
@@ -846,23 +877,10 @@
             <div>
               <span class="badge">Diploma</span>
               <h2 style="margin:8px 0 6px">Diploma in Electrical Engineering (EE)</h2>
-              <p style="margin:0">
-                The Department of Computer Science & Engineering is at the forefront of turning out software engineers
-                with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to
-                excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a
-                rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with
-                the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on
-                hands-on training and overall development of the individual personality. Equal importance is given to
-                the classroom learning which is meant primarily for conceptual inputs. The teaching program has been
-                devised keeping in view the need of a close interaction with the industry. The department has excellent
-                computing facilities which include latest technology based computer systems, scanners, servers,
-                multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of
-                computers and peripherals of latest configurations for teaching and research work.
-              </p>
+              <p style="margin:0">The Department of Computer Science & Engineering is at the forefront of
+                turning out software engineers with a high degree of technical expertise...</p>
             </div>
-            <div class="actions">
-              <a class="btn btn-primary" href="admissions.html">Apply</a>
-            </div>
+            <div class="actions"><a class="btn btn-primary" href="admissions.html">Apply</a></div>
           </div>
 
           <dl class="meta-grid">
@@ -901,18 +919,10 @@
               <div class="body">
                 <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
                 <ul class="list">
-                  <li>
-                    <a href="assets/docs/programs/ee-syllabus.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Syllabus (PDF)
-                    </a>
-                  </li>
-                  <li>
-                    <a href="assets/docs/programs/ee-brochure.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Brochure (PDF)
-                    </a>
-                  </li>
+                  <li><a href="assets/docs/programs/ee-syllabus.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Syllabus (PDF)</a></li>
+                  <li><a href="assets/docs/programs/ee-brochure.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Brochure (PDF)</a></li>
                 </ul>
               </div>
             </div>
@@ -927,23 +937,10 @@
             <div>
               <span class="badge">Diploma</span>
               <h2 style="margin:8px 0 6px">Diploma in Mechanical Engineering (ME)</h2>
-              <p style="margin:0">
-                The Department of Computer Science & Engineering is at the forefront of turning out software engineers
-                with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to
-                excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a
-                rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with
-                the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on
-                hands-on training and overall development of the individual personality. Equal importance is given to
-                the classroom learning which is meant primarily for conceptual inputs. The teaching program has been
-                devised keeping in view the need of a close interaction with the industry. The department has excellent
-                computing facilities which include latest technology based computer systems, scanners, servers,
-                multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of
-                computers and peripherals of latest configurations for teaching and research work.
-              </p>
+              <p style="margin:0">The Department of Computer Science & Engineering is at the forefront of
+                turning out software engineers with a high degree of technical expertise...</p>
             </div>
-            <div class="actions">
-              <a class="btn btn-primary" href="admissions.html">Apply</a>
-            </div>
+            <div class="actions"><a class="btn btn-primary" href="admissions.html">Apply</a></div>
           </div>
 
           <dl class="meta-grid">
@@ -982,18 +979,10 @@
               <div class="body">
                 <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
                 <ul class="list">
-                  <li>
-                    <a href="assets/docs/programs/me-syllabus.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Syllabus (PDF)
-                    </a>
-                  </li>
-                  <li>
-                    <a href="assets/docs/programs/me-brochure.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Brochure (PDF)
-                    </a>
-                  </li>
+                  <li><a href="assets/docs/programs/me-syllabus.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Syllabus (PDF)</a></li>
+                  <li><a href="assets/docs/programs/me-brochure.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Brochure (PDF)</a></li>
                 </ul>
               </div>
             </div>
@@ -1008,23 +997,10 @@
             <div>
               <span class="badge">Diploma</span>
               <h2 style="margin:8px 0 6px">Diploma in Civil Engineering (CE)</h2>
-              <p style="margin:0">
-                The Department of Computer Science & Engineering is at the forefront of turning out software engineers
-                with a high degree of technical expertise. It fosters the innovation and breadth of vision necessary to
-                excel in the blooming software industry. The experienced faculty exposes budding computer engineers to a
-                rigorous and exhaustive curriculum designed to bring out the best in them and to keep them in touch with
-                the latest state of the art technology. Besides imparting theoretical knowledge, the emphasis is on
-                hands-on training and overall development of the individual personality. Equal importance is given to
-                the classroom learning which is meant primarily for conceptual inputs. The teaching program has been
-                devised keeping in view the need of a close interaction with the industry. The department has excellent
-                computing facilities which include latest technology based computer systems, scanners, servers,
-                multimedia kits, Indy Graphic workstations, etc. The Computer Laboratory maintains adequate number of
-                computers and peripherals of latest configurations for teaching and research work.
-              </p>
+              <p style="margin:0">The Department of Computer Science & Engineering is at the forefront of
+                turning out software engineers with a high degree of technical expertise...</p>
             </div>
-            <div class="actions">
-              <a class="btn btn-primary" href="admissions.html">Apply</a>
-            </div>
+            <div class="actions"><a class="btn btn-primary" href="admissions.html">Apply</a></div>
           </div>
 
           <dl class="meta-grid">
@@ -1063,18 +1039,10 @@
               <div class="body">
                 <h3 class="title" style="margin:0 0 6px">Syllabus / Brochure</h3>
                 <ul class="list">
-                  <li>
-                    <a href="assets/docs/programs/ce-syllabus.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Syllabus (PDF)
-                    </a>
-                  </li>
-                  <li>
-                    <a href="assets/docs/programs/ce-brochure.pdf" target="_blank" rel="noopener"
-                      type="application/pdf">
-                      Brochure (PDF)
-                    </a>
-                  </li>
+                  <li><a href="assets/docs/programs/ce-syllabus.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Syllabus (PDF)</a></li>
+                  <li><a href="assets/docs/programs/ce-brochure.pdf" target="_blank" rel="noopener"
+                      type="application/pdf">Brochure (PDF)</a></li>
                 </ul>
               </div>
             </div>
@@ -1095,8 +1063,8 @@
             <span class="brand-sub">Bara Kanthalia, Telini Para, Barrackpore, Kolkata - 700121</span>
           </div>
         </div>
-        <p style="max-width:520px;color:var(--muted)">For program enquiries, write to ristkolkata@gmail.com or call +91
-          85848 54950.</p>
+        <p style="max-width:520px;color:var(--muted)">For program enquiries, write to ristkolkata@gmail.com or
+          call +91 85848 54950.</p>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
@@ -1123,7 +1091,8 @@
         aria-label="Call 24 by 7 Women Helpline 9330531353">Call Now</a>
     </div>
 
-    <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.</div>
+    <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.
+    </div>
   </footer>
 
   <script>
@@ -1158,7 +1127,7 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setState(false); });
     })();
 
-    // Theme toggle
+    // Theme toggle (+ meta), same logic as index.html
     (function themeManager() {
       const rootEl = document.documentElement; const THEME_KEY = 'rist-theme';
       function setThemeColorMeta(mode) {
@@ -1173,11 +1142,17 @@
           rootEl.style.colorScheme = mode;
           localStorage.setItem(THEME_KEY, mode);
           setThemeColorMeta(mode);
-        } else { rootEl.removeAttribute('data-theme'); }
+        } else {
+          rootEl.removeAttribute('data-theme');
+        }
       }
       const saved = localStorage.getItem(THEME_KEY);
       if (saved) { applyTheme(saved); }
-      else { const sys = window.matchMedia('(prefers-color-scheme: dark)').matches; rootEl.style.colorScheme = sys ? 'dark' : 'light'; setThemeColorMeta(sys ? 'dark' : 'light'); }
+      else {
+        const sys = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        rootEl.style.colorScheme = sys ? 'dark' : 'light';
+        setThemeColorMeta(sys ? 'dark' : 'light');
+      }
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         if (!localStorage.getItem(THEME_KEY)) {
           const m = e.matches ? 'dark' : 'light';
@@ -1190,7 +1165,7 @@
       });
     })();
 
-    // Tabs: switch panels (show one at a time)
+    // Tabs with hash alias (so program.html#electrical opens EE tab)
     (function () {
       const tabs = [
         { id: 'cst', btn: document.getElementById('tab-cst'), panel: document.getElementById('panel-cst') },
@@ -1199,6 +1174,7 @@
         { id: 'ce', btn: document.getElementById('tab-ce'), panel: document.getElementById('panel-ce') },
       ];
       const order = tabs.map(t => t.id);
+      const alias = { electrical: 'ee', mechanical: 'me', cse: 'cst', civil: 'ce', ee: 'ee', me: 'me', ce: 'ce', cst: 'cst' };
 
       function activate(which) {
         tabs.forEach(t => {
@@ -1218,21 +1194,13 @@
         });
       });
 
-      document.querySelector('.tabs').addEventListener('keydown', (e) => {
-        const current = tabs.findIndex(t => t.btn.getAttribute('aria-selected') === 'true');
-        if (e.key === 'ArrowRight') { e.preventDefault(); const next = tabs[(current + 1) % tabs.length]; next.btn.click(); }
-        if (e.key === 'ArrowLeft') { e.preventDefault(); const prev = tabs[(current - 1 + tabs.length) % tabs.length]; prev.btn.click(); }
-        if (e.key === 'Home') { e.preventDefault(); tabs[0].btn.click(); }
-        if (e.key === 'End') { e.preventDefault(); tabs[tabs.length - 1].btn.click(); }
-      });
-
-      const h = (location.hash || '').replace('#', '').toLowerCase();
-      activate(order.includes(h) ? h : 'cst');
-
-      window.addEventListener('hashchange', () => {
-        const h2 = (location.hash || '').replace('#', '').toLowerCase();
-        if (order.includes(h2)) activate(h2);
-      });
+      function applyHash() {
+        const raw = (location.hash || '').replace('#', '').toLowerCase();
+        const target = alias[raw] || 'cst';
+        activate(target);
+      }
+      applyHash();
+      window.addEventListener('hashchange', applyHash);
     })();
 
     // Year
