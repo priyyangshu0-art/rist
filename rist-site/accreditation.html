@@ -683,7 +683,7 @@
 
   <header>
     <div class="nav">
-      <a class="brand" aria-label="Regent Institute of Science & Technology Home">
+      <a href="index.html" class="brand" aria-label="Regent Institute of Science & Technology Home">
         <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="96" height="96">
         <img class="brand-logo dark" src="assets/img/logo-dark.svg" alt="" aria-hidden="true" width="96" height="96">
         <div>
@@ -699,14 +699,14 @@
           <li class="mobile-only"><a href="index.html#research">Research</a></li>
           <li><a href="accreditation.html" aria-current="page">Accreditation</a></li>
           <li class="has-submenu">
-            <a>Faculty</a>
+            <a href="faculty.html">Faculty</a>
             <ul class="submenu" aria-label="Faculty submenu">
               <li><a href="index.html#faculty">Overview</a></li>
               <li><a href="faculty.html">Directory</a></li>
             </ul>
           </li>
           <li class="has-submenu">
-            <a>Grievance</a>
+            <a href="grievance.html">Grievance</a>
             <ul class="submenu" aria-label="Grievance submenu">
               <li><a href="grievance.html?type=student">For Students</a></li>
               <li><a href="grievance.html?type=employee">For Employees</a></li>
@@ -775,6 +775,8 @@
         <a href="index.html#about">About</a>
         <a href="index.html#notices">Notices</a>
         <a href="index.html#programs">Programs</a>
+        <a href="index.html#research">Research</a>
+        <a href="faculty.html">Faculty</a>
         <a href="committees.html">Committees</a>
         <a href="accreditation.html" aria-current="page">Accreditation</a>
         <a href="index.html#events">Events</a>
@@ -929,29 +931,12 @@
       const res = await fetch(osUrl(tab));
       if (!res.ok) throw new Error('Failed to load ' + tab);
       const rows = await res.json();
-
-      const data = rows.map(r => {
-        const urlRaw = (r.URL || '').trim();
-        // Build a Drive download URL if it’s a Drive link
-        let dlUrl = urlRaw;
-        try {
-          const url = new URL(urlRaw, location.origin);
-          if (url.hostname.includes('drive.google.com')) {
-            const m = url.pathname.match(/\/file\/d\/([^/]+)/);
-            const id = m ? m[1] : (url.searchParams.get('id') || '');
-            if (id) dlUrl = `https://drive.google.com/uc?export=download&id=${id}`;
-          }
-        } catch { }
-
-        return {
-          title: (r.Title || 'Document').trim(),
-          viewUrl: safeUrl(urlRaw),
-          dlUrl: safeUrl(dlUrl),
-          year: (r.Year || '').trim(),
-          order: Number(r.Order || 9999)
-        };
-      }).filter(d => d.viewUrl);
-
+      const data = rows.map(r => ({
+        title: (r.Title || 'Document').trim(),
+        url: safeUrl(normalizeDriveUrl(r.URL || '')),
+        year: (r.Year || '').trim(),
+        order: Number(r.Order || 9999)
+      })).filter(d => d.url);
       data.sort((a, b) => a.order - b.order || (a.title || '').localeCompare(b.title || ''));
       cacheSet(ck, data);
       return data;
@@ -1042,36 +1027,6 @@
         if (h === 'aicte' || h === 'wbscvt') activateTab(h);
       });
     })();
-    function renderDocs(list, containerId, statusId) {
-      const root = document.getElementById(containerId);
-      const status = document.getElementById(statusId);
-      root.innerHTML = '';
-      if (!list || !list.length) { status.textContent = 'No documents available right now.'; return; }
-      status.textContent = `Showing ${list.length} document${list.length > 1 ? 's' : ''}`;
-
-      list.forEach(item => {
-        const hrefView = item.viewUrl;
-        const hrefDl = item.dlUrl || item.viewUrl;
-
-        const card = document.createElement('div'); card.className = 'doc'; card.setAttribute('role', 'listitem');
-
-        const left = document.createElement('div'); left.className = 'left';
-        const icon = document.createElement('span'); icon.className = 'icon'; icon.textContent = '📄';
-        const text = document.createElement('div');
-        const t = document.createElement('div'); t.className = 'title'; t.textContent = item.title || 'Document';
-        const m = document.createElement('div'); m.className = 'meta'; m.textContent = item.year ? `Year: ${item.year}` : '';
-        text.append(t, m); left.append(icon, text);
-
-        const actions = document.createElement('div'); actions.className = 'actions';
-        const view = document.createElement('a'); view.className = 'btn btn-outline'; view.href = hrefView; view.target = '_blank'; view.rel = 'noopener'; view.textContent = 'View PDF';
-        const dl = document.createElement('a'); dl.className = 'btn btn-primary'; dl.href = hrefDl; dl.target = '_blank'; dl.rel = 'noopener'; dl.textContent = 'Download';
-        if (sameOrigin(hrefDl)) dl.setAttribute('download', '');
-        actions.append(view, dl);
-
-        card.append(left, actions);
-        root.appendChild(card);
-      });
-    }
   </script>
 </body>
 
