@@ -472,7 +472,14 @@
 
     /* Docs list */
     .docs {
-      display: grid;
+      display: flex;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 10px 0 0
+    }
+
+    .docs-content-holder {
+      display: contents;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin: 10px 0 0
@@ -746,13 +753,13 @@
     <section id="panel-aicte" class="tabpanel reveal" role="tabpanel" aria-labelledby="tab-aicte">
       <h2 style="margin:0 0 8px">AICTE Documents</h2>
       <p class="meta" id="status-aicte" role="status" aria-live="polite">Loading…</p>
-      <div id="docs-aicte" class="docs" role="list"></div>
+      <div id="docs-aicte" class="docs-content-holder" role="list"></div>
     </section>
 
     <section id="panel-wbscvt" class="tabpanel reveal" role="tabpanel" aria-labelledby="tab-wbscvt" hidden>
       <h2 style="margin:0 0 8px">WBSCVT Documents</h2>
       <p class="meta" id="status-wbscvt" role="status" aria-live="polite">Loading…</p>
-      <div id="docs-wbscvt" class="docs" role="list"></div>
+      <div id="docs-wbscvt" class="docs-content-holder" role="list"></div>
     </section>
   </main>
 
