@@ -264,6 +264,52 @@
       position: relative
     }
 
+    /* Wrapper and caret button next to About */
+    .submenu-parent {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .submenu-toggle {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      padding: 0 4px;
+    }
+
+    /* Mobile: keep submenu hidden until caret opens it */
+    @media (max-width:1024px) {
+      .has-submenu .submenu[hidden] {
+        display: none !important;
+      }
+    }
+
+    /* Desktop: show arrow next to About (new structure) and open on hover */
+    @media (min-width:1025px) {
+
+      /* If an old rule existed (.has-submenu > a::after), this replaces it for About’s new wrapper */
+      .has-submenu>.submenu-parent>a::after {
+        content: "▾";
+        margin-left: 6px;
+        font-size: 12px;
+        line-height: 1;
+        opacity: .85;
+      }
+
+      /* Hide caret button on desktop, hover opens submenu */
+      .submenu-toggle {
+        display: none;
+      }
+
+      .has-submenu:hover>.submenu,
+      .has-submenu:focus-within>.submenu {
+        display: block !important;
+      }
+    }
+
     .has-submenu>a {
       display: inline-flex;
       align-items: center;
@@ -756,12 +802,30 @@
         <img class="brand-logo dark" src="assets/img/logo-dark.svg" alt="" aria-hidden="true" width="96" height="96">
         <div>
           <span class="brand-text">Regent Institute of Science & Technology</span>
-          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCVT</span>
+          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCT&VE&SD</span>
         </div>
       </a>
       <nav id="primaryNav" aria-label="Primary">
         <ul>
-          <li><a href="index.html#about">About</a></li>
+          <!-- REPLACE the old About <li> with this -->
+          <li class="has-submenu">
+            <div class="submenu-parent">
+              <!-- Parent About goes to Home (change to index.html#about if you prefer) -->
+              <a href="index.html" aria-haspopup="true" aria-expanded="false">About</a>
+              <!-- Caret toggles submenu on mobile -->
+              <button class="submenu-toggle" aria-expanded="false" aria-controls="about-submenu"
+                aria-label="Toggle About submenu">▾</button>
+            </div>
+            <ul id="about-submenu" class="submenu" hidden aria-label="About submenu">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="facilities.html">Facilities</a></li>
+              <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+              <li><a href="rti.html">Right to Information</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+              <li><a href="refund-policy.html">Refund Policy</a></li>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+          </li>
           <li><a href="index.html#notices">Notices</a></li>
           <li><a href="index.html#programs">Programs</a></li>
           <li class="mobile-only"><a href="index.html#research">Research</a></li>
@@ -1010,6 +1074,22 @@
       // const roleVal = isEmployee ? 'Employee' : (isStudent ? 'Student' : '');
       // gform.src = roleVal ? `${base}&${roleEntryId}=${encodeURIComponent(roleVal)}` : base;
     })();
+    document.querySelectorAll('.submenu-toggle').forEach(btn => {
+      const menu = document.getElementById(btn.getAttribute('aria-controls'));
+      const parentLink = btn.previousElementSibling; // the About link
+      function setState(open) {
+        btn.setAttribute('aria-expanded', String(open));
+        parentLink?.setAttribute('aria-expanded', String(open));
+        if (menu) menu.hidden = !open;
+      }
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        setState(!open);
+      });
+      // Optional: close on Escape when focus is inside submenu
+      menu?.addEventListener('keydown', e => { if (e.key === 'Escape') setState(false); });
+    });
   </script>
 </body>
 

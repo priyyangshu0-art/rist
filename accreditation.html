@@ -277,6 +277,49 @@
       position: relative
     }
 
+    /* Wrapper and caret button next to About */
+    .submenu-parent {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .submenu-toggle {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      padding: 0 4px;
+    }
+
+    /* Mobile: keep submenu hidden until caret opens it */
+    @media (max-width:1024px) {
+      .has-submenu .submenu[hidden] {
+        display: none !important;
+      }
+    }
+
+    /* Desktop: show arrow next to About (new structure) and open on hover */
+    @media (min-width:1025px) {
+      .has-submenu>.submenu-parent>a::after {
+        content: "▾";
+        margin-left: 6px;
+        font-size: 12px;
+        line-height: 1;
+        opacity: .85;
+      }
+
+      .submenu-toggle {
+        display: none;
+      }
+
+      .has-submenu:hover>.submenu,
+      .has-submenu:focus-within>.submenu {
+        display: block !important;
+      }
+    }
+
     .has-submenu>a {
       display: inline-flex;
       align-items: center;
@@ -695,12 +738,30 @@
         <img class="brand-logo dark" src="assets/img/logo-dark.svg" alt="" aria-hidden="true" width="96" height="96">
         <div>
           <span class="brand-text">Regent Institute of Science & Technology</span>
-          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCVT</span>
+          <span class="brand-sub">Approved by AICTE • Affiliated to WBSCT&VE&SD</span>
         </div>
       </a>
       <nav id="primaryNav" aria-label="Primary">
         <ul>
-          <li><a href="index.html#about">About</a></li>
+          <!-- REPLACE the old About <li> with this -->
+          <li class="has-submenu">
+            <div class="submenu-parent">
+              <!-- Parent About goes to Home (change to index.html#about if you prefer) -->
+              <a href="index.html" aria-haspopup="true" aria-expanded="false">About</a>
+              <!-- Caret toggles submenu on mobile -->
+              <button class="submenu-toggle" aria-expanded="false" aria-controls="about-submenu"
+                aria-label="Toggle About submenu">▾</button>
+            </div>
+            <ul id="about-submenu" class="submenu" hidden aria-label="About submenu">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="facilities.html">Facilities</a></li>
+              <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+              <li><a href="rti.html">Right to Information</a></li>
+              <li><a href="terms.html">Terms & Conditions</a></li>
+              <li><a href="refund-policy.html">Refund Policy</a></li>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+          </li>
           <li><a href="index.html#notices">Notices</a></li>
           <li><a href="index.html#programs">Programs</a></li>
           <li class="mobile-only"><a href="index.html#research">Research</a></li>
@@ -916,17 +977,34 @@
     }
     function cacheSet(k, data) { try { localStorage.setItem(k, JSON.stringify({ time: Date.now(), data })) } catch { } }
 
-    function normalizeDriveUrl(u) {
+    // Return both a preview URL (for View) and a download URL (for Download)
+    function driveUrls(u) {
       try {
-        const url = new URL(u);
+        const url = new URL(u, location.origin);
+
+        // Google Drive links (any form)
         if (url.hostname.includes('drive.google.com')) {
-          const m = url.pathname.match(/\/file\/d\/([^/]+)/);
-          const id = m ? m[1] : (url.searchParams.get('id') || '');
-          if (id) return `https://drive.google.com/uc?export=download&id=${id}`;
+          // Handles:
+          // - https://drive.google.com/file/d/<id>/view or /preview
+          // - https://drive.google.com/open?id=<id>
+          // - https://drive.google.com/uc?export=download&id=<id>
+          const idMatch = url.pathname.match(/\/file\/d\/([^/]+)/);
+          const id = idMatch ? idMatch[1] : (url.searchParams.get('id') || '');
+          if (id) {
+            return {
+              view: `https://drive.google.com/file/d/${id}/preview`,
+              download: `https://drive.google.com/uc?export=download&id=${id}`
+            };
+          }
         }
-        return u;
-      } catch { return u; }
+
+        // Non-Drive (absolute/relative) URLs: use as-is
+        return { view: url.href, download: url.href };
+      } catch {
+        return { view: '', download: '' };
+      }
     }
+
     function safeUrl(u) {
       try { const x = new URL(u, location.origin); return (x.protocol === 'http:' || x.protocol === 'https:') ? x.href : '' } catch { return '' }
     }
@@ -938,12 +1016,17 @@
       const res = await fetch(osUrl(tab));
       if (!res.ok) throw new Error('Failed to load ' + tab);
       const rows = await res.json();
-      const data = rows.map(r => ({
-        title: (r.Title || 'Document').trim(),
-        url: safeUrl(normalizeDriveUrl(r.URL || '')),
-        year: (r.Year || '').trim(),
-        order: Number(r.Order || 9999)
-      })).filter(d => d.url);
+      const data = rows.map(r => {
+        const raw = (r.URL || '').trim();
+        const urls = driveUrls(raw);
+        return {
+          title: (r.Title || 'Document').trim(),
+          view: safeUrl(urls.view),
+          download: safeUrl(urls.download),
+          year: (r.Year || '').trim(),
+          order: Number(r.Order || 9999)
+        };
+      }).filter(d => d.view);
       data.sort((a, b) => a.order - b.order || (a.title || '').localeCompare(b.title || ''));
       cacheSet(ck, data);
       return data;
@@ -969,10 +1052,26 @@
         text.append(t, m); left.append(icon, text);
 
         const actions = document.createElement('div'); actions.className = 'actions';
-        if (href) {
-          const view = document.createElement('a'); view.className = 'btn btn-outline'; view.href = href; view.target = '_blank'; view.rel = 'noopener'; view.textContent = 'View PDF';
-          const dl = document.createElement('a'); dl.className = 'btn btn-primary'; dl.href = href; dl.target = '_blank'; dl.rel = 'noopener'; dl.textContent = 'Download';
-          if (sameOrigin(href)) dl.setAttribute('download', '');
+        if (item.view) {
+          // Open in a viewer/new tab
+          const view = document.createElement('a');
+          view.className = 'btn btn-outline';
+          view.href = item.view;
+          view.target = '_blank';
+          view.rel = 'noopener';
+          view.type = 'application/pdf';
+          view.textContent = 'View PDF';
+
+          // Force download (uses Drive download link or direct file)
+          const dl = document.createElement('a');
+          dl.className = 'btn btn-primary';
+          dl.href = item.download || item.view;
+          dl.target = '_blank';
+          dl.rel = 'noopener';
+          dl.textContent = 'Download';
+          // Only set "download" attribute for same-origin files
+          if (item.download && sameOrigin(item.download)) dl.setAttribute('download', '');
+
           actions.append(view, dl);
         } else {
           const disabled = document.createElement('span'); disabled.className = 'meta'; disabled.textContent = 'Link unavailable';
@@ -1034,6 +1133,22 @@
         if (h === 'aicte' || h === 'wbscvt') activateTab(h);
       });
     })();
+    document.querySelectorAll('.submenu-toggle').forEach(btn => {
+      const menu = document.getElementById(btn.getAttribute('aria-controls'));
+      const parentLink = btn.previousElementSibling; // the About link
+      function setState(open) {
+        btn.setAttribute('aria-expanded', String(open));
+        parentLink?.setAttribute('aria-expanded', String(open));
+        if (menu) menu.hidden = !open;
+      }
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        setState(!open);
+      });
+      // Optional: close on Escape when focus is inside submenu
+      menu?.addEventListener('keydown', e => { if (e.key === 'Escape') setState(false); });
+    });
   </script>
 </body>
 
