@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Placements — Regent Institute of Science & Technology (RIST)</title>
+
+    <meta name="description"
+        content="Training & Placement Cell at RIST: process, training, placement records, MoUs, members, and top recruiters." />
+    <meta property="og:title" content="Training & Placement Cell — RIST" />
+    <meta property="og:description"
+        content="Campus recruitment process, training, placement records, MoUs, members, and top recruiters." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rist.example.com/placements.html" />
+    <meta property="og:image" content="https://rist.example.com/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0d47d9" />
+    <link rel="canonical" href="https://rist.example.com/placements.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        /* Hide selected nav items on desktop, keep them in mobile menu */
+        @media (min-width: 1025px) {
+            #primaryNav .mobile-only {
+                display: none !important;
+            }
+        }
+
+        :root {
+            --brand: #0d47d9;
+            --brand-2: #1e6bff;
+            --brand-3: #5ea1ff;
+            --bg: #ffffff;
+            --surface: #f7fbff;
+            --surface-2: #eef5ff;
+            --text: #0f172a;
+            --muted: #667085;
+            --radius: 14px;
+            --shadow: 0 10px 30px rgba(2, 8, 23, .08);
+            --ring: 0 0 0 4px rgba(13, 71, 217, .12);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme]) {
+                --bg: #0b1220;
+                --surface: #0f172a;
+                --surface-2: #0b1629;
+                --text: #e5e7eb;
+                --muted: #9ca3af;
+                --shadow: 0 10px 30px rgba(0, 0, 0, .4)
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0b1220;
+            --surface: #0f172a;
+            --surface-2: #0b1629;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .4)
+        }
+
+        :root[data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #f7fbff;
+            --surface-2: #eef5ff;
+            --text: #0f172a;
+            --muted: #667085;
+            --shadow: 0 10px 30px rgba(2, 8, 23, .08)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        *[id] {
+            scroll-margin-top: 84px
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            line-height: 1.6
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(60% 60% at 80% 0%, color-mix(in hsl, var(--brand-3), white 85%), transparent 60%),
+                radial-gradient(50% 50% at 10% 10%, color-mix(in hsl, var(--brand), white 88%), transparent 55%),
+                conic-gradient(from 210deg at 70% 30%, color-mix(in hsl, var(--brand-2), white 90%), transparent 25% 60%, color-mix(in hsl, var(--brand-3), white 90%) 0 85%, transparent 0 100%);
+            opacity: .6;
+            filter: saturate(110%)
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: .05;
+            mix-blend-mode: overlay
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden
+        }
+
+        .skip-link:focus {
+            left: 16px;
+            top: 16px;
+            width: auto;
+            height: auto;
+            background: #fff;
+            color: #000;
+            padding: 8px 12px;
+            border-radius: 8px;
+            z-index: 10000
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: saturate(150%) blur(10px);
+            background: color-mix(in hsl, var(--bg), transparent 20%);
+            border-bottom: 1px solid color-mix(in hsl, var(--text), transparent 90%)
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            justify-content: space-between;
+            position: relative
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit
+        }
+
+        .brand-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: contain;
+            display: block
+        }
+
+        .brand-logo.dark {
+            display: none
+        }
+
+        :root[data-theme="dark"] .brand-logo.dark {
+            display: block
+        }
+
+        :root[data-theme="dark"] .brand-logo.light {
+            display: none
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme]) .brand-logo.dark {
+                display: block
+            }
+
+            :root:not([data-theme]) .brand-logo.light {
+                display: none
+            }
+        }
+
+        /* Bigger logo sizes like index */
+        .brand-logo {
+            width: 96px;
+            height: 96px;
+        }
+
+        @media (max-width: 700px) {
+            .brand-logo {
+                width: 72px;
+                height: 72px;
+            }
+        }
+
+        .brand-text {
+            display: block;
+            font-weight: 800;
+            letter-spacing: .2px;
+            color: var(--text);
+            font-size: clamp(18px, 2.2vw, 26px);
+            line-height: 1.15;
+        }
+
+        @media (min-width: 900px) {
+            .brand-text {
+                white-space: nowrap;
+            }
+        }
+
+        .brand-sub {
+            display: block;
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 4px;
+            font-weight: 700;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        /* Collapse nav on mobile and use the toggle */
+        @media (max-width:1024px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--surface);
+                padding: 12px 20px;
+                gap: 10px;
+                border-bottom: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+            }
+
+            #primaryNav[data-open="true"] ul {
+                display: flex
+            }
+        }
+
+        /* Desktop: brand on first row, menu centered below, same as index */
+        @media (min-width: 1025px) {
+            .nav {
+                flex-wrap: wrap;
+                align-items: flex-start;
+                row-gap: 8px;
+            }
+
+            .brand {
+                order: 1;
+            }
+
+            .cta-row {
+                order: 2;
+                margin-left: auto;
+            }
+
+            #primaryNav {
+                order: 3;
+                flex: 1 0 100%;
+                margin-top: 0 !important;
+            }
+
+            #primaryNav ul {
+                justify-content: center;
+            }
+        }
+
+        /* Submenus */
+        .has-submenu {
+            position: relative
+        }
+
+        .submenu-parent {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .submenu-toggle {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            color: inherit;
+            font: inherit;
+            padding: 0 4px;
+        }
+
+        @media (max-width:1024px) {
+            .has-submenu .submenu[hidden] {
+                display: none !important;
+            }
+        }
+
+        @media (min-width:1025px) {
+            .has-submenu>.submenu-parent>a::after {
+                content: "▾";
+                margin-left: 6px;
+                font-size: 12px;
+                line-height: 1;
+                opacity: .85;
+            }
+
+            .submenu-toggle {
+                display: none;
+            }
+
+            .has-submenu:hover>.submenu,
+            .has-submenu:focus-within>.submenu {
+                display: block !important;
+            }
+        }
+
+        .has-submenu>a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .has-submenu>a::after {
+            content: "▾";
+            font-size: 12px;
+            line-height: 1;
+            transition: transform .2s ease;
+            opacity: .8
+        }
+
+        .has-submenu:hover>a::after,
+        .has-submenu:focus-within>a::after {
+            transform: rotate(180deg)
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: var(--surface);
+            border: 1px solid color-mix(in hsl, var(--text), transparent 88%);
+            border-radius: 10px;
+            padding: 8px;
+            display: none;
+            z-index: 1001;
+            box-shadow: var(--shadow)
+        }
+
+        .submenu li {
+            list-style: none
+        }
+
+        .submenu a {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text)
+        }
+
+        .submenu a:hover {
+            background: var(--surface-2);
+            color: var(--brand)
+        }
+
+        @media (hover:hover) {
+
+            .has-submenu:hover>.submenu,
+            .has-submenu:focus-within>.submenu {
+                display: block
+            }
+        }
+
+        @media (max-width:1024px) {
+            #primaryNav[data-open="true"] .submenu {
+                position: static;
+                display: block;
+                padding: 6px 0;
+                border: 0;
+                box-shadow: none
+            }
+
+            .submenu a {
+                padding-left: 14px
+            }
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            opacity: .9
+        }
+
+        nav a:hover,
+        nav a[aria-current="true"] {
+            opacity: 1;
+            color: var(--brand)
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform .06s ease
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #fff
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--brand);
+            border-color: color-mix(in hsl, var(--brand), #fff 70%)
+        }
+
+        .btn:focus-visible,
+        .theme-toggle:focus-visible,
+        .logo-tile:focus-visible,
+        nav a:focus-visible {
+            outline: none;
+            box-shadow: var(--ring)
+        }
+
+        .theme-toggle,
+        .menu-toggle {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 1px solid color-mix(in hsl, var(--text), transparent 85%);
+            background: var(--surface);
+            display: grid;
+            place-items: center;
+            cursor: pointer
+        }
+
+        @media (min-width:1025px) {
+            .menu-toggle {
+                display: none
+            }
+        }
+
+        @media (max-width:700px) {
+            .brand-logo {
+                width: 40px;
+                height: 40px
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        .section-head {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 28px;
+            text-align: center
+        }
+
+        .section-head h1,
+        .section-head h2 {
+            font-family: "Playfair Display", serif;
+            margin: 0
+        }
+
+        .section-head h1 {
+            font-size: clamp(30px, 5vw, 42px);
+        }
+
+        .section-head h2 {
+            font-size: clamp(26px, 4vw, 36px);
+        }
+
+        .section-head p {
+            color: var(--muted);
+            margin: 0 auto;
+            max-width: 760px
+        }
+
+        /* Grids, cards, meta */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            background: linear-gradient(180deg, var(--surface), color-mix(in hsl, var(--surface), white 70%));
+            border: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+            box-shadow: var(--shadow);
+            transform-style: preserve-3d;
+            transition: transform .25s ease, box-shadow .25s ease
+        }
+
+        .card:hover {
+            box-shadow: 0 14px 40px rgba(2, 8, 23, .16)
+        }
+
+        .card .body {
+            padding: 18px
+        }
+
+        .card .title {
+            font-weight: 800;
+            font-size: 18px;
+            margin: 0 0 6px
+        }
+
+        .card .meta {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 6px 10px;
+            font-size: 12px;
+            background: color-mix(in hsl, var(--brand-3), white 75%);
+            color: #0a2a7a;
+            border-radius: 999px;
+            border: 1px solid color-mix(in hsl, var(--brand-3), white 55%);
+            font-weight: 700
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px
+        }
+
+        /* KPI tiles (reusable) */
+        .kpis {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 22px
+        }
+
+        .kpi {
+            background: linear-gradient(180deg, var(--surface), var(--surface-2));
+            border: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+            border-radius: var(--radius);
+            padding: 18px;
+            text-align: center;
+            box-shadow: var(--shadow)
+        }
+
+        .kpi .num {
+            font-weight: 800;
+            font-size: 26px;
+            color: var(--brand)
+        }
+
+        .kpi .label {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        /* Logo tiles (same as index) */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin: 6px 0 30px
+        }
+
+        .logo-tile {
+            height: 68px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 30%), transparent 38%),
+                linear-gradient(180deg, var(--surface), var(--surface-2));
+            border: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+            color: #4b5563;
+            font-weight: 700;
+            letter-spacing: .3px;
+            filter: grayscale(1) contrast(1.05);
+            opacity: .9;
+            transition: filter .2s ease, opacity .2s ease, transform .06s ease;
+            user-select: none
+        }
+
+        .logo-tile:hover {
+            filter: grayscale(.1);
+            opacity: 1
+        }
+
+        .logo-tile:active {
+            transform: translateY(1px)
+        }
+
+        /* CTA strip */
+        .cta-strip {
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 26px;
+            background:
+                linear-gradient(120deg, color-mix(in hsl, var(--brand), white 10%), color-mix(in hsl, var(--brand-2), white 10%));
+            color: #fff;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow)
+        }
+
+        .cta-strip small {
+            opacity: .9
+        }
+
+        footer {
+            padding: 60px 20px;
+            border-top: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+            background: linear-gradient(180deg, transparent, color-mix(in hsl, var(--brand-2), transparent 92%))
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr .8fr;
+            gap: 20px
+        }
+
+        .footer-col h4 {
+            margin: 0 0 10px
+        }
+
+        .footer-col a {
+            color: var(--text);
+            opacity: .85;
+            text-decoration: none;
+            display: block;
+            padding: 6px 0
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+            color: var(--brand)
+        }
+
+        .legal {
+            max-width: 1100px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: .6s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        [hidden] {
+            display: none !important
+        }
+
+        /* Responsive fixes to match index */
+        @media (max-width:1200px) {
+            .logo-grid {
+                grid-template-columns: repeat(5, 1fr)
+            }
+        }
+
+        @media (max-width:700px) {
+            .grid-3 {
+                grid-template-columns: 1fr
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr
+            }
+
+            .kpis {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .logo-grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        @media (max-width:480px) {
+            .logo-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .kpis {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .card,
+            .reveal {
+                transition: none
+            }
+
+            .noise-overlay {
+                display: none
+            }
+        }
+
+        /* Footer Helpline CTA */
+        .helpline-cta {
+            margin: 18px 0 0;
+            border-radius: 14px;
+            padding: 14px 16px;
+            background: linear-gradient(180deg, var(--surface), var(--surface-2));
+            border: 1px solid color-mix(in hsl, var(--text), transparent 90%);
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .helpline-info {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .helpline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: color-mix(in hsl, var(--brand-3), white 75%);
+            color: #0a2a7a;
+            border: 1px solid color-mix(in hsl, var(--brand-3), white 55%);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .helpline-number {
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--text);
+        }
+
+        @media (max-width: 700px) {
+            .helpline-cta {
+                gap: 10px;
+            }
+
+            .helpline-number {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <div class="nav">
+            <a class="brand" aria-label="Regent Institute of Science & Technology Home">
+                <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="96" height="96">
+                <img class="brand-logo dark" src="assets/img/logo-dark.svg" alt="" aria-hidden="true" width="96"
+                    height="96">
+                <div>
+                    <span class="brand-text">Regent Institute of Science & Technology</span>
+                    <span class="brand-sub">Approved by AICTE • Affiliated to WBSCT&amp;VE&amp;SD</span>
+                </div>
+            </a>
+            <nav id="primaryNav" aria-label="Primary">
+                <ul>
+                    <!-- About with caret (mobile) like index -->
+                    <li class="has-submenu">
+                        <div class="submenu-parent">
+                            <a href="index.html" aria-haspopup="true" aria-expanded="false">About</a>
+                            <button class="submenu-toggle" aria-expanded="false" aria-controls="about-submenu"
+                                aria-label="Toggle About submenu">▾</button>
+                        </div>
+                        <ul id="about-submenu" class="submenu" hidden aria-label="About submenu">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="organogram.html">Organogram</a></li>
+                            <li><a href="facilities.html">Facilities</a></li>
+                            <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                            <li><a href="rti.html">Right to Information</a></li>
+                            <li><a href="terms.html">Terms & Conditions</a></li>
+                            <li><a href="refund-policy.html">Refund Policy</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="index.html#notices">Notices</a></li>
+                    <li><a href="program.html">Programs</a></li>
+                    <li class="mobile-only"><a href="index.html#research">Research</a></li>
+                    <li><a href="accreditation.html">Accreditation</a></li>
+
+                    <li class="has-submenu">
+                        <a>Faculty</a>
+                        <ul class="submenu" aria-label="Faculty submenu">
+                            <li><a href="index.html#faculty">Overview</a></li>
+                            <li><a href="faculty.html">Directory</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a>Grievance</a>
+                        <ul class="submenu" aria-label="Grievance submenu">
+                            <li><a href="grievance.html?type=student">For Students</a></li>
+                            <li><a href="grievance.html?type=employee">For Employees</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="committees.html">Committees</a></li>
+                    <li class="mobile-only"><a href="index.html#campus">Campus</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+
+                    <!-- Visible Placements link on this page -->
+                    <li><a href="placements.html" aria-current="true">Placements</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cta-row">
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="primaryNav"
+                    aria-expanded="false">☰</button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌗</button>
+                <a href="admissions.html" class="btn btn-primary apply-header">Apply Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- Page head -->
+        <section>
+            <div class="container">
+                <div class="section-head reveal">
+                    <h1>Training & Placement Cell</h1>
+                    <p>Campus recruitment process, training, placement records, MoUs, members, and top recruiters.</p>
+                </div>
+
+                <!-- Quick KPIs (optional, align with index style) -->
+                <div class="kpis">
+                    <div class="kpi reveal">
+                        <div class="num">— LPA</div>
+                        <div class="label">Highest CTC (update)</div>
+                    </div>
+                    <div class="kpi reveal">
+                        <div class="num">— LPA</div>
+                        <div class="label">Average CTC (update)</div>
+                    </div>
+                    <div class="kpi reveal">
+                        <div class="num">100+</div>
+                        <div class="label">Recruiters</div>
+                    </div>
+                    <div class="kpi reveal">
+                        <div class="num">90%+</div>
+                        <div class="label">Placement Rate</div>
+                    </div>
+                </div>
+
+                <!-- Overview cards -->
+                <div class="grid-3">
+                    <div class="card reveal">
+                        <div class="body">
+                            <h3 class="title">Overview</h3>
+                            <p class="meta">
+                                The campus placement process recruits students directly from the institute. Final-year
+                                diploma/degree
+                                students get opportunities with renowned companies through on-campus drives.
+                            </p>
+                            <p class="meta">
+                                Since inception, the T&amp;P Cell has grown from contacts with ~30 companies and 100
+                                placed students to
+                                ~100 organizations visiting annually, conducting pre-placement talks, assessments, and
+                                interviews.
+                            </p>
+                            <p class="meta">
+                                The Cell provides infrastructure for PPTs, GDs, and interviews, plus training in
+                                communication, group
+                                discussion, presentation, aptitude, and interview skills. Library resources and the
+                                language lab support
+                                comprehensive prep.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="body">
+                            <h3 class="title">Vision</h3>
+                            <p class="meta">To be the bridge between education and industry—training students and
+                                enabling
+                                placements with reputed organizations.</p>
+                        </div>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="body">
+                            <h3 class="title">Mission</h3>
+                            <p class="meta">Create ample opportunities and achieve excellence in training, placement,
+                                and career
+                                building for students.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card reveal" style="margin-top:18px">
+                    <div class="body">
+                        <h3 class="title">Training</h3>
+                        <p class="meta">
+                            Personality development, CV writing, communication, aptitude, interview techniques, group
+                            discussions, and
+                            mock GD/PI—mandatory for all students. Eminent speakers deliver sessions on emerging tech;
+                            regular
+                            practice tests and seminars are organized.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card reveal" style="margin-top:18px">
+                    <div class="body">
+                        <h3 class="title">IIPC Cell</h3>
+                        <p class="meta">
+                            The Industry-Institute Partnership Cell reviews placement activities and suggests
+                            improvements. It meets
+                            at least twice a year—before and after the placement season.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Placement Records -->
+        <section id="records">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Placement Records (Season-wise)</h2>
+                    <p>Download season reports.</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">2024–25</h3>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/placement-2024-25.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View PDF</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">2023–24</h3>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/placement-2023-24.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View PDF</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">2022–23</h3>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/placement-2022-23.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View PDF</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- MoUs -->
+        <section id="mous">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Memorandums of Understanding (MoUs)</h2>
+                    <p>Industry partnerships enabling internships, training, certifications, and campus hiring.</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">VALUE PROSPECT CONSULTING</h3>
+                            <p class="meta">Scope: Internships / Projects</p>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/mou-company1.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View MoU</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">RASHMI GROUP</h3>
+                            <p class="meta">Scope: Training / Certification</p>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/mou-company2.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View MoU</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">AKASH INFOWAY PVT. LTD.</h3>
+                            <p class="meta">Scope: Campus Hiring</p>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/mou-company3.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View MoU</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <h3 class="title">ANY TECH VENTURES PVT. LTD.</h3>
+                            <p class="meta">Scope: Apprenticeship / OJT</p>
+                            <div class="actions">
+                                <a class="btn btn-outline" href="assets/docs/placements/mou-company4.pdf"
+                                    target="_blank" rel="noopener" type="application/pdf">View MoU</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Placement Cell Members -->
+        <section id="members">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Members of Placement Cell</h2>
+                    <p>Download the committee list and roles.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="body">
+                        <div class="actions">
+                            <a class="btn btn-outline" href="assets/docs/placements/placement-cell-members.pdf"
+                                target="_blank" rel="noopener" type="application/pdf">View Members (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Recruiters (tiles like index) -->
+        <section id="recruiters">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Top Recruiters</h2>
+                    <p>A selection of companies that have engaged with our students.</p>
+                </div>
+                <div class="logo-grid">
+                    <div class="logo-tile reveal" aria-label="Recruiter 1" tabindex="0">Company A</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 2" tabindex="0">Company B</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 3" tabindex="0">Company C</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 4" tabindex="0">Company D</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 5" tabindex="0">Company E</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 6" tabindex="0">Company F</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 7" tabindex="0">Company G</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 8" tabindex="0">Company H</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 9" tabindex="0">Company I</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 10" tabindex="0">Company J</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 11" tabindex="0">Company K</div>
+                    <div class="logo-tile reveal" aria-label="Recruiter 12" tabindex="0">Company L</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact the Placement Cell -->
+        <section id="contact-tp">
+            <div class="container">
+                <div class="cta-strip reveal" role="region" aria-label="Contact Placement Cell">
+                    <div>
+                        <h3 style="margin:0 0 6px">Invite RIST for Campus Hiring</h3>
+                        <small>We welcome recruiters for internships and full-time roles across diploma
+                            disciplines.</small>
+                    </div>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap">
+                        <a class="btn btn-primary"
+                            href="mailto:ristkolkata@gmail.com?subject=Campus%20Recruitment%20Drive%20Enquiry">Email
+                            Placement
+                            Cell</a>
+                        <a class="btn btn-outline" href="tel:+918584854950">Call: +91 85848 54950</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand" style="margin:0 0 12px">
+                        <img class="brand-logo light" src="assets/img/logo-light.svg" alt="RIST logo" width="80"
+                            height="80">
+                        <img class="brand-logo dark" src="assets/img/logo-dark.svg" alt="" aria-hidden="true" width="80"
+                            height="80">
+                        <div>
+                            <span class="brand-text">Regent Institute of Science & Technology</span>
+                            <span class="brand-sub">Bara Kanthalia, Telini Para, Barrackpore, Kolkata - 700121</span>
+                        </div>
+                    </div>
+                    <p style="max-width:520px; color:var(--muted)">For placements and partnerships, contact the Training
+                        &
+                        Placement Cell.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#about">About</a>
+                    <a href="#notices">Notices</a>
+                    <a href="program.html">Programs</a>
+                    <a href="#faculty">Faculty</a>
+                    <a href="committees.html">Committees</a>
+                    <a href="#events">Events</a>
+                    <a href="#placements">Placements</a>
+                    <h4 style="margin-top:12px">Helpful Links</h4>
+                    <a href="https://webscte.co.in" target="_blank" rel="noopener">WBSCTE</a>
+                    <a href="https://parakh.aicte-india.org" target="_blank" rel="noopener">AICTE PARAKH</a>
+                    <a href="https://karma.aicte-india.org" target="_blank" rel="noopener">AICTE KARMA</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Reach Us</h4>
+                    <a href="mailto:ristkolkata@gmail.com">ristkolkata@gmail.com</a>
+                    <a href="tel:+918584854950">+91 85848 54950</a>
+                    <a href="https://maps.google.com/?q=Bara+Kanthalia,+Telini+Para,+Barrackpore,+Kolkata+700121"
+                        target="_blank" rel="noopener">View on Google Maps</a>
+                </div>
+            </div>
+
+            <!-- 24×7 Women Helpline CTA -->
+            <div class="helpline-cta" role="region" aria-label="24×7 Women Helpline">
+                <div class="helpline-info">
+                    <span class="helpline-badge">24×7 Women Helpline</span>
+                    <span class="helpline-number">9330531353</span>
+                </div>
+                <a href="tel:+919330531353" class="btn btn-primary btn-sm"
+                    aria-label="Call 24 by 7 Women Helpline 9330531353">Call Now</a>
+            </div>
+
+            <div class="legal">© <span id="year"></span> Regent Institute of Science & Technology. All rights reserved.
+            </div>
+        </footer>
+    </main>
+
+    <svg class="noise-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="fNoise">
+            <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0.3" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#fNoise)" fill="rgba(30,107,255,0.3)"></rect>
+    </svg>
+
+    <!-- Scripts (same core behavior as index) -->
+    <script>
+        // Smooth scroll (left click, no modifiers)
+        document.addEventListener('click', (e) => {
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            const a = e.target.closest('a[href^="#"]'); if (!a) return;
+            const hash = a.getAttribute('href'); if (!hash || hash.length <= 1) return;
+            const el = document.getElementById(hash.slice(1)); if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState(null, '', hash);
+        });
+
+        // Reveal on scroll
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // Mobile menu toggle
+        (function () {
+            const menuBtn = document.getElementById('menuToggle');
+            const primaryNav = document.getElementById('primaryNav');
+            function collapseDesktop() {
+                if (window.innerWidth > 1024) {
+                    primaryNav.removeAttribute('data-open');
+                    menuBtn?.setAttribute('aria-expanded', 'false');
+                }
+            }
+            window.addEventListener('resize', collapseDesktop);
+            menuBtn?.addEventListener('click', () => {
+                const open = primaryNav.getAttribute('data-open') === 'true';
+                primaryNav.setAttribute('data-open', String(!open));
+                menuBtn?.setAttribute('aria-expanded', String(!open));
+            });
+            primaryNav?.addEventListener('click', (e) => {
+                if (e.target.closest('a')) {
+                    primaryNav.removeAttribute('data-open');
+                    menuBtn?.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
+
+        // Theme toggle (+ dynamic theme-color)
+        (function themeManager() {
+            const rootEl = document.documentElement; const THEME_KEY = 'rist-theme';
+            function setThemeColorMeta(mode) {
+                const light = '#0d47d9', dark = '#0b1220';
+                let meta = document.querySelector('meta[name="theme-color"]');
+                if (!meta) { meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
+                meta.setAttribute('content', mode === 'dark' ? dark : light);
+            }
+            function applyTheme(mode) {
+                if (mode === 'light' || mode === 'dark') {
+                    rootEl.setAttribute('data-theme', mode);
+                    rootEl.style.colorScheme = mode;
+                    localStorage.setItem(THEME_KEY, mode);
+                    setThemeColorMeta(mode);
+                } else {
+                    rootEl.removeAttribute('data-theme');
+                }
+            }
+            const saved = localStorage.getItem(THEME_KEY);
+            if (saved) { applyTheme(saved); }
+            else {
+                const sys = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                rootEl.style.colorScheme = sys ? 'dark' : 'light';
+                setThemeColorMeta(sys ? 'dark' : 'light');
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.getItem(THEME_KEY)) {
+                    const m = e.matches ? 'dark' : 'light';
+                    rootEl.style.colorScheme = m; setThemeColorMeta(m);
+                }
+            });
+            document.getElementById('themeToggle')?.addEventListener('click', () => {
+                const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                applyTheme(next);
+            });
+        })();
+
+        // Dynamic year
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+    </script>
+
+    <!-- About submenu caret (mobile) -->
+    <script>
+        (function () {
+            document.querySelectorAll('.submenu-toggle').forEach(btn => {
+                const menu = document.getElementById(btn.getAttribute('aria-controls'));
+                const parentLink = btn.previousElementSibling;
+                function setState(open) {
+                    btn.setAttribute('aria-expanded', String(open));
+                    parentLink?.setAttribute('aria-expanded', String(open));
+                    if (menu) menu.hidden = !open;
+                }
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    const open = btn.getAttribute('aria-expanded') === 'true';
+                    setState(!open);
+                });
+                menu?.addEventListener('keydown', e => { if (e.key === 'Escape') setState(false); });
+            });
+        })();
+    </script>
+</body>
+
+</html>

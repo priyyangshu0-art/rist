@@ -8,11 +8,7 @@
     <meta name="description"
         content="About Regent Institute of Science & Technology (RIST): vision, mission, approvals, leadership.">
     <link rel="canonical" href="https://YOUR-DOMAIN/about.html">
-
-    <meta name="description"
-        content="Official committees and cells of Regent Institute of Science & Technology (RIST): Anti-Ragging, ICC, SC/ST, Institute–Industry, Grievance Cells (Students & Faculty)." />
     <meta name="theme-color" content="#0d47d9" />
-    <link rel="canonical" href="committees.html" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -267,7 +263,6 @@
             position: relative
         }
 
-        /* Wrapper and caret button next to About */
         .submenu-parent {
             display: inline-flex;
             align-items: center;
@@ -283,17 +278,13 @@
             padding: 0 4px;
         }
 
-        /* Mobile: keep submenu hidden until caret opens it */
         @media (max-width:1024px) {
             .has-submenu .submenu[hidden] {
                 display: none !important;
             }
         }
 
-        /* Desktop: show arrow next to About (new structure) and open on hover */
         @media (min-width:1025px) {
-
-            /* If an old rule existed (.has-submenu > a::after), this replaces it for About’s new wrapper */
             .has-submenu>.submenu-parent>a::after {
                 content: "▾";
                 margin-left: 6px;
@@ -302,7 +293,6 @@
                 opacity: .85;
             }
 
-            /* Hide caret button on desktop, hover opens submenu */
             .submenu-toggle {
                 display: none;
             }
@@ -633,7 +623,7 @@
             color: var(--text);
         }
 
-        /* Mobile overflow fix: keep header on one row and prevent horizontal scroll */
+        /* Mobile overflow fix */
         @media (max-width: 1024px) {
             .nav {
                 flex-wrap: nowrap;
@@ -712,7 +702,7 @@
 </head>
 
 <body>
-    <a href="#main" class="skip-link">Skip to content</a>
+
 
     <!-- Header -->
     <header>
@@ -728,17 +718,15 @@
             </a>
             <nav id="primaryNav" aria-label="Primary">
                 <ul>
-                    <!-- REPLACE the old About <li> with this -->
                     <li class="has-submenu">
                         <div class="submenu-parent">
-                            <!-- Parent About goes to Home (change to index.html#about if you prefer) -->
                             <a href="index.html" aria-haspopup="true" aria-expanded="false">About</a>
-                            <!-- Caret toggles submenu on mobile -->
                             <button class="submenu-toggle" aria-expanded="false" aria-controls="about-submenu"
                                 aria-label="Toggle About submenu">▾</button>
                         </div>
                         <ul id="about-submenu" class="submenu" hidden aria-label="About submenu">
-                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="about.html" aria-current="page">About Us</a></li>
+                            <li><a href="organogram.html">Organogram</a></li>
                             <li><a href="facilities.html">Facilities</a></li>
                             <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
                             <li><a href="rti.html">Right to Information</a></li>
@@ -768,10 +756,11 @@
                         </ul>
                     </li>
 
-                    <li><a href="committees.html" aria-current="page">Committees</a></li>
+                    <li><a href="committees.html">Committees</a></li>
                     <li class="mobile-only"><a href="index.html#campus">Campus</a></li>
                     <li><a href="index.html#events">Events</a></li>
                     <li class="mobile-only"><a href="index.html#placements">Placements</a></li>
+                    <li><a href="placements.html">Placements</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -779,7 +768,6 @@
                 <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="primaryNav"
                     aria-expanded="false">☰</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌗</button>
-                <!-- Apply button intentionally removed -->
             </div>
         </div>
     </header>
@@ -802,14 +790,12 @@
                     <div class="body">
                         <h3 class="title">Vision</h3>
                         <p class="meta">‘UttishthataJagrataPrapya Varan Nibodhata’ (Arise, Awake and Stop not till the
-                            goal is reached): Holistic development of the stakeholders.
-                            Led by the essenceof Katha Upanishad and Swami Vivekananda "UttishthataJagrataPrapya Varan
-                            Nibodhata,"i.e.“Arise, Awake and Stop not till the goal is reached”, RERFGroup of
-                            Institutions’ vision is to attain quality education by keeping pace with changing
-                            technologies and bringing out professionals with a sense of social responsibility, competent
-                            of making significant contributions to both personal and national abundance.
-
-                        </p>
+                            goal is reached): Holistic development of the stakeholders. Led by the essence of Katha
+                            Upanishad and Swami Vivekananda "Uttishthata Jagrata Prapya Varan Nibodhata," i.e. “Arise,
+                            Awake and Stop not till the goal is reached”, RERF Group of Institutions’ vision is to
+                            attain quality education by keeping pace with changing technologies and bringing out
+                            professionals with a sense of social responsibility, competent of making significant
+                            contributions to both personal and national abundance.</p>
                     </div>
                 </div>
                 <div class="card reveal">
@@ -822,18 +808,18 @@
                             To facilitate a cutting-edge learning process, where education is contextualized in the
                             changes, necessities, and trials of the real world.
                             To spark the intellects of the students to explore their individuality, adapt, and
-                            acknowledge diversity
+                            acknowledge diversity.
                             To equip the learners with a mature mind and heart, proficient in critical thinking,
-                            innovation, and experimentation, which empower them to become leaders
+                            innovation, and experimentation, which empower them to become leaders.
                             To support students in building meaningful careers by enhancing their employability
-                            aptitudesand to nurture among the students the passion for exploration, creativity, and
+                            aptitudes and to nurture among the students the passion for exploration, creativity, and
                             enterprise.
                             To enable the students and faculties with the means of knowledge creation and promote their
-                            self-sufficiency
+                            self-sufficiency.
                             To promise a dedication to establish a connection with nature, fellow beings, and their own
-                            deeper selves
-                            To promote students and staffs as an accountable tech-members of society with social, moral
-                            and ethical consideration.</p>
+                            deeper selves.
+                            To promote students and staffs as accountable tech-members of society with social, moral and
+                            ethical consideration.</p>
                     </div>
                 </div>
                 <div class="card reveal">
@@ -841,7 +827,7 @@
                         <h3 class="title">Values</h3>
                         <p class="meta">Continuously evaluate and increase the quality and relevance of academic content
                             and performance standards in the core subjects for pre-school, grades 1 to 12 and university
-                            education.Enhancement of the quality of student life by providing professional development
+                            education. Enhancement of the quality of student life by providing professional development
                             opportunities and promoting a sense of community.</p>
                     </div>
                 </div>
@@ -850,8 +836,7 @@
             <div class="card reveal" style="margin-top:18px">
                 <div class="body">
                     <h3 class="title">Approvals & Affiliation</h3>
-                    <p class="meta">Approved by AICTE • Affiliated to [WBSCVT/WBSCTVESD — confirm exact statutory name].
-                    </p>
+                    <p class="meta">Approved by AICTE • Affiliated to WBSCT&VE&SD.</p>
                     <div class="actions">
                         <a class="btn btn-outline" href="accreditation.html">Accreditation Documents</a>
                         <a class="btn btn-outline" href="committees.html">Committees & Cells</a>
@@ -863,41 +848,43 @@
                 <div class="card reveal">
                     <div class="body">
                         <h3 class="title">Leadership</h3>
-                        <p class="meta">Message from the Principal -
-                            At the outset I Dr. Soumyendu Bhattacharjee would
-                            like to convey my best wishes and greetings to all! It is indeed a privilege for me to be
-                            associated with this great institute as its Principal. Since its inception, Regent Institute
-                            of Science and Technology (RIST) has been striving for achieving its target to inculcate
-                            good technical knowledge in students. Our sincere efforts have shown results. Today RIST has
-                            become an icon of technical education in this part of the country and is recognized as one
-                            of the state's leading Institute. We are determined to retain this level of superiority in
-                            every sphere of academic activities including career orientation and overall development of
-                            the students in the future as well. The Institute not only symbolizes quality education, it
-                            has set the bench-mark of education ambience, its infrastructure, tranquil greenery,
-                            teacher-students relation, teaching quality, laboratories etc. Our guiding principle is
-                            constant improvement, motivation, up gradation, creating state-of-art knowledge, instilling
-                            in students the ability to learn so that they can face any challenge, anywhere in the world.
-                            Our motto is not to give the student just an assembly line degree but to sculpt the young
-                            mind into giants in knowledge with upright character and unwavering ethics, possessing a
-                            firm resolution to shape the future, development of the students in the future as well.
-                            Engineers are not born, they are created in colleges. So our college is ready to create
-                            engineers of high quality. I believe all would be able to get a glimpse of our activity and
-                            total insight of the college in all respects.</p><a class="btn btn-outline"
-                            href="faculty-profile.html?slug=[principal-slug]">View Profile</a>
+                        <p class="meta">Message from the Principal —
+                            At the outset I Dr. Soumyendu Bhattacharjee would like to convey my best wishes and
+                            greetings to all! It is indeed a privilege for me to be associated with this great institute
+                            as its Principal. Since its inception, Regent Institute of Science and Technology (RIST) has
+                            been striving for achieving its target to inculcate good technical knowledge in students.
+                            Our sincere efforts have shown results. Today RIST has become an icon of technical education
+                            in this part of the country and is recognized as one of the state's leading Institute. We
+                            are determined to retain this level of superiority in every sphere of academic activities
+                            including career orientation and overall development of the students in the future as well.
+                            The Institute not only symbolizes quality education, it has set the bench-mark of education
+                            ambience, its infrastructure, tranquil greenery, teacher-students relation, teaching
+                            quality, laboratories etc. Our guiding principle is constant improvement, motivation, up
+                            gradation, creating state-of-art knowledge, instilling in students the ability to learn so
+                            that they can face any challenge, anywhere in the world. Our motto is not to give the
+                            student just an assembly line degree but to sculpt the young mind into giants in knowledge
+                            with upright character and unwavering ethics, possessing a firm resolution to shape the
+                            future, development of the students in the future as well. Engineers are not born, they are
+                            created in colleges. So our college is ready to create engineers of high quality. I believe
+                            all would be able to get a glimpse of our activity and total insight of the college
+                            in all respects.</p>
+                        <a id="principalProfileLink" class="btn btn-outline" href="faculty.html#principal"
+                            aria-disabled="true">View Profile</a>
                     </div>
                 </div>
                 <div class="card reveal">
                     <div class="body">
                         <h3 class="title">Programs</h3>
-                        <p class="meta">Diploma programs aligned with industry needs.</p><a class="btn btn-outline"
-                            href="program.html">Explore Programs</a>
+                        <p class="meta">Diploma programs aligned with industry needs.</p>
+                        <a class="btn btn-outline" href="program.html">Explore Programs</a>
                     </div>
                 </div>
                 <div class="card reveal">
                     <div class="body">
                         <h3 class="title">Contact</h3>
                         <p class="meta">Bara Kanthalia, Telini Para, Barrackpore, Kolkata 700121<br />Email:
-                            ristkolkata@gmail.com • +91 85848 54950</p><a class="btn btn-outline"
+                            ristkolkata@gmail.com • +91 85848 54950</p>
+                        <a class="btn btn-outline"
                             href="https://maps.google.com/?q=Bara+Kanthalia,+Telini+Para,+Barrackpore,+Kolkata+700121"
                             target="_blank" rel="noopener">View Map</a>
                     </div>
@@ -905,6 +892,7 @@
             </div>
         </section>
     </main>
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
@@ -920,19 +908,21 @@
                     </div>
                 </div>
                 <p style="max-width:520px;color:var(--muted)">Contact us for admissions, partnerships, campus visits,
-                    and more.
-                </p>
+                    and more.</p>
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
-                <a href="index.html#about">About</a>
-                <a href="index.html#notices">Notices</a>
-                <a href="index.html#programs">Programs</a>
-                <a href="index.html#research">Research</a>
-                <a href="committees.html" aria-current="page">Committees</a>
-                <a href="accreditation.html">Accreditation</a>
-                <a href="index.html#events">Events</a>
-                <a href="index.html#placements">Placements</a>
+                <a href="#about">About</a>
+                <a href="#notices">Notices</a>
+                <a href="program.html">Programs</a>
+                <a href="#faculty">Faculty</a>
+                <a href="committees.html">Committees</a>
+                <a href="#events">Events</a>
+                <a href="#placements">Placements</a>
+                <h4 style="margin-top:12px">Helpful Links</h4>
+                <a href="https://webscte.co.in" target="_blank" rel="noopener">WBSCTE</a>
+                <a href="https://parakh.aicte-india.org" target="_blank" rel="noopener">AICTE PARAKH</a>
+                <a href="https://karma.aicte-india.org" target="_blank" rel="noopener">AICTE KARMA</a>
             </div>
             <div class="footer-col">
                 <h4>Reach Us</h4>
@@ -943,7 +933,6 @@
             </div>
         </div>
 
-        <!-- 24×7 Women Helpline CTA -->
         <div class="helpline-cta" role="region" aria-label="24×7 Women Helpline">
             <div class="helpline-info">
                 <span class="helpline-badge">24×7 Women Helpline</span>
@@ -1024,22 +1013,61 @@
 
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
-        document.querySelectorAll('.submenu-toggle').forEach(btn => {
-            const menu = document.getElementById(btn.getAttribute('aria-controls'));
-            const parentLink = btn.previousElementSibling; // the About link
-            function setState(open) {
-                btn.setAttribute('aria-expanded', String(open));
-                parentLink?.setAttribute('aria-expanded', String(open));
-                if (menu) menu.hidden = !open;
+    </script>
+
+    <!-- Data module + dynamic principal profile link -->
+    <script src="assets/js/rist-data.js"></script>
+    <script>
+        // Auto-fill the principal profile link from the faculty dataset
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (!window.RIST) return;
+                const list = await RIST.fetchFaculty();
+
+                // Try a few common fields to identify the Principal
+                const principal = list.find(f =>
+                    (f.role && /principal/i.test(f.role)) ||
+                    (f.designation && /principal/i.test(f.designation)) ||
+                    (f.title && /principal/i.test(f.title)) ||
+                    (Array.isArray(f.tags) && f.tags.some(t => /principal/i.test(t))) ||
+                    f.isPrincipal === true
+                );
+
+                const link = document.getElementById('principalProfileLink');
+                if (principal?.slug && link) {
+                    link.href = 'faculty-profile.html?slug=' + encodeURIComponent(principal.slug);
+                    link.removeAttribute('aria-disabled');
+                } else if (link) {
+                    // Fallback: take user to the directory anchor
+                    link.href = 'faculty.html#principal';
+                    link.textContent = 'View in Directory';
+                    link.removeAttribute('aria-disabled');
+                }
+            } catch (e) {
+                console.warn('Principal link setup failed:', e);
             }
-            btn.addEventListener('click', e => {
-                e.preventDefault();
-                const open = btn.getAttribute('aria-expanded') === 'true';
-                setState(!open);
-            });
-            // Optional: close on Escape when focus is inside submenu
-            menu?.addEventListener('keydown', e => { if (e.key === 'Escape') setState(false); });
         });
+    </script>
+
+    <!-- About submenu caret (mobile) -->
+    <script>
+        (function () {
+            document.querySelectorAll('.submenu-toggle').forEach(btn => {
+                const menu = document.getElementById(btn.getAttribute('aria-controls'));
+                const parentLink = btn.previousElementSibling; // the About link
+                function setState(open) {
+                    btn.setAttribute('aria-expanded', String(open));
+                    parentLink?.setAttribute('aria-expanded', String(open));
+                    if (menu) menu.hidden = !open;
+                }
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    const open = btn.getAttribute('aria-expanded') === 'true';
+                    setState(!open);
+                });
+                menu?.addEventListener('keydown', e => { if (e.key === 'Escape') setState(false); });
+            });
+        })();
     </script>
 </body>
 

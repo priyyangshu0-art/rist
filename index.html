@@ -528,8 +528,8 @@
     /* Smaller logo on mobile to keep header centered */
     @media (max-width:700px) {
       .brand-logo {
-        width: 40px;
-        height: 40px
+        width: 72px;
+        height: 72px
       }
     }
 
@@ -1543,11 +1543,117 @@
       color: #fff;
       border-color: transparent;
     }
+
+    /* ===== Events makeover ===== */
+
+    /* 1) Grid layout for events */
+    #events .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 1024px) {
+      #events .events-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      #events .events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 2) Event cards: subtle accent + hover */
+    #events .events-grid>.card {
+      position: relative;
+      padding: 16px;
+      border-left: 4px solid var(--brand);
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    #events .events-grid>.card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(2, 8, 23, .16);
+    }
+
+    /* Optional soft top glow */
+    #events .events-grid>.card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 70px;
+      background:
+        radial-gradient(120% 120% at -10% 10%, color-mix(in hsl, var(--brand-3), white 22%), transparent 42%),
+        linear-gradient(135deg, color-mix(in hsl, var(--brand-2), white 12%), transparent 60%);
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    /* 3) Titles and meta text inside event cards */
+    #events .events-grid .card h3,
+    #events .events-grid .card .title {
+      margin: 6px 0 6px;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    #events .events-grid .card .meta,
+    #events .events-grid .card p {
+      color: var(--muted);
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    /* 4) Date pill (if a <time> element exists) */
+    #events .events-grid time {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: color-mix(in hsl, var(--brand-3), white 78%);
+      color: #0a2a7a;
+      border: 1px solid color-mix(in hsl, var(--brand-3), white 55%);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* 5) Buttons row */
+    #events .events-grid .actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    #events .events-grid .actions .btn {
+      box-shadow: none;
+    }
+
+    /* 6) Filters: center and make them a bit bolder */
+    #events .filters {
+      justify-content: center;
+    }
+
+    #events .filters .pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+
+    #events .filters .pill.active,
+    #events .filters .pill[aria-pressed="true"] {
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 
 <body>
-  <a href="#main" class="skip-link">Skip to content</a>
+
 
   <header>
     <div class="nav">
@@ -1572,6 +1678,8 @@
             </div>
             <ul id="about-submenu" class="submenu" hidden aria-label="About submenu">
               <li><a href="about.html">About Us</a></li>
+              <!-- Inside the About submenu list -->
+              <li><a href="organogram.html">Organogram</a></li>
               <li><a href="facilities.html">Facilities</a></li>
               <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
               <li><a href="rti.html">Right to Information</a></li>
@@ -1601,7 +1709,7 @@
           <li><a href="committees.html">Committees</a></li>
           <li class="mobile-only"><a href="#campus">Campus</a></li>
           <li><a href="#events">Events</a></li>
-          <li class="mobile-only"><a href="#placements">Placements</a></li>
+          <li><a href="placements.html">Placements</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -2038,11 +2146,14 @@
           <a href="#about">About</a>
           <a href="#notices">Notices</a>
           <a href="program.html">Programs</a>
-          <a href="#research">Research</a>
           <a href="#faculty">Faculty</a>
           <a href="committees.html">Committees</a>
           <a href="#events">Events</a>
           <a href="#placements">Placements</a>
+          <h4 style="margin-top:12px">Helpful Links</h4>
+          <a href="https://webscte.co.in" target="_blank" rel="noopener">WBSCTE</a>
+          <a href="https://parakh.aicte-india.org" target="_blank" rel="noopener">AICTE PARAKH</a>
+          <a href="https://karma.aicte-india.org" target="_blank" rel="noopener">AICTE KARMA</a>
         </div>
         <div class="footer-col">
           <h4>Reach Us</h4>

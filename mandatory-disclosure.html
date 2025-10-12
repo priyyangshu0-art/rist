@@ -7,11 +7,7 @@
     <title>Mandatory Disclosure — RIST</title>
     <meta name="description" content="AICTE Mandatory Disclosure (18.1–18.18), LoA/EOA, and compliance documents.">
     <link rel="canonical" href="https://YOUR-DOMAIN/mandatory-disclosure.html">
-
-    <meta name="description"
-        content="Official committees and cells of Regent Institute of Science & Technology (RIST): Anti-Ragging, ICC, SC/ST, Institute–Industry, Grievance Cells (Students & Faculty)." />
     <meta name="theme-color" content="#0d47d9" />
-    <link rel="canonical" href="committees.html" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -266,7 +262,6 @@
             position: relative
         }
 
-        /* Wrapper and caret button next to About */
         .submenu-parent {
             display: inline-flex;
             align-items: center;
@@ -282,17 +277,13 @@
             padding: 0 4px;
         }
 
-        /* Mobile: keep submenu hidden until caret opens it */
         @media (max-width:1024px) {
             .has-submenu .submenu[hidden] {
                 display: none !important;
             }
         }
 
-        /* Desktop: show arrow next to About (new structure) and open on hover */
         @media (min-width:1025px) {
-
-            /* If an old rule existed (.has-submenu > a::after), this replaces it for About’s new wrapper */
             .has-submenu>.submenu-parent>a::after {
                 content: "▾";
                 margin-left: 6px;
@@ -301,7 +292,6 @@
                 opacity: .85;
             }
 
-            /* Hide caret button on desktop, hover opens submenu */
             .submenu-toggle {
                 display: none;
             }
@@ -536,17 +526,6 @@
             flex-wrap: wrap
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--brand), var(--brand-2));
-            color: #fff
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--brand);
-            border-color: color-mix(in hsl, var(--brand), #fff 70%)
-        }
-
         a.btn[aria-disabled="true"] {
             opacity: .6;
             pointer-events: none;
@@ -711,7 +690,7 @@
 </head>
 
 <body>
-    <a href="#main" class="skip-link">Skip to content</a>
+
 
     <!-- Header -->
     <header>
@@ -727,19 +706,17 @@
             </a>
             <nav id="primaryNav" aria-label="Primary">
                 <ul>
-                    <!-- REPLACE the old About <li> with this -->
                     <li class="has-submenu">
                         <div class="submenu-parent">
-                            <!-- Parent About goes to Home (change to index.html#about if you prefer) -->
                             <a href="index.html" aria-haspopup="true" aria-expanded="false">About</a>
-                            <!-- Caret toggles submenu on mobile -->
                             <button class="submenu-toggle" aria-expanded="false" aria-controls="about-submenu"
                                 aria-label="Toggle About submenu">▾</button>
                         </div>
                         <ul id="about-submenu" class="submenu" hidden aria-label="About submenu">
                             <li><a href="about.html">About Us</a></li>
+                            <li><a href="organogram.html">Organogram</a></li>
                             <li><a href="facilities.html">Facilities</a></li>
-                            <li><a href="mandatory-disclosure.html">Mandatory Disclosure</a></li>
+                            <li><a href="mandatory-disclosure.html" aria-current="page">Mandatory Disclosure</a></li>
                             <li><a href="rti.html">Right to Information</a></li>
                             <li><a href="terms.html">Terms & Conditions</a></li>
                             <li><a href="refund-policy.html">Refund Policy</a></li>
@@ -767,10 +744,13 @@
                         </ul>
                     </li>
 
-                    <li><a href="committees.html" aria-current="page">Committees</a></li>
+                    <li><a href="committees.html">Committees</a></li>
                     <li class="mobile-only"><a href="index.html#campus">Campus</a></li>
                     <li><a href="index.html#events">Events</a></li>
-                    <li class="mobile-only"><a href="index.html#placements">Placements</a></li>
+
+                    <!-- Single Placements link that opens the page -->
+                    <li><a href="placements.html">Placements</a></li>
+
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -793,9 +773,33 @@
             <p class="meta">AICTE Mandatory Disclosure as per Handbook (18.1–18.18). Last updated: <span
                     id="updated"></span></p>
         </div>
+
+        <!-- Current Academic Year: Mandatory Disclosure (View/Download) -->
+        <section id="current-md" class="reveal">
+            <div class="card">
+                <div class="body">
+                    <h2 class="title" style="margin-bottom:6px">Mandatory Disclosure</h2>
+                    <p class="meta">Official document as per AICTE guidelines. You may view it online or download a
+                        copy.</p>
+                    <div class="actions">
+                        <a class="btn btn-primary"
+                            href="assets/docs/mandatory-disclosure/mandatory-disclosure-2024-25.pdf" target="_blank"
+                            rel="noopener" type="application/pdf">View PDF</a>
+                        <a class="btn btn-outline"
+                            href="assets/docs/mandatory-disclosure/mandatory-disclosure-2024-25.pdf"
+                            download>Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Paste the full 18.1–18.18 sections skeleton here (from earlier message) -->
     </main>
-    <script>document.getElementById('updated').textContent = new Date().toLocaleString(undefined, { month: 'short', year: 'numeric' });</script>
+
+    <script>
+        document.getElementById('updated').textContent = new Date().toLocaleString(undefined, { month: 'short', year: 'numeric' });
+    </script>
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
@@ -816,14 +820,17 @@
             </div>
             <div class="footer-col">
                 <h4>Quick Links</h4>
-                <a href="index.html#about">About</a>
-                <a href="index.html#notices">Notices</a>
-                <a href="index.html#programs">Programs</a>
-                <a href="index.html#research">Research</a>
-                <a href="committees.html" aria-current="page">Committees</a>
-                <a href="accreditation.html">Accreditation</a>
-                <a href="index.html#events">Events</a>
-                <a href="index.html#placements">Placements</a>
+                <a href="#about">About</a>
+                <a href="#notices">Notices</a>
+                <a href="program.html">Programs</a>
+                <a href="#faculty">Faculty</a>
+                <a href="committees.html">Committees</a>
+                <a href="#events">Events</a>
+                <a href="#placements">Placements</a>
+                <h4 style="margin-top:12px">Helpful Links</h4>
+                <a href="https://webscte.co.in" target="_blank" rel="noopener">WBSCTE</a>
+                <a href="https://parakh.aicte-india.org" target="_blank" rel="noopener">AICTE PARAKH</a>
+                <a href="https://karma.aicte-india.org" target="_blank" rel="noopener">AICTE KARMA</a>
             </div>
             <div class="footer-col">
                 <h4>Reach Us</h4>
@@ -915,6 +922,8 @@
 
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // About submenu caret (mobile)
         document.querySelectorAll('.submenu-toggle').forEach(btn => {
             const menu = document.getElementById(btn.getAttribute('aria-controls'));
             const parentLink = btn.previousElementSibling; // the About link
