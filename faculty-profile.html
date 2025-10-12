@@ -883,68 +883,30 @@
   <!-- Data helpers -->
   <script src="assets/js/rist-data.js"></script>
   <script>
-    // Convert Google Drive share links to direct image URLs
-    function toDirectDriveUrl(url) {
-      if (!url) return '';
-      try {
-        const u = new URL(url);
-        if (u.hostname.includes('drive.google.com')) {
-          // Matches /file/d/FILE_ID/... or ...?id=FILE_ID
-          const m = url.match(/\/d\/([a-zA-Z0-9_-]{10,})/) || url.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
-          const id = m ? m[1] : '';
-          return id ? `https://drive.google.com/uc?export=view&id=${id}` : url;
-        }
-        return url; // already direct (e.g., lh3.googleusercontent.com)
-      } catch {
-        return url;
-      }
-    }
-
-    // Map your sheet’s photo column to .photo and fix the URL
-    function normalizeFacultyRecord(f) {
-      const src =
-        f.photo || f.image || f.avatar || f.picture ||
-        f['Photo'] || f['Image'] || f['Photo URL'] || f['Image URL'] || '';
-      return { ...f, photo: toDirectDriveUrl(src) };
-    }
-
-    // Set avatar image if available; else show initials
-    function setAvatar(container, p) {
-      container.innerHTML = '';
-      if (p.photo) {
-        const img = document.createElement('img');
-        img.alt = p.name || 'Faculty photo';
-        img.loading = 'lazy';
-        img.width = 120;
-        img.height = 120;
-        img.src = p.photo;
-        img.onerror = () => {
-          container.innerHTML = '';
-          const fb = document.createElement('div');
-          fb.className = 'avatar-fallback';
-          fb.textContent = (p.name || '?').split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase();
-          container.appendChild(fb);
-        };
-        container.appendChild(img);
-        return;
-      }
-      const fb = document.createElement('div');
-      fb.className = 'avatar-fallback';
-      fb.textContent = (p.name || '?').split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase();
-      container.appendChild(fb);
-    }
-  </script>
-  <script>
     function getParam(name) { return new URLSearchParams(location.search).get(name); }
 
     function renderProfile(root, p) {
       const hero = document.createElement('div');
       hero.className = 'hero';
 
-      // Avatar (use normalized Google Drive URL)
+      // Avatar
       const av = document.createElement('div');
       av.className = 'avatar';
-      setAvatar(av, p);
+      if (p.photo) {
+        const img = document.createElement('img');
+        img.alt = p.name; img.src = p.photo;
+        img.onerror = () => {
+          av.innerHTML = '';
+          const fb = document.createElement('div'); fb.className = 'avatar-fallback';
+          fb.textContent = (p.name || '?').split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase();
+          av.appendChild(fb);
+        };
+        av.appendChild(img);
+      } else {
+        const fb = document.createElement('div'); fb.className = 'avatar-fallback';
+        fb.textContent = (p.name || '?').split(' ').map(s => s[0]).slice(0, 2).join('').toUpperCase();
+        av.appendChild(fb);
+      }
 
       // Info
       const info = document.createElement('div');
@@ -990,8 +952,7 @@
       const root = document.getElementById('profile');
       const slug = getParam('slug');
       try {
-        const rows = await RIST.fetchFaculty();
-        const all = rows.map(normalizeFacultyRecord);
+        const all = await RIST.fetchFaculty();
         const person = all.find(x => x.slug === slug);
         if (!person) {
           root.innerHTML = '<div class="body">Profile not found.</div>';
